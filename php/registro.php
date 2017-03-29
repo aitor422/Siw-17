@@ -1,33 +1,33 @@
 <?php
-   if (isset($_GET["user"])) {
-      $usuario = $_GET["user"];
+   if (isset($_POST["user"])) {
+      $usuario = $_POST["user"];
    }else {
-      echo "Algo ha fallado con user";
+      echo "Algo ha fallado con user <br>";
    }
-   if (isset($_GET["password"])) {
-      $password = $_GET["password"];
+   if (isset($_POST["password"])) {
+      $password = $_POST["password"];
       $password=password_hash($password,CRYPT_BLOWFISH);
    }else{
-      echo "Algo ha fallado con password";
+      echo "Algo ha fallado con password <br>";
    }
-   if (isset($_GET["email"])) {
+   if (isset($_POST["email"])) {
       if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         $email = $_GET["email"];
+         $email = $_POST["email"];
       }else {
-         echo "Formato de email incorrecto";
+         echo "Formato de email incorrecto <br>";
       }
    }else{
-      echo "Algo ha fallado con email";
+      echo "Algo ha fallado con email <br>";
    }
-   if (isset($_GET["direccion"])) {
-      $direccion = $_GET["direccion"];
+   if (isset($_POST["direccion"])) {
+      $direccion = $_POST["direccion"];
    }else{
-      echo "Algo ha fallado con password";
+      echo "Algo ha fallado con password <br>";
    }
-   if (isset($_GET["nombre"])) {
-      $nombre = $_GET["nombre"];
+   if (isset($_POST["nombre"])) {
+      $nombre = $_POST["nombre"];
    }else{
-      echo "Algo ha fallado con nombre";
+      echo "Algo ha fallado con nombre <br>";
    }
 
  ?>
