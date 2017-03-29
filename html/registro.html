@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="utf-8">
+          <title>Registro</title>
+     </head>
+     <body>
+          <form action="../php/registro.php" method="post" onsubmit="return validateForm()">
+               <input type="text" name="user" id="usuario">
+               <br>
+               <input type="password" name="password" id = "pass1">
+               <br>
+               <input type="password" name="password2" id = "pass2">
+               <br>
+               <input type="text" name="email" id="mail1">
+               <br>
+               <input type="text" name="mail2" id="mail2">
+               <br>
+               <input type="text" name="direccion">
+               <br>
+               <input type="text" name="nombre">
+               <br>
+               <input type="submit" name="submit" value="registrar">
+          </form>
+
+          <script>
+               function validateForm() {
+                    if (document.getElementById("usuario").value.length == 0) {
+                         alert("El nombre no puede estar vacío");
+                         return false;
+                    }
+                    if (document.getElementById("pass1").value != document.getElementById("pass2").value) {
+                         alert("Las contraseñas no coinciden");
+                         return false;
+                    }
+                    if (document.getElementById("mail1").value != document.getElementById("mail2").value) {
+                         alert("Los emails no coinciden");
+                         return false;
+                    }
+                    return true;
+               }
+          </script>
+     </body>
+</html>
