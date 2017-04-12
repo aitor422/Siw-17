@@ -4,17 +4,23 @@
     font-family: "Roboto", sans-serif;
 }
 
-.contenido{
-     padding-top: 40px;
+.contenido {
+    padding-top: 50px;
+    /* Depende del tamaño de la cabecera*/
 }
 
 .letraroja {
     color: red;
 }
 
+
+/***************************************************
+ * Todo lo relacionado con la barra de navegación *
+ ***************************************************/
+
 .navigation-bar {
-     position: fixed;
-     width: 100%;
+    position: fixed;
+    width: 100%;
 }
 
 .navigation-bar ul {
@@ -27,7 +33,8 @@
 
 .navigation-bar a {
     display: block;
-    padding: 8px;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
     text-transform: uppercase;
     color: #eee;
@@ -45,3 +52,8 @@
 .navbaritems-right {
     float: right;
 }
+
+
+/***************************************************
+ * Fin barra navegación****************************
+ ***************************************************/
