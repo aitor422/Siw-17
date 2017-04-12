@@ -32,10 +32,9 @@
 		}
 	}
 
-	if ($accion == "alta") {
+	if ($accion == "registro") {
 		switch ($id) {
 			case 1:
-				//Mostrar formulario de alta
 				vMostrarRegistro();
 				break;
 			case 2:
