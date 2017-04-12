@@ -4,8 +4,17 @@
     font-family: "Roboto", sans-serif;
 }
 
+.contenido{
+     padding-top: 40px;
+}
+
 .letraroja {
     color: red;
+}
+
+.navigation-bar {
+     position: fixed;
+     width: 100%;
 }
 
 .navigation-bar ul {
@@ -13,7 +22,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #333;
+    background-color: #666;
 }
 
 .navigation-bar a {
@@ -22,6 +31,11 @@
     text-decoration: none;
     text-transform: uppercase;
     color: #eee;
+}
+
+.navigation-bar li a:hover {
+    background-color: #333;
+    color: #fff
 }
 
 .navbaritems-left {
