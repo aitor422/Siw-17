@@ -45,6 +45,42 @@
 			case 1:
 				vMostrarLogin();
 				break;
+			case 2:
+				//logout
+				break;
+		}
+	}
+
+	if ($accion == "catalogo") {
+		switch ($id) {
+			case 1:
+				vMostrarCatalogo();
+				break;
+			case 2:
+				//logout
+				break;
+		}
+	}
+
+	if ($accion == "localizacion") {
+		switch ($id) {
+			case 1:
+				vMostrarLocalizacion();
+				break;
+			case 2:
+				//logout
+				break;
+		}
+	}
+
+	if ($accion == "servicios") {
+		switch ($id) {
+			case 1:
+				vMostrarServicios();
+				break;
+			case 2:
+				//logout
+				break;
 		}
 	}
 

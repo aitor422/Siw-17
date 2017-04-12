@@ -21,4 +21,24 @@
           echo $page;
      }
 
+     function vMostrarCatalogo()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/catalogo.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "catalogo", $page);
+          echo $page;
+     }
+
+     function vMostrarLocalizacion()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/localizacion.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "localizacion", $page);
+          echo $page;
+     }
+     function vMostrarServicios()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/servicios.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "servicios", $page);
+          echo $page;
+     }
+
 ?>
