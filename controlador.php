@@ -37,8 +37,13 @@
 			case 1:
 				vMostrarRegistro();
 				break;
-			case 2:
-				//Validar el alta de la persona
+		}
+	}
+
+	if ($accion == "login") {
+		switch ($id) {
+			case 1:
+				vMostrarLogin();
 				break;
 		}
 	}

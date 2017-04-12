@@ -14,4 +14,11 @@
           echo $page;
      }
 
+     function vMostrarLogin()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/login.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "login", $page);
+          echo $page;
+     }
+
 ?>
