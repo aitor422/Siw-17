@@ -1,15 +1,22 @@
 
-          <form action="../php/registro.php" method="post" onsubmit="return validateForm()">
+          <form action="/registro.php" method="post" onsubmit="return validateForm()">
                <input type="text" name="user" id="usuario" placeholder="Usuario">
                <br>
                <input type="password" name="password" id = "pass1" placeholder="Contraseña">
                <br>
-               <input type="password" name="password2" id = "pass2" placeholder="Repetir contraseña">
+               <input type="password" name="password2" id = "pass2" placeholder="Repetir contraseña" onkeyup="checkpass()">
                <br>
+               <div id="malpass" class="letraroja">
+
+               </div>
+
                <input type="text" name="email" id="mail1" placeholder="Email">
                <br>
-               <input type="text" name="mail2" id="mail2" placeholder="Repetir email">
+               <input type="text" name="mail2" id="mail2" placeholder="Repetir email" onkeyup="checkmail()">
                <br>
+               <div id="malmail" class="letraroja">
+
+               </div>
                <input type="text" name="direccion" placeholder="Direccion">
                <br>
                <input type="text" name="nombre" placeholder="Nombre">
@@ -18,19 +25,33 @@
           </form>
 
           <script>
+               permitir;
                function validateForm() {
                     if (document.getElementById("usuario").value.length == 0) {
-                         alert("El nombre no puede estar vacío");
                          return false;
                     }
+                    return permitir;
+               }
+
+               function checkpass() {
                     if (document.getElementById("pass1").value != document.getElementById("pass2").value) {
-                         alert("Las contraseñas no coinciden");
-                         return false;
+                         document.getElementById("malpass").innerHTML = "Las contraseñas no pueden ser distintas<br>";
+                         permitir = false;
                     }
+                    else {
+                         document.getElementById("malpass").innerHTML = "";
+                         permitir = true;
+                    }
+               }
+
+               function checkmail() {
                     if (document.getElementById("mail1").value != document.getElementById("mail2").value) {
-                         alert("Los emails no coinciden");
-                         return false;
+                         document.getElementById("malmail").innerHTML = "Los emails deben coincidir<br>";
+                         permitir = false;
                     }
-                    return true;
+                    else {
+                         document.getElementById("malmail").innerHTML = "";
+                         permitir = true;
+                    }
                }
           </script>
