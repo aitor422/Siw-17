@@ -43,10 +43,10 @@
 	if ($accion == "login") {
 		switch ($id) {
 			case 1:
-				vMostrarLogin();
+				vMostrarLogin(1);
 				break;
-			case 2:
-				//logout
+			case 2://login fail
+				vMostrarLoginFail();
 				break;
 		}
 	}
@@ -56,9 +56,6 @@
 			case 1:
 				vMostrarCatalogo();
 				break;
-			case 2:
-				//logout
-				break;
 		}
 	}
 
@@ -66,9 +63,6 @@
 		switch ($id) {
 			case 1:
 				vMostrarLocalizacion();
-				break;
-			case 2:
-				//logout
 				break;
 		}
 	}

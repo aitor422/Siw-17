@@ -18,6 +18,15 @@
      {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/login.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "login", $page);
+          $page = str_replace("##loginfailed##", "", $page);
+          echo $page;
+     }
+
+     function vMostrarLoginFail()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/login.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "login", $page);
+          $page = str_replace("##loginfailed##", "usuario o contraseña incorrectos", $page);
           echo $page;
      }
 
