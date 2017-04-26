@@ -1,5 +1,8 @@
 <?php
 
+if (session_status() == PHP_SESSION_NONE)
+		 session_start();
+		 
 	//include ("modelo.php");
 	include ("vista.php");
 
@@ -43,11 +46,14 @@
 	if ($accion == "login") {
 		switch ($id) {
 			case 1:
-				vMostrarLogin(1);
+				vMostrarLogin();
 				break;
 			case 2://login fail
 				vMostrarLoginFail();
 				break;
+			case 3://logout
+				unset($_SESSION['usuario']);
+				vMostrarIndice();
 		}
 	}
 

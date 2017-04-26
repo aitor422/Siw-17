@@ -19,11 +19,15 @@
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
    }
 
-   $sql="select password from usuario where email like \"".$email."\" or idusuario like \"".$email."\"";
+   $sql="select password, idusuario from usuario where email like \"".$email."\" or idusuario like \"".$email."\"";
     $resultado = $conn->query($sql);
     $datos = $resultado->fetch_assoc();
     $passhash = $datos["password"];
     if (password_verify($password, $passhash)) {
+      if (session_status() == PHP_SESSION_NONE) {
+          session_start();
+      }
+      $_SESSION["usuario"] = $datos["idusuario"];
       header("Location: controlador.php?accion=index&id=1");
       die();
     }
