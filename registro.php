@@ -11,7 +11,7 @@
       echo "Algo ha fallado con password <br>";
    }
    if (isset($_POST["email"])) {
-      if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
          $email = $_POST["email"];
       }else {
          echo "Formato de email incorrecto <br>";
