@@ -33,6 +33,16 @@
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/registro.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "registro", $page);
           $page = checksession($page);
+          $page = str_replace("##regfailed##", "", $page);
+          echo $page;
+     }
+
+     function vMostrarRegistroFail()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/registro.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "registro", $page);
+          $page = checksession($page);
+          $page = str_replace("##regfailed##", "Algo ha fallado, usuario no creado.", $page);
           echo $page;
      }
 

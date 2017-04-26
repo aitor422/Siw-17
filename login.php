@@ -1,4 +1,13 @@
 <?php
+
+    $conn = mysqli_connect("dbserver", "siw14", "eeshaekaip", "db_siw14");
+    if (mysqli_connect_errno()){
+       echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $sql = $conn->prepare("SELECT password, idusuario FROM usuario WHERE email LIKE ? OR idusuario LIKE ?");
+    $sql->bind_param("ss", $email, $email);
+
    if (isset($_POST["password"])) {
       $password = $_POST["password"];
       /*$password=password_hash($password,CRYPT_BLOWFISH);*/
@@ -14,20 +23,15 @@
       return;
    }
 
-   $conn = mysqli_connect("dbserver", "siw14", "eeshaekaip", "db_siw14");
-   if (mysqli_connect_errno()){
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-   }
-
-   $sql="select password, idusuario from usuario where email like \"".$email."\" or idusuario like \"".$email."\"";
-    $resultado = $conn->query($sql);
-    $datos = $resultado->fetch_assoc();
-    $passhash = $datos["password"];
+    $sql->execute();
+    $sql->bind_result($passhash, $idusuario);
+    $sql->fetch();
+    
     if (password_verify($password, $passhash)) {
       if (session_status() == PHP_SESSION_NONE) {
           session_start();
       }
-      $_SESSION["usuario"] = $datos["idusuario"];
+      $_SESSION["usuario"] = $idusuario;
       header("Location: controlador.php?accion=index&id=1");
       die();
     }

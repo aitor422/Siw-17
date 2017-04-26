@@ -2,7 +2,7 @@
 
 if (session_status() == PHP_SESSION_NONE)
 		 session_start();
-		 
+
 	//include ("modelo.php");
 	include ("vista.php");
 
@@ -39,6 +39,10 @@ if (session_status() == PHP_SESSION_NONE)
 		switch ($id) {
 			case 1:
 				vMostrarRegistro();
+				break;
+
+		case 2://register Failed
+				vMostrarRegistroFail();
 				break;
 		}
 	}
