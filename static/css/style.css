@@ -57,6 +57,11 @@
     float: right;
 }
 
+.active {
+    background-color: #333;
+    color: #fff
+}
+
 
 /***************************************************
  * Fin barra navegación****************************
