@@ -24,7 +24,7 @@
    -- -----------------------------------------------------
    CREATE TABLE IF NOT EXISTS usuario (
      idusuario VARCHAR(15) NOT NULL,
-     password VARCHAR(20) NULL,
+     password VARCHAR(255) NULL,
      email VARCHAR(45) NULL,
      direccion VARCHAR(45) NULL,
      nombre VARCHAR(45) NULL,
