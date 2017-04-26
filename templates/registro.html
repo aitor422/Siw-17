@@ -1,7 +1,10 @@
 
 <form action="/registro.php" method="post" onsubmit="return validateForm()">
-       <input type="text" name="user" id="usuario" placeholder="Usuario">
+       <input type="text" name="user" id="usuario" placeholder="Usuario" onkeyup="checkuser">
        <br>
+       <div id="maluser" class="letraroja">
+
+       </div>
        <input type="password" name="password" id="pass1" placeholder="Contraseña">
        <br>
        <input type="password" name="password2" id="pass2" placeholder="Repetir contraseña" onkeyup="checkpass()">
@@ -27,34 +30,49 @@
 <div class="letraroja">
       ##regfailed##
 </div>
-          <script>
-               permitir;
-               function validateForm() {
-                    if (document.getElementById("usuario").value.length == 0) {
-                         return false;
-                    }
-                    return permitir;
-               }
+<script>
+     permitir = false;
+     function validateForm() {
+          if (document.getElementById("usuario").value.length == 0) {
+               return false;
+          }
+          return permitir;
+     }
 
-               function checkpass() {
-                    if (document.getElementById("pass1").value != document.getElementById("pass2").value) {
-                         document.getElementById("malpass").innerHTML = "Las contraseñas no pueden ser distintas<br>";
-                         permitir = false;
-                    }
-                    else {
-                         document.getElementById("malpass").innerHTML = "";
-                         permitir = true;
-                    }
-               }
+     function checkpass() {
+          if (document.getElementById("pass1").value != document.getElementById("pass2").value) {
+               document.getElementById("malpass").innerHTML = "Las contraseñas no pueden ser distintas<br>";
+               permitir = false;
+          }
+          else {
+               document.getElementById("malpass").innerHTML = "";
+               permitir = true;
+          }
+     }
 
-               function checkmail() {
-                    if (document.getElementById("mail1").value != document.getElementById("mail2").value) {
-                         document.getElementById("malmail").innerHTML = "Los emails deben coincidir<br>";
-                         permitir = false;
-                    }
-                    else {
-                         document.getElementById("malmail").innerHTML = "";
-                         permitir = true;
-                    }
-               }
-          </script>
+     function checkmail() {
+          if (document.getElementById("mail1").value != document.getElementById("mail2").value) {
+               document.getElementById("malmail").innerHTML = "Los emails deben coincidir<br>";
+               permitir = false;
+          }
+          else {
+               document.getElementById("malmail").innerHTML = "";
+               permitir = true;
+          }
+     }
+</script>
+
+
+<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+
+<script type="text/javascript">
+	function cargarcomunidades() {
+    var usr = $('#usuario').val();
+		$.ajax({
+			url: 'checkusrbbdd.php?usr='+usr,
+			success: function (response) {
+				$("#maluser").html(response);
+			}
+		});
+	}
+</script>

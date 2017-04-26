@@ -1,8 +1,14 @@
 <?php
 
+    function fallologin() {
+      header("Location: controlador.php?accion=login&id=2");
+      die();
+    }
+
     $conn = mysqli_connect("dbserver", "siw14", "eeshaekaip", "db_siw14");
     if (mysqli_connect_errno()){
        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+       fallologin();
     }
 
     $sql = $conn->prepare("SELECT password, idusuario FROM usuario WHERE email LIKE ? OR idusuario LIKE ?");
@@ -12,21 +18,19 @@
       $password = $_POST["password"];
       /*$password=password_hash($password,CRYPT_BLOWFISH);*/
    }else{
-      echo "Algo ha fallado con password <br>";
-      return;
+      fallologin();
 
    }
    if (isset($_POST["email"])) {
          $email = $_POST["email"];
    }else{
-      echo "Algo ha fallado con email <br>";
-      return;
+      fallologin();
    }
 
     $sql->execute();
     $sql->bind_result($passhash, $idusuario);
     $sql->fetch();
-    
+
     if (password_verify($password, $passhash)) {
       if (session_status() == PHP_SESSION_NONE) {
           session_start();
@@ -36,7 +40,6 @@
       die();
     }
     else {
-      header("Location: controlador.php?accion=login&id=2");
-      die();
+      fallologin();
     }
  ?>
