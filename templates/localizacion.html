@@ -1,11 +1,40 @@
 <div class="navigation-bar">
-       <ul>
-              <li class="navbaritems-left"><a href="controlador.php?accion=index&id=1">home</a></li>
-              <li class="navbaritems-left"><a href="controlador.php?accion=catalogo&id=1">catalogo</a></li>
-              <li class="navbaritems-left active"><a href="controlador.php?accion=localizacion&id=1">localización</a></li>
-              <li class="navbaritems-left"><a href="controlador.php?accion=servicios&id=1">servicios</a></li>
-              <li class="navbaritems-right"><a href="controlador.php?accion=login&id=1">login</a></li>
-              <li class="navbaritems-right"><a href="controlador.php?accion=registro&id=1">registro</a></li>
-       </ul>
+   <ul>
+      <li class="navbaritems-left"><a href="controlador.php?accion=index&id=1">home</a></li>
+      <li class="navbaritems-left"><a href="controlador.php?accion=catalogo&id=1">catalogo</a></li>
+      <li class="navbaritems-left active"><a href="controlador.php?accion=localizacion&id=1">localización</a></li>
+      <li class="navbaritems-left"><a href="controlador.php?accion=servicios&id=1">servicios</a></li>
+      <li class="navbaritems-right"><a href="controlador.php?accion=login&id=1">login</a></li>
+      <li class="navbaritems-right"><a href="controlador.php?accion=registro&id=1">registro</a></li>
+   </ul>
 </div>
 <div class="contenido">
+   <ul>
+      <li>Horario: Lu-Vi: 09-14:00 16:30–20:00</li>
+      <li>Telefono: +34 948 17 71 32</li>
+      <li><a href="mailto:colordigital@colordigital.es">Mail: colordigital@colordigital.es</a></li>
+      <li>Localización: Calle Fuente del Hierro, 31, 31008 Pamplona, Navarra, España</li>
+   </ul>
+   <form class="" action="index.html" method="post">
+      <textarea name="contacto" placeholder="Envianos tus comentarios!" rows="10" cols="30"></textarea><br>
+      <input type="submit" onclick="alert('Enviado!')" value="Enviar" />
+   </form>
+   <!-- TODO: Cambiar Mostrar por Ocultar cuando se haga click -->
+   <button class="buttonLoc">Mostrar Localización</button>
+   <iframe class="iframeLoc" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2927.1207210416023!2d-1.6591616850857678!3d42.80693491475648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5092675e980843%3A0x435b59ffa04b0944!2sCOLOR+DIGITAL!5e0!3m2!1ses!2ses!4v1487756331164"
+      width="600" height="450" frameborder="0" style="border:0" allowfullscreen>
+   </iframe>
+   <!-- TODO: Sacar javascript de aqui.PD: NO funciona-->
+   <script type="text/javascript">
+      function hideToggle(button, elem) {
+         $(button).toggle(
+            function() {
+               $(elem).hide();
+            },
+            function() {
+               $(elem).show();
+            }
+         );
+      }
+    hideToggle("buttonLoc",".iframeLoc")
+   </script>
