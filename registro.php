@@ -23,6 +23,7 @@
       }
    }else{
       echo "Algo ha fallado con email <br>";
+      return;
    }
    if (isset($_POST["direccion"])) {
       $direccion = $_POST["direccion"];
