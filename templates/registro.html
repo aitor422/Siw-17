@@ -1,9 +1,14 @@
-<form action="/registro.php" method="post" onsubmit="return validateForm()">
+<form class="centered-form" action="/registro.php" method="post" onsubmit="return validateForm()">
+
+       <div class="letraroja">
+              ##regfailed##
+       </div>
+
        <input type="text" name="user" id="user" placeholder="Usuario">
-       <br>
        <div id="maluser" name="maluser" class="letraroja">
 
        </div>
+       <br>
        <input type="password" name="password" id="pass1" placeholder="Contraseña">
        <br>
        <input type="password" name="password2" id="pass2" placeholder="Repetir contraseña" onkeyup="checkpass()">
@@ -26,9 +31,7 @@
        <input type="submit" name="submit" value="Registrar">
 </form>
 
-<div class="letraroja">
-       ##regfailed##
-</div>
+
 <script>
        permitir = false;
 
