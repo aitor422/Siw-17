@@ -5,25 +5,27 @@
 }
 
 *:focus {
-     outline: none;
+    outline: none;
 }
 
-
 .contenido {
-    padding-top: 50px; /* Depende del tamaño de la cabecera*/
+    padding-top: 50px;
+    /* Depende del tamaño de la cabecera*/
     margin-left: 15%;
     margin-right: 15%;
 }
 
-.fondo { /* La cosita gris */
-     position:fixed;
-     height: 10000px;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    overflow:hidden;
-    z-index:-1; /*Para que esté en el fondo*/
+.fondo {
+    /* La cosita gris */
+    position: fixed;
+    height: 10000px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -1;
+    /*Para que esté en el fondo*/
     margin-left: 15%;
     margin-right: 15%;
     background-color: #eee;
@@ -83,12 +85,28 @@
  * Fin barra navegación****************************
  ***************************************************/
 
- /* Formulario centrado */
- .centered-form {
-      margin: 10% 30%;
+
+/* Formulario centrado */
+
+.centered-form {
+    margin: 10% 30%;
 }
 
 .centered-form input {
-     display: block;
-     width: 100%;
+    display: block;
+    width: 100%;
+}
+
+
+/* Dos columnas para localización */
+
+.columnleft {
+    width: 50%;
+    float: left;
+}
+
+.columnright {
+     display:inline;
+    margin-left: 50%;
+    /* Change this to whatever the width of your left column is*/
 }
