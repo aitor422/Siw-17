@@ -1,9 +1,7 @@
 <?php
 
-    echo "aaaaaaaa";
-
     $conn = mysqli_connect("dbserver", "siw14", "eeshaekaip", "db_siw14");
-    if ($conn->connect_errno{
+    if ($conn->connect_errno){
        echo -1;
     }
     else {
@@ -13,8 +11,8 @@
       if($sql->execute()) {
         $sql->bind_result($num);
         $sql->fetch();
-        if ($num === "1") {
-          echo "Ya existe el usuario<br>"
+        if ($num == "1") {
+          echo "Ya existe el usuario<br>";
         }
         else {
           echo "";
