@@ -13,7 +13,6 @@
     /* Depende del tamaño de la cabecera*/
     margin-left: 15%;
     margin-right: 15%;
-    height: 100%;
 }
 
 .fondo {
@@ -105,9 +104,18 @@
     width: 50%;
     float: left;
 }
-.columnleft iframe{
-   height: 600px;
-   border:0;
+
+.iframecontainer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+}
+.iframecontainer iframe{
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  left: 0; top: 0;
 }
 
 .columnright {
