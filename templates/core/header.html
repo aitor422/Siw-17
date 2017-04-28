@@ -2,23 +2,27 @@
 <html>
 
 <head>
-       <meta charset="utf-8">
-       <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-       <title>##titulo##</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+  <title>##titulo##</title>
 </head>
 
 <body>
-
-       <div class="navigation-bar">
-              <ul>
-                     <li class="navbaritems-left ##index##"><a href="controlador.php?accion=index&id=1">home</a></li>
-                     <li class="navbaritems-left ##catalogo##"><a href="controlador.php?accion=catalogo&id=1">catalogo</a></li>
-                     <li class="navbaritems-left ##localizacion##"><a href="controlador.php?accion=localizacion&id=1">localización</a></li>
-                     <li class="navbaritems-left ##servicios##"><a href="controlador.php?accion=servicios&id=1">servicios</a></li>
-                     <li class="navbaritems-right"><a href='##linklogin##'>##loginuser##</a></li>
-                     <li class="navbaritems-right"><a href='##linkregistro##'>##reguser##</a></li>
-              </ul>
-       </div>
-       <div class="fondo">
-       </div>
-       <div class="contenido">
+  <div class="prenavbar">
+    <button type="button" class="botonmenu" name="menu" onclick="botonmenu()"></button>
+    <a class=botonlogin href="##linklogin##"></a>
+  </div>
+  <div id="navigation-bar" class="navigation-bar">
+    <ul>
+      <li class="navbaritems-left ##index##"><a href="controlador.php?accion=index&id=1">home</a></li>
+      <li class="navbaritems-left ##catalogo##"><a href="controlador.php?accion=catalogo&id=1">catalogo</a></li>
+      <li class="navbaritems-left ##localizacion##"><a href="controlador.php?accion=localizacion&id=1">localización</a></li>
+      <li class="navbaritems-left ##servicios##"><a href="controlador.php?accion=servicios&id=1">servicios</a></li>
+      <li class="navbaritems-right"><a href='##linklogin##'>##loginuser##</a></li>
+      <li class="navbaritems-right"><a href='##linkregistro##'>##reguser##</a></li>
+    </ul>
+  </div>
+  <div class="fondo">
+  </div>
+  <div class="contenido">
