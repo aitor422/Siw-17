@@ -13,6 +13,7 @@
     /* Depende del tamaño de la cabecera*/
     margin-left: 15%;
     margin-right: 15%;
+    height: 100%;
 }
 
 .fondo {
@@ -103,6 +104,10 @@
 .columnleft {
     width: 50%;
     float: left;
+}
+.columnleft iframe{
+   height: 600px;
+   border:0;
 }
 
 .columnright {
