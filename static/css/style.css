@@ -9,13 +9,16 @@
 }
 
 .logo {
+     z-index: 2;
+     position: absolute;
     display: block;
-    margin-top: 46px;
-    float: left;
-    width: 15%;
-    padding-top: 15%;
+    width: 6%;
+    padding-top: 6%;
+    margin-left: 7%;
+     margin-top: 1%;
     background: url(/static/images/logoesquina.svg) no-repeat;
     background-size: cover;
+    background-color: #fff;
 }
 
 .contenido {
@@ -63,8 +66,7 @@
 }
 
 .navigation-bar {
-    left: 0;
-    z-index: 100;
+    z-index: 1;
     position: fixed;
     width: 100%;
 }
@@ -73,8 +75,8 @@
     overflow: hidden;
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    background-color: #666;
+padding-left: 15%;
+   background-color: #666;
 }
 
 .navigation-bar a {
@@ -161,10 +163,7 @@
 
 /******************************************************************/
 
-@media
-/*only*/
-
-screen and (min-width: 240px) and (max-width: 480px) {
+@media screen and (min-width: 240px) and (max-width: 720px) {
     /* iPhone, Android rules here */
     .ocultarmovil {
         display: none;
@@ -188,10 +187,10 @@ screen and (min-width: 240px) and (max-width: 480px) {
         display: unset;
     }
     .columnleft {
-        width: 0%;
+        width: 0;
     }
     .columnright {
-        margin-left: 0%;
+        margin-left: 0;
     }
     .contenido {
         padding-top: 60px;
@@ -200,12 +199,13 @@ screen and (min-width: 240px) and (max-width: 480px) {
    * Todo lo relacionado con la barra de navegación *
    ***************************************************/
     .navigation-bar a {
-        cursor: none;
+        cursor: default;
     }
     .prenavbar {
         display: unset;
     }
     .navigation-bar {
+         padding-left: 0;
         display: none;
         top: 50px;
     }
@@ -218,14 +218,17 @@ screen and (min-width: 240px) and (max-width: 480px) {
     /***************************************************
    * Fin barra navegación****************************
    ***************************************************/
-    /* Botón de menú */
+
     .logo {
+         position: relative;
         float: none;
         margin: -50px auto;
         width: 50px;
         height: 50px;
         padding: 0;
     }
+
+    /* Botón de menú */
     .botonmenu {
         background: url(/static/images/iconomenu.png) no-repeat;
         background-size: contain;
@@ -233,7 +236,6 @@ screen and (min-width: 240px) and (max-width: 480px) {
         background-position: center;
         width: 50px;
         height: 50px;
-        outline: 0;
     }
     .botonlogin {
         background: url(/static/images/login.png) no-repeat;
@@ -243,13 +245,12 @@ screen and (min-width: 240px) and (max-width: 480px) {
     }
     .botonlogin, .botonlogout {
         background-size: contain;
-        cursor: none;
+        cursor: default;
         border: none;
         background-position: center;
         width: 50px;
         height: 50px;
         float: right;
-        outline: 0;
     }
 }
 
