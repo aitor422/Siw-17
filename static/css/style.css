@@ -1,42 +1,52 @@
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
 }
 
 *:focus {
-  outline: none;
+    outline: none;
+}
+
+.logo {
+    display: block;
+    margin-top: 46px;
+    float: left;
+    width: 15%;
+    padding-top: 15%;
+    background: url(/static/images/logoesquina.svg) no-repeat;
+    background-size: cover;
 }
 
 .contenido {
-  padding-top: 50px;
-  /* Depende del tamaño de la cabecera*/
-  margin-left: 15%;
-  margin-right: 15%;
+    padding-top: 50px;
+    /* Depende del tamaño de la cabecera*/
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .fondo {
-  /* La cosita gris */
-  position: fixed;
-  height: 10000px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  z-index: -1;
-  /*Para que esté en el fondo*/
-  margin-left: 15%;
-  margin-right: 15%;
-  background-color: #eee;
+    /* La cosita gris */
+    position: fixed;
+    height: 10000px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -1;
+    /*Para que esté en el fondo*/
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: #eee;
 }
 
 .letraroja {
-  color: red;
+    color: red;
 }
 
 .onlymobile {
-  display:none;
+    display: none;
 }
 
 
@@ -45,53 +55,53 @@
  ***************************************************/
 
 .prenavbar {
-  position: fixed;
-  top: 0;
-  display: none;
-  width: 100%;
-  background-color: #666;
+    position: fixed;
+    top: 0;
+    display: none;
+    width: 100%;
+    background-color: #666;
 }
 
 .navigation-bar {
- display: inline;
-  z-index: 100;
-  position: fixed;
-  width: 100%;
+    left: 0;
+    z-index: 100;
+    position: fixed;
+    width: 100%;
 }
 
 .navigation-bar ul {
-  overflow: hidden;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: #666;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #666;
 }
 
 .navigation-bar a {
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #eee;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #eee;
 }
 
 .navigation-bar li a:hover {
-  background-color: #333;
-  color: #fff
+    background-color: #333;
+    color: #fff
 }
 
 .navbaritems-left {
-  float: left;
+    float: left;
 }
 
 .navbaritems-right {
-  float: right;
+    float: right;
 }
 
 .active {
-  background-color: #333;
-  color: #fff
+    background-color: #333;
+    color: #fff
 }
 
 
@@ -103,26 +113,26 @@
 /* Formulario centrado */
 
 .centered-form {
-  margin: 10% 30%;
+    margin: 10% 30%;
 }
 
 .centered-form input {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 }
 
 
 /* Dos columnas para localización */
 
 .columnleft {
-  width: 50%;
-  float: left;
+    width: 50%;
+    float: left;
 }
 
 .columnright {
-  display: inline;
-  margin-left: 50%;
-  /* Change this to whatever the width of your left column is*/
+    display: inline;
+    margin-left: 50%;
+    /* Change this to whatever the width of your left column is*/
 }
 
 
@@ -132,105 +142,116 @@
 /* Para que el iframe de google mantenga relación de aspecto 1:1 */
 
 .iframecontainer {
-  position: relative;
-  margin-left: 5%;
-  width: 95%;
-  height: 0;
-  padding-bottom: 100%;
+    position: relative;
+    margin-left: 5%;
+    width: 95%;
+    height: 0;
+    padding-bottom: 100%;
 }
 
 .iframecontainer iframe {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  left: 0;
-  top: 0;
-  border: 0
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    left: 0;
+    top: 0;
+    border: 0
 }
 
 
 /******************************************************************/
 
-@media /*only*/ screen and (min-width: 240px) and (max-width: 480px) {
-  /* iPhone, Android rules here */
-  .centered-form {
-    margin: 10% 0;
-  }
+@media
+/*only*/
 
-  .centered-form input {
-    display: block;
-    margin: 0;
-    width: 100%; height: 40px;
-    font-size: 17px;
-    border: 1px solid #bbb;
-  }
-  .fondo {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .onlymobile {
-    display:unset;
-  }
-  .columnleft {
-    width: 0%;
-  }
-  .columnright {
-    margin-left: 0%;
-  }
-  .contenido {
-    padding-top: 60px;
-  }
-  /***************************************************
+screen and (min-width: 240px) and (max-width: 480px) {
+    /* iPhone, Android rules here */
+    .ocultarmovil {
+        display: none;
+    }
+    .centered-form {
+        margin: 10% 0;
+    }
+    .centered-form input {
+        display: block;
+        margin: 0;
+        width: 100%;
+        height: 40px;
+        font-size: 17px;
+        border: 1px solid #bbb;
+    }
+    .fondo {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .onlymobile {
+        display: unset;
+    }
+    .columnleft {
+        width: 0%;
+    }
+    .columnright {
+        margin-left: 0%;
+    }
+    .contenido {
+        padding-top: 60px;
+    }
+    /***************************************************
    * Todo lo relacionado con la barra de navegación *
    ***************************************************/
-  .navigation-bar a {
-    cursor: none;
-  }
-  .prenavbar {
-    display: unset;
-  }
-  .navigation-bar {
-    display: none;
-    top: 50px;
-  }
-  .navbaritems-left {
-    float: unset;
-  }
-  .navbaritems-right {
-    display: none;
-  }
-  /***************************************************
+    .navigation-bar a {
+        cursor: none;
+    }
+    .prenavbar {
+        display: unset;
+    }
+    .navigation-bar {
+        display: none;
+        top: 50px;
+    }
+    .navbaritems-left {
+        float: unset;
+    }
+    .navbaritems-right {
+        display: none;
+    }
+    /***************************************************
    * Fin barra navegación****************************
    ***************************************************/
-  /* Botón de menú */
-  .botonmenu {
-    background: url(/static/images/iconomenu.png) no-repeat;
-    background-size: contain;
-    border: none;
-    background-position: center;
-    width: 50px;
-    height: 50px;
-    outline: 0;
-  }
-  .botonlogin {
-       background: url(/static/images/login.png) no-repeat;
- }
-
-.botonlogout {
-     background: url(/static/images/logout.png) no-repeat;
-
+    /* Botón de menú */
+    .logo {
+        float: none;
+        margin: -50px auto;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+    }
+    .botonmenu {
+        background: url(/static/images/iconomenu.png) no-repeat;
+        background-size: contain;
+        border: none;
+        background-position: center;
+        width: 50px;
+        height: 50px;
+        outline: 0;
+    }
+    .botonlogin {
+        background: url(/static/images/login.png) no-repeat;
+    }
+    .botonlogout {
+        background: url(/static/images/logout.png) no-repeat;
+    }
+    .botonlogin, .botonlogout {
+        background-size: contain;
+        cursor: none;
+        border: none;
+        background-position: center;
+        width: 50px;
+        height: 50px;
+        float: right;
+        outline: 0;
+    }
 }
 
-  .botonlogin, .botonlogout {
-    background-size: contain;
-    cursor: none;
-    border: none;
-    background-position: center;
-    width: 50px;
-    height: 50px;
-    float: right;
-    outline: 0;
-  }
-}
+
 }
