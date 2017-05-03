@@ -8,12 +8,15 @@
            $page = str_replace("##loginuser##", "logout", $page);
            $page = str_replace("##linkregistro##", "controlador.php?accion=index&id=1", $page);
            $page = str_replace("##linklogin##", "controlador.php?accion=login&id=3", $page);
+           $page = str_replace("##botonlogin##", "botonlogout", $page);
        }
        else {
          $page = str_replace("##loginuser##", "login", $page);
          $page = str_replace("##reguser##", "register", $page);
          $page = str_replace("##linklogin##", "controlador.php?accion=login&id=1", $page);
          $page = str_replace("##linkregistro##", "controlador.php?accion=registro&id=1", $page);
+         $page = str_replace("##botonlogin##", "botonlogin", $page);
+
        }
        return $page;
      }
