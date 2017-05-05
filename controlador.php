@@ -88,4 +88,20 @@ if (session_status() == PHP_SESSION_NONE)
 		}
 	}
 
+	if ($accion == "usuario") {
+		switch ($id) {
+			case 1:
+				vMostrarUser();
+				break;
+		}
+	}
+
+	if ($accion == "admin") {
+		switch ($id) {
+			case 1:
+				vMostrarAdmin();
+				break;
+		}
+	}
+
 ?>

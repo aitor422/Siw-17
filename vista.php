@@ -6,7 +6,7 @@
        if (isset($_SESSION["usuario"])) {
            $page = str_replace("##reguser##", $_SESSION["usuario"], $page);
            $page = str_replace("##loginuser##", "logout", $page);
-           $page = str_replace("##linkregistro##", "controlador.php?accion=index&id=1", $page);
+           $page = str_replace("##linkregistro##", "controlador.php?accion=usuario&id=1", $page);
            $page = str_replace("##linklogin##", "controlador.php?accion=login&id=3", $page);
            $page = str_replace("##botonlogin##", "botonlogout", $page);
        }
@@ -67,6 +67,21 @@
           echo $page;
      }
 
+     function vMostrarUser()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/user.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "tu cuenta", $page);
+          $page = str_replace("##cuentausuario##", "active", $page);
+          $page = checksession($page);
+          if(strcmp ( $_SESSION["usuario"] , "admin" ) === 0) {
+            $page = str_replace("##admin##", "<a href='controlador.php?accion=admin&id=1'>user</a>", $page);
+          }
+          else {
+            $page = str_replace("##admin##", "", $page);
+          }
+          echo $page;
+     }
+
      function vMostrarCatalogo()
      {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/catalogo.html") . file_get_contents("templates/core/footer.html");
@@ -89,6 +104,14 @@
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/servicios.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "servicios", $page);
           $page = str_replace("##servicios##", "active", $page);
+          $page = checksession($page);
+          echo $page;
+     }
+
+     function vMostrarAdmin()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "admin", $page);
           $page = checksession($page);
           echo $page;
      }
