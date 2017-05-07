@@ -7,7 +7,21 @@
 *:focus {
     outline: none;
 }
+/**************************************************************/
+#contenedortabla {
+  display: table;
+  width: 100%;
+}
 
+#contenedorfila {
+  display: table-row;
+}
+
+.resultado {
+  display: table-cell;
+  width: 33%;
+}
+/*************************************************************/
 .logo {
      z-index: 2;
      position: fixed;

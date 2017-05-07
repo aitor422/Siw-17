@@ -1,2 +1,51 @@
+	<select id="numeroregistros" onchange="cargar();">
+		<option value="25">25</option>
+		<option value="50">50</option>
+		<option value="100">100</option>
+	</select>
+  <select id="categoria" onchange="cargar();">
+    <option value="0">todas</option>
+		##selectorescategoria##
+	</select>
+	<div id="contenedortabla">
+		<div id="contenedorfila">
+			<div class="resultado" id="resultado1">
+				resultado1
+			</div>
+			<div class="resultado" id="resultado2">
+				resultado2
+			</div>
+      <div class="resultado" id="resultado3">
+				resultado3
+			</div>
+		</div>
+	</div>
 
-<button type="button">Guardar como favorito</button>
+  <script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+  <script type="text/javascript">
+
+  	function cargar() {
+  		var numreg = $("#numeroregistros").val();
+      var cat = $("#categoria").val();
+  		$.ajax({
+  			url: "/catalogo.php?numreg=" + numreg + "&cat="+cat,
+  			success: function(response) {
+  				var datos = jQuery.parseJSON(response);
+  				var cadena1 = "";
+  				var cadena2 = "";
+          var cadena3 = "";
+  				for (var i = 0; i < datos.length; i ++) {
+  						cadena1 = cadena1 + "<a href='controlador.php?accion=producto&id=1&producto=" + datos[i][0] + "'>" + datos[i][0] +"</a>" + "<br>";
+              cadena2 = cadena2 + datos[i][1] + "<br>";
+              cadena3 = cadena3 + datos[i][2] + "<br>";
+  				}
+  				$("#resultado1").html(cadena1);
+  				$("#resultado2").html(cadena2);
+          $("#resultado3").html(cadena3);
+  			}
+  		});
+  	}
+
+    $( document ).ready(cargar());
+
+  </script>

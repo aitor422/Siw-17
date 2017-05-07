@@ -26,6 +26,7 @@ if (session_status() == PHP_SESSION_NONE)
 		}
 	}
 
+
 	if ($accion == "index") {
 		switch ($id) {
 			case 1:
@@ -100,6 +101,23 @@ if (session_status() == PHP_SESSION_NONE)
 		switch ($id) {
 			case 1:
 				vMostrarAdmin();
+				break;
+		}
+	}
+
+	if ($accion == "producto") {
+		if (isset($_GET["producto"])) {
+			$producto = $_GET["producto"];
+		} else {
+			if (isset($_POST["producto"])) {
+				$producto = $_POST["producto"];
+			} else {
+				$producto = 0;
+			}
+		}
+		switch ($id) {
+			case 1:
+				vMostrarProducto($producto);
 				break;
 		}
 	}

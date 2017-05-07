@@ -84,7 +84,18 @@
 
      function vMostrarCatalogo()
      {
+         $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+         $consulta = "select distinct(categoria) as cat from productos";
+         $resultado = $con->query($consulta);
+         $selectores = "";
+         while ($datos = $resultado->fetch_assoc()) {
+           if ($datos["cat"] != "") {
+             $selectores = $selectores . "<option value='" . $datos["cat"] . "'>". $datos["cat"] ."</option>";
+           }
+         }
+
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/catalogo.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##selectorescategoria##", $selectores, $page);
           $page = str_replace("##titulo##", "catalogo", $page);
           $page = str_replace("##catalogo##", "active", $page);
           $page = checksession($page);
@@ -114,6 +125,22 @@
           $page = str_replace("##titulo##", "admin", $page);
           $page = checksession($page);
           echo $page;
+     }
+
+     function vMostrarProducto($producto) {
+       $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+       $consulta = "select * from productos where idproducto = $producto";
+       $resultado = $con->query($consulta);
+       $resultado = $resultado->fetch_assoc();
+
+       $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
+       $page = str_replace("##titulo##", $producto, $page);
+       //$page = str_replace("##imagen##", "", $page);
+       $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
+       $page = str_replace("##descripcion##", $resultado["nombre"], $page);
+       $page = str_replace("##precio##", $resultado["precio"], $page);
+       $page = checksession($page);
+       echo $page;
      }
 
 ?>
