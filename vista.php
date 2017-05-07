@@ -9,6 +9,7 @@
            $page = str_replace("##linkregistro##", "controlador.php?accion=usuario&id=1", $page);
            $page = str_replace("##linklogin##", "controlador.php?accion=login&id=3", $page);
            $page = str_replace("##botonlogin##", "botonlogout", $page);
+           $page = str_replace("##parausuarios##", "", $page);
        }
        else {
          $page = str_replace("##loginuser##", "login", $page);
@@ -16,14 +17,38 @@
          $page = str_replace("##linklogin##", "controlador.php?accion=login&id=1", $page);
          $page = str_replace("##linkregistro##", "controlador.php?accion=registro&id=1", $page);
          $page = str_replace("##botonlogin##", "botonlogin", $page);
-
+         $cachos = explode("##parausuarios##", $page);
+         if (count($cachos) == 3) {
+           $page = $cachos[0] . $cachos[2];
+         }
        }
        return $page;
      }
 
      function vMostrarIndice()
      {
-          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
+            $cadena = "<table><tr>";
+           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
+           $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+           $consulta = "select * from productos where destacado=1 limit 5";
+           $resultado = $con->query($consulta);
+           $i = 1;
+           while ($datos = $resultado->fetch_assoc()) {
+             $page = str_replace("##$i##", $datos["idproducto"], $page);
+             $page = str_replace("##p$i##", $datos["precio"] . ".-", $page);
+             $i++;
+           }
+           $consulta = "select * from productos where destacado=1 limit 20 offset 5";
+           $resultado = $con->query($consulta);
+           while ($datos = $resultado->fetch_assoc()) {
+             $cadena = $cadena . "<td><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["idproducto"] ."</a></td>";
+             if (($i % 5) == 0) {
+               $cadena = $cadena . "</tr><tr>";
+             }
+             $i++;
+           }
+           $cadena = $cadena . "</tr></table>";
+           $page = str_replace("##tablaproductos##", $cadena, $page);
           $page = str_replace("##titulo##", "index", $page);
           $page = str_replace("##index##", "active", $page);
           $page = checksession($page);
@@ -69,11 +94,28 @@
 
      function vMostrarUser()
      {
+       if (session_status() == PHP_SESSION_NONE)
+            session_start();
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/user.html") . file_get_contents("templates/core/footer.html");
+          $cadena = "<ul>";
+          $usuario = $_SESSION["usuario"];
+           $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+           $consulta = "select idproducto from favoritos where idusuario = '$usuario'";
+           $resultado = $con->query($consulta);
+           while ($datos = $resultado->fetch_assoc()) {
+             $cadena = $cadena . "<li><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["idproducto"] ."</a></li>";
+           }
+           $cadena = $cadena . "</ul>";
+           if ($cadena == "<ul></ul>") {
+             $page = str_replace("##productos##", "nada por aquí...", $page);
+           }
+           else {
+             $page = str_replace("##productos##", $cadena, $page);
+           }
           $page = str_replace("##titulo##", "tu cuenta", $page);
           $page = str_replace("##cuentausuario##", "active", $page);
           $page = checksession($page);
-          if(strcmp ( $_SESSION["usuario"] , "admin" ) === 0) {
+          if(strcmp ( $usuario , "admin" ) === 0) {
             $page = str_replace("##admin##", "<a href='controlador.php?accion=admin&id=1'>user</a>", $page);
           }
           else {

@@ -1,1 +1,100 @@
+<h1>Destacados de hoy</h1>
 
+<div class="slideshow-container">
+  <a href='controlador.php?accion=producto&id=1&producto=##1##'>
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 5</div>
+      <img src="http://placehold.it/1000x300">
+      <div class="textderecha">##p1##</div>
+      <div class="text">##1##</div>
+    </div>
+  </a>
+
+  <a href='controlador.php?accion=producto&id=1&producto=##2##'>
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 5</div>
+      <img src="http://placehold.it/1000x300">
+      <div class="textderecha">##p2##</div>
+      <div class="text">##2##</div>
+    </div>
+  </a>
+
+  <a href='controlador.php?accion=producto&id=1&producto=##3##'>
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 5</div>
+      <img src="http://placehold.it/1000x300">
+      <div class="textderecha">##p3##</div>
+      <div class="text">##3##</div>
+    </div>
+  </a>
+
+  <a href='controlador.php?accion=producto&id=1&producto=##4##'>
+    <div class="mySlides fade">
+      <div class="numbertext">4 / 5</div>
+      <img src="http://placehold.it/1000x300">
+      <div class="textderecha">##p4##</div>
+      <div class="text">##4##</div>
+    </div>
+  </a>
+
+  <a href='controlador.php?accion=producto&id=1&producto=##5##'>
+    <div class="mySlides fade">
+      <div class="numbertext">5 / 5</div>
+      <img src="http://placehold.it/1000x300">
+      <div class="textderecha">##p5##</div>
+      <div class="text">##5##</div>
+    </div>
+  </a>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+
+<br>
+
+<h1>Más destacados</h1>
+<div class="tablaproductos">
+    ##tablaproductos##
+</div>
+
+<script type="text/javascript">
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {
+      slideIndex = 1
+    }
+    if (n < 1) {
+      slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" activo", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " activo";
+  }
+</script>
