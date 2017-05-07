@@ -4,22 +4,21 @@
 
   mysqli_set_charset($con,"utf8");
 
-  if (isset($_GET["numreg"])) {
-		$numreg = $_GET["numreg"];
-	} else {
-		$numreg = 0;
-	}
   if (isset($_GET["cat"])) {
 		$cat = $_GET["cat"];
 	} else {
 		$cat = 0;
 	}
 
+	$limit = 25 * $_GET["clicks"];
+
   if ($cat == 0) {
-	   $consulta = "select * from productos limit $numreg";
+	   $consulta = "select * from productos limit $limit";
+		 $consulta2 = "select count(*) as cuenta from productos";
    }
    else {
-     $consulta = "select * from productos where categoria = $cat limit $numreg";
+     $consulta = "select * from productos where categoria = $cat limit $limit";
+		 $consulta2 = "select count(*) as cuenta from productos where categoria = $cat";
   }
 	$resultado = $con->query($consulta);
 
@@ -31,7 +30,12 @@
     $lista[$i][2] = $datos["categoria"];
 		$i++;
 	}
+	$resultado = $con->query($consulta2);
+	$datos = $resultado->fetch_assoc();
+	$total = array();
+	$total[0] = $datos["cuenta"];
+	$total[1] = $lista;
 
-	echo json_encode($lista);
+	echo json_encode($total);
 
 ?>

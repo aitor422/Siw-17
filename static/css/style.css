@@ -1,68 +1,89 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 *:focus {
-    outline: none;
-}
-/**************************************************************/
-#contenedortabla {
-  display: table;
-  width: 100%;
+  outline: none;
 }
 
-#contenedorfila {
-  display: table-row;
+html, body {
+  height: 100%;
 }
 
-.resultado {
-  display: table-cell;
-  width: 33%;
-}
-/*************************************************************/
 .logo {
-     z-index: 2;
-     position: fixed;
-    display: block;
-    width: 8%;
-    padding-top: 8%;
-    margin-left: 4%;
-     margin-top: 3px;
-    background: url(/static/images/logoesquina.png) no-repeat;
-    background-size: cover;
+  z-index: 2;
+  position: fixed;
+  display: block;
+  width: 8%;
+  padding-top: 8%;
+  margin-left: 4%;
+  margin-top: 3px;
+  background: url(/static/images/logoesquina.png) no-repeat;
+  background-size: cover;
 }
 
 .contenido {
-    padding-top: 100px;
-    /* Depende del tamaño de la cabecera*/
-    margin-left: 15%;
-    margin-right: 15%;
+  box-sizing: border-box;
+  padding-top: 100px;
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -40px;
+  /* Depende del tamaño de la cabecera*/
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
+.contenido:after {
+  content: "";
+  display: block;
+}
+
+.footer, .contenido:after {
+  /* .push must be the same height as footer */
+  height: 40px;
+}
+
+
+/******************footer************************/
+
+.footer {
+  width: 100%;
+  background-color: #666;
+  text-align: center;
+  color: #eee;
+  text-transform: uppercase;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+/************************************************/
+
 .fondo {
-    /* La cosita gris */
-    position: fixed;
-    height: 10000px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    z-index: -1;
-    /*Para que esté en el fondo*/
-    margin-left: 15%;
-    margin-right: 15%;
-    background-color: #eee;
+  /* La cosita gris */
+  position: fixed;
+  height: 10000px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: -1;
+  /*Para que esté en el fondo*/
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #eee;
 }
 
 .letraroja {
-    color: red;
+  color: red;
 }
 
 .onlymobile {
-    display: none;
+  display: none;
 }
 
 
@@ -71,53 +92,53 @@
  ***************************************************/
 
 .prenavbar {
-    position: fixed;
-    top: 0;
-    display: none;
-    width: 100%;
-    background-color: #666;
+  position: fixed;
+  top: 0;
+  display: none;
+  width: 100%;
+  background-color: #666;
 }
 
 .navigation-bar {
-    z-index: 1;
-    position: fixed;
-    width: 100%;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
 }
 
 .navigation-bar ul {
-    overflow: hidden;
-    list-style-type: none;
-    margin: 0;
-padding-left: 15%;
-padding-top: 2%;
-   background-color: #666;
+  overflow: hidden;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 15%;
+  padding-top: 2%;
+  background-color: #666;
 }
 
 .navigation-bar a {
-    display: block;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #eee;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #eee;
 }
 
 .navigation-bar li a:hover {
-    background-color: #333;
-    color: #fff
+  background-color: #333;
+  color: #fff
 }
 
 .navbaritems-left {
-    float: left;
+  float: left;
 }
 
 .navbaritems-right {
-    float: right;
+  float: right;
 }
 
 .active {
-    background-color: #333;
-    color: #fff
+  background-color: #333;
+  color: #fff
 }
 
 
@@ -129,26 +150,27 @@ padding-top: 2%;
 /* Formulario centrado */
 
 .centered-form {
-    margin: 10% 30%;
+  margin: 10% 30%;
 }
 
 .centered-form input {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
+  height: 40px;
 }
 
 
 /* Dos columnas para localización */
 
 .columnleft {
-    width: 50%;
-    float: left;
+  width: 50%;
+  float: left;
 }
 
 .columnright {
-    display: inline;
-    margin-left: 50%;
-    /* Change this to whatever the width of your left column is*/
+  display: inline;
+  margin-left: 50%;
+  /* Change this to whatever the width of your left column is*/
 }
 
 
@@ -158,116 +180,196 @@ padding-top: 2%;
 /* Para que el iframe de google mantenga relación de aspecto 1:1 */
 
 .iframecontainer {
-    position: relative;
-    margin-left: 5%;
-    width: 95%;
-    height: 0;
-    padding-bottom: 100%;
+  position: relative;
+  margin-left: 5%;
+  width: 95%;
+  height: 0;
+  padding-bottom: 100%;
 }
 
 .iframecontainer iframe {
-    position: absolute;
-    width: 90%;
-    height: 90%;
-    left: 0;
-    top: 0;
-    border: 0
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  left: 0;
+  top: 0;
+  border: 0
 }
 
 
 /******************************************************************/
 
+
+/*****************servicios***********************/
+
+.onehalf {
+  float: left;
+  width: 46%;
+}
+
+.last {
+  float: right;
+}
+
+.first {
+  clear: left;
+}
+
+.imagenservicios {
+  float: left;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.parrafoservicios {
+  margin-left: 68px;
+  text-align: justify;
+}
+
+
+/******************************************************************/
+
+
+/*********************vista de productos***************************/
+
+.tablaproductos table {
+  width: 100%;
+  border-spacing: 5px;
+}
+
+.tablaproductos th, td {
+  padding: 5px 15px;
+  text-align: center;
+}
+
+#cuentaresultados {
+  display: inline;
+}
+
+#selectordecategorias {
+  float: right;
+}
+
+
+/*********************************************************************/
+
+
+/************botonesbonitos*********************/
+
+.botonesbonitos {
+  height: inherit !important;
+  padding: 0.785rem 2rem;
+  font-size: 1.143rem;
+  line-height: 1.33333;
+  border-radius: 0.2143rem;
+  color: #444;
+  background-color: #e2e2e2;
+  border-color: #d2d2d2;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.botonesanchos {
+  display: block;
+  width: 80% !important;
+  margin: 3% auto !important;
+}
+
+.botonesbonitos:hover {
+  color: #444;
+  background-color: #c9c9c9;
+  border-color: #b3b3b3;
+}
+
+
+/*****************************************************************/
+
 @media screen and (min-width: 240px) and (max-width: 720px) {
-    /* iPhone, Android rules here */
-    .ocultarmovil {
-        display: none;
-    }
-    .centered-form {
-        margin: 10% 0;
-    }
-    .centered-form input {
-        display: block;
-        margin: 0;
-        width: 100%;
-        height: 40px;
-        font-size: 17px;
-        border: 1px solid #bbb;
-    }
-    .fondo {
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .onlymobile {
-        display: unset;
-    }
-    .columnleft {
-        width: 0;
-    }
-    .columnright {
-        margin-left: 0;
-    }
-    .contenido {
-        padding-top: 60px;
-    }
-    /***************************************************
+  /* iPhone, Android rules here */
+  .ocultarmovil {
+    display: none;
+  }
+  .centered-form {
+    margin: 10% 0;
+  }
+  .centered-form input {
+    margin: 0;
+    font-size: 17px;
+    border: 1px solid #bbb;
+  }
+  .fondo {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .onlymobile {
+    display: unset;
+  }
+  .columnleft {
+    width: 0;
+  }
+  .columnright {
+    margin-left: 0;
+  }
+  .contenido {
+    padding-top: 60px;
+  }
+  /***************************************************
    * Todo lo relacionado con la barra de navegación *
    ***************************************************/
-    .navigation-bar a {
-        cursor: default;
-    }
-    .prenavbar {
-        display: unset;
-    }
-    .navigation-bar {
-        display: none;
-        top: 50px;
-    }
-    .navigation-bar ul {
-      padding-left: 0;
-    }
-    .navbaritems-left {
-        float: unset;
-    }
-    .navbaritems-right {
-        display: none;
-    }
-    /***************************************************
+  .navigation-bar a {
+    cursor: default;
+  }
+  .prenavbar {
+    display: unset;
+  }
+  .navigation-bar {
+    display: none;
+    top: 50px;
+  }
+  .navigation-bar ul {
+    padding-left: 0;
+  }
+  .navbaritems-left {
+    float: unset;
+  }
+  .navbaritems-right {
+    display: none;
+  }
+  /***************************************************
    * Fin barra navegación****************************
    ***************************************************/
-
-    .logo {
-         position: relative;
-        float: none;
-        margin: -50px auto;
-        width: 50px;
-        height: 50px;
-        padding: 0;
-    }
-
-    /* Botón de menú */
-    .botonmenu {
-        background: url(/static/images/iconomenu.png) no-repeat;
-        background-size: contain;
-        border: none;
-        background-position: center;
-        width: 50px;
-        height: 50px;
-    }
-    .botonlogin {
-        background: url(/static/images/login.png) no-repeat;
-    }
-    .botonlogout {
-        background: url(/static/images/logout.png) no-repeat;
-    }
-    .botonlogin, .botonlogout {
-        background-size: contain;
-        cursor: default;
-        border: none;
-        background-position: center;
-        width: 50px;
-        height: 50px;
-        float: right;
-    }
+  .logo {
+    position: relative;
+    float: none;
+    margin: -50px auto;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+  }
+  /* Botón de menú */
+  .botonmenu {
+    background: url(/static/images/iconomenu.png) no-repeat;
+    background-size: contain;
+    border: none;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+  }
+  .botonlogin {
+    background: url(/static/images/login.png) no-repeat;
+  }
+  .botonlogout {
+    background: url(/static/images/logout.png) no-repeat;
+  }
+  .botonlogin, .botonlogout {
+    background-size: contain;
+    cursor: default;
+    border: none;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    float: right;
+  }
 }
 
 

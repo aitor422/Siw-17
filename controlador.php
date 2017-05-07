@@ -122,4 +122,12 @@ if (session_status() == PHP_SESSION_NONE)
 		}
 	}
 
+	if ($accion == "legal") {
+		switch ($id) {
+			case 1:
+				vMostrarLegal();
+				break;
+		}
+	}
+
 ?>

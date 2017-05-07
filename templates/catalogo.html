@@ -1,50 +1,62 @@
-	<select id="numeroregistros" onchange="cargar();">
-		<option value="25">25</option>
-		<option value="50">50</option>
-		<option value="100">100</option>
-	</select>
-  <select id="categoria" onchange="cargar();">
-    <option value="0">todas</option>
-		##selectorescategoria##
-	</select>
-	<div id="contenedortabla">
-		<div id="contenedorfila">
-			<div class="resultado" id="resultado1">
-				resultado1
-			</div>
-			<div class="resultado" id="resultado2">
-				resultado2
-			</div>
-      <div class="resultado" id="resultado3">
-				resultado3
-			</div>
-		</div>
+<div id="cuentaresultados">
+</div>
+
+	<div id = "selectordecategorias">
+		<label for="categoria">Categoría: </label>
+		<select id="categoria" onchange="cargarconcambio();">
+	    <option value="0">todas</option>
+			##selectorescategoria##
+		</select>
 	</div>
+
+		<div id="resultado" class = "tablaproductos">
+			resultado1
+		</div>
+
+		<button id="botoncargamas" class="botonesbonitos botonesanchos" type="button" name="button" onclick="clicado()">Mostrar más</button>
+
+
 
   <script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
   <script type="text/javascript">
+		var clicks = 1;
 
   	function cargar() {
   		var numreg = $("#numeroregistros").val();
       var cat = $("#categoria").val();
   		$.ajax({
-  			url: "/catalogo.php?numreg=" + numreg + "&cat="+cat,
+  			url: "/catalogo.php?numreg=" + numreg + "&cat=" + cat + "&clicks=" + clicks,
   			success: function(response) {
-  				var datos = jQuery.parseJSON(response);
-  				var cadena1 = "";
-  				var cadena2 = "";
-          var cadena3 = "";
+  				var total = jQuery.parseJSON(response);
+					$("#cuentaresultados").html(total[0] + " artículos");
+					if ((clicks * 25) >= total[0]) {
+						$("#botoncargamas").hide();
+					}
+					else {
+						$("#botoncargamas").show();
+					}
+					var datos = total[1];
+  				var cadena = "<table><tr><th>ref.</th><th>descripción</th><th>categoria</th></tr>";
   				for (var i = 0; i < datos.length; i ++) {
-  						cadena1 = cadena1 + "<a href='controlador.php?accion=producto&id=1&producto=" + datos[i][0] + "'>" + datos[i][0] +"</a>" + "<br>";
-              cadena2 = cadena2 + datos[i][1] + "<br>";
-              cadena3 = cadena3 + datos[i][2] + "<br>";
+  						cadena = cadena + "<tr><td><a href='controlador.php?accion=producto&id=1&producto=" + datos[i][0] + "'>" + datos[i][0] +"</a></td>";
+              cadena = cadena + "<td>" + datos[i][1] + "</td>";
+              cadena = cadena + "<td>" + datos[i][2] + "</td></tr>";
   				}
-  				$("#resultado1").html(cadena1);
-  				$("#resultado2").html(cadena2);
-          $("#resultado3").html(cadena3);
+					cadena = cadena + "</table>";
+  				$("#resultado").html(cadena);
   			}
   		});
   	}
+
+		function clicado() {
+			clicks = clicks + 1;
+			cargar();
+		}
+
+		function cargarconcambio() { // necesario para resetear el contador del botón
+				clicks = 1;
+				cargar();
+		}
 
     $( document ).ready(cargar());
 

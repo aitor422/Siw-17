@@ -96,7 +96,7 @@
 
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/catalogo.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##selectorescategoria##", $selectores, $page);
-          $page = str_replace("##titulo##", "catalogo", $page);
+          $page = str_replace("##titulo##", "catálogo", $page);
           $page = str_replace("##catalogo##", "active", $page);
           $page = checksession($page);
           echo $page;
@@ -141,6 +141,14 @@
        $page = str_replace("##precio##", $resultado["precio"], $page);
        $page = checksession($page);
        echo $page;
+     }
+
+     function vMostrarLegal()
+     {
+          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/legal.html") . file_get_contents("templates/core/footer.html");
+          $page = str_replace("##titulo##", "legal", $page);
+          $page = checksession($page);
+          echo $page;
      }
 
 ?>
