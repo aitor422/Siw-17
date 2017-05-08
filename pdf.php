@@ -1,15 +1,19 @@
 <?php
    require('fpdf181/fpdf.php');
-   /*require('fpdf181/makefont/makefont.php');//Necesario para Roboto(1ª vez)
-   MakeFont('static/fonts/Roboto-Light.ttf','cp1252');*/
-   $pdf = new FPDF('P','mm','A4');
+   //require('fpdf181/makefont/makefont.php');//Necesario para Roboto(1ª vez)
+   //MakeFont('static/fonts/Roboto-Light.ttf','cp1252');
+   $pdf = new FPDF('P','mm','A4');//210*297mm
    $pdf->AddPage();
-   $pdf->Image('static/images/logo_completo.png',10,10,295,295,'PNG');
-   //$pdf->AddFont('Roboto','','Roboto-Light');
-   $pdf->SetFont('Courier','B',22);
-   $pdf->Cell(50,10,'Mail: colordigital@colordigital.es',0,0,'R',"mailto:colordigital@colordigital.es");
+   $pdf->Image('static/images/logo_completo.png',10,10,40,40,'PNG');
+   $pdf->AddFont('Roboto-Light','','Roboto-Light.php');
+   $pdf->SetFont('Roboto-Light','',22);
    $pdf->Ln(20);
-   $pdf->Cell(40,40,'Productos añadidos a favoritos: ',0,0);
+   $pdf->Cell(57,0,'Mail:',0,0,'R');
+   $pdf->SetTextColor(42,163,239);
+   $pdf->Cell(94,0," colordigital@colordigital.es",0,1,'R',"mailto:colordigital@colordigital.es");
+   $pdf->SetTextColor(0,0,0);
+   $pdf->Ln(10);
+   $pdf->Cell(40,40,utf8_decode('Productos añadidos a favoritos: '),0,1);
    $pdf->SetFont('Courier','',14);
    //Obtenemos los productos del usuario
    if (session_status() == PHP_SESSION_NONE)
@@ -30,9 +34,8 @@
       $resultado = $con->query($consulta);
       $datos = $resultado->fetch_assoc();//Solo hay una linea.Iteramos sobre idproducto
       $pdf->Cell(20,20,'Id Producto: '.$idproductofor,0,1);//El 1 equivale al salto de linea y debajo a la izquierda
-      $pdf->Cell(20,20,'Nombre del producto: '.$datos["nombre"],0,1);
-      $pdf->Cell(20,20,'Precio del producto: '.$datos["precio"].'€',0,1);
+      $pdf->MultiCell(0,20,'Nombre del producto: '.$datos["nombre"],0);
+      $pdf->Cell(20,20,'Precio del producto: '.$datos["precio"].chr(128),0,1);//chr(128)->€
    }
-   //TODO Ver cuantos caben en cada pagina y añadir pagina en función de si llegamos al tope
    $pdf->Output();
 ?>
