@@ -10,6 +10,7 @@
            $page = str_replace("##linklogin##", "controlador.php?accion=login&id=3", $page);
            $page = str_replace("##botonlogin##", "botonlogout", $page);
            $page = str_replace("##parausuarios##", "", $page);
+           $page = str_replace("##scriptparausuarios##", "", $page);
        }
        else {
          $page = str_replace("##loginuser##", "login", $page);
@@ -18,7 +19,12 @@
          $page = str_replace("##linkregistro##", "controlador.php?accion=registro&id=1", $page);
          $page = str_replace("##botonlogin##", "botonlogin", $page);
          $cachos = explode("##parausuarios##", $page);
-         if (count($cachos) == 3) {
+         if (count($cachos) > 1) {
+           $page = $cachos[0] . $cachos[2];
+         }
+
+         $cachos = explode("##scriptparausuarios##", $page);
+         if (count($cachos) > 1) {
            $page = $cachos[0] . $cachos[2];
          }
        }

@@ -9,24 +9,5 @@
 <button type="button" id="botonfav" name="button" onclick="favoritos()">Añadir a favoritos</button>
 <div id="correcto" class="alert-box success">Guardado como favorito</div>
 <div id="error" class="alert-box failure">Algo ha fallado</div>
-<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
-<script type="text/javascript">
-  function favoritos() {
-    idprod = $('#idprod').text();
-    $.ajax({
-      url: "favoritos.php?idprod=" + idprod,
-      success: function(response) {
-        if (response == "1") {
-          $( "#correcto" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-        }
-        else {
-          $( "#error" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-        }
-
-      }
-    });
-  }
-</script>
-
 
 ##parausuarios##
