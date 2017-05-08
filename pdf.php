@@ -1,17 +1,19 @@
 <?php
    require('fpdf181/fpdf.php');
-   require('fpdf181/makefont/makefont.php');//Necesario para Roboto(1ª vez)
-   MakeFont('static/fonts/Roboto-Light.ttf','cp1252');
+   /*require('fpdf181/makefont/makefont.php');//Necesario para Roboto(1ª vez)
+   MakeFont('static/fonts/Roboto-Light.ttf','cp1252');*/
    $pdf = new FPDF('P','mm','A4');
    $pdf->AddPage();
    $pdf->Image('static/images/logo_completo.png',10,10,295,295,'PNG');
-   $pdf->AddFont('Roboto','','Roboto-Light');
-   $pdf->SetFont('Roboto','B',22);
+   //$pdf->AddFont('Roboto','','Roboto-Light');
+   $pdf->SetFont('Courier','B',22);
    $pdf->Cell(50,10,'Mail: colordigital@colordigital.es',0,0,'R',"mailto:colordigital@colordigital.es");
    $pdf->Ln(20);
    $pdf->Cell(40,40,'Productos añadidos a favoritos: ',0,0);
-   $pdf->SetFont('Roboto','',14);
+   $pdf->SetFont('Courier','',14);
    //Obtenemos los productos del usuario
+   if (session_status() == PHP_SESSION_NONE)
+        session_start();
    $usuario = $_SESSION["usuario"];
    $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
    $consulta = "select idproducto from favoritos where idusuario = '$usuario'";

@@ -1,68 +1,67 @@
-<div id="cuentaresultados">
-</div>
-
-	<div id = "selectordecategorias">
-		<label for="categoria">Categoría: </label>
-		<select id="categoria" onchange="cargarconcambio();">
-	    <option value="0">todas</option>
-			##selectorescategoria##
-		</select>
+<div class="tablaproductos">
+	<div id="cuentaresultados">
 	</div>
 
-		<div id="resultado" class = "tablaproductos">
-			resultado1
-		</div>
+	<div id="selectordecategorias">
+		<label for="categoria">Categoría: </label>
+		<select id="categoria" onchange="cargarconcambio();">
+				    <option value="0">todas</option>
+						##selectorescategoria##
+					</select>
+	</div>
+	<div id="resultado">
+		resultado1
+	</div>
+</div>
 
-		<button id="botoncargamas" class="botonesbonitos botonesanchos" type="button" name="button" onclick="clicado()">Mostrar más</button>
-
-
-
-  <script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
-  <script type="text/javascript">
-		var clicks = 1;
-
-  	function cargar() {
-  		var numreg = $("#numeroregistros").val();
-      var cat = $("#categoria").val();
-  		$.ajax({
-  			url: "/catalogo.php?numreg=" + numreg + "&cat=" + cat + "&clicks=" + clicks,
-  			success: function(response) {
-  				var total = jQuery.parseJSON(response);
-					$("#cuentaresultados").html(total[0] + " artículos");
-					if ((clicks * 25) >= total[0]) {
-						$("#botoncargamas").hide();
-					}
-					else {
-						$("#botoncargamas").show();
-					}
-					var datos = total[1];
-					cadena = "<div id='correcto' class='alert-box success'>Guardado como favorito</div>";
-					cadena = cadena + "<div id='error' class='alert-box failure'>Algo ha fallado</div>";
-  				var cadena = cadena + "<table><tr><th>ref.</th><th>descripción</th><th>categoria</th></tr>";
-  				for (var i = 0; i < datos.length; i ++) {
-  						cadena = cadena + "<tr><td><a href='controlador.php?accion=producto&id=1&producto=" + datos[i][0] + "'>" + datos[i][0] +"</a></td>";
-              cadena = cadena + "<td>" + datos[i][1] + "</td>";
-              cadena = cadena + "<td>" + datos[i][2] + "</td>";
-							cadena = cadena + "##parausuarios##<td><button type='button' class='botonesbonitos' name='button' onclick='favoritos("+ datos[i][0] +")'>Añadir a favoritos</button></td>##parausuarios##</tr>";
+<button id="botoncargamas" class="botonesbonitos botonesanchos" type="button" name="button" onclick="clicado()">Mostrar más</button>
 
 
-  				}
-					cadena = cadena + "</table>";
-  				$("#resultado").html(cadena);
-  			}
-  		});
-  	}
 
-		function clicado() {
-			clicks = clicks + 1;
-			cargar();
-		}
+<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+	var clicks = 1;
 
-		function cargarconcambio() { // necesario para resetear el contador del botón
-				clicks = 1;
-				cargar();
-		}
+	function cargar() {
+		var numreg = $("#numeroregistros").val();
+		var cat = $("#categoria").val();
+		$.ajax({
+			url: "/catalogo.php?numreg=" + numreg + "&cat=" + cat + "&clicks=" + clicks,
+			success: function(response) {
+				var total = jQuery.parseJSON(response);
+				$("#cuentaresultados").html(total[0] + " artículos");
+				if ((clicks * 25) >= total[0]) {
+					$("#botoncargamas").hide();
+				} else {
+					$("#botoncargamas").show();
+				}
+				var datos = total[1];
+				cadena = "<div id='correcto' class='alert-box success'>Guardado como favorito</div>";
+				cadena = cadena + "<div id='error' class='alert-box failure'>Algo ha fallado</div>";
+				var cadena = cadena + "<table><tr><th>ref.</th><th>descripción</th><th>categoria</th></tr>";
+				for (var i = 0; i < datos.length; i++) {
+					cadena = cadena + "<tr><td><a href='controlador.php?accion=producto&id=1&producto=" + datos[i][0] + "'>" + datos[i][0] + "</a></td>";
+					cadena = cadena + "<td>" + datos[i][1] + "</td>";
+					cadena = cadena + "<td>" + datos[i][2] + "</td>";
+					cadena = cadena + "##parausuarios##<td><button type='button' class='botonesbonitos' name='button' onclick='favoritos(" + datos[i][0] + ")'>Añadir a favoritos</button></td>##parausuarios##</tr>";
 
-    $( document ).ready(cargar());
 
-  </script>
+				}
+				cadena = cadena + "</table>";
+				$("#resultado").html(cadena);
+			}
+		});
+	}
+
+	function clicado() {
+		clicks = clicks + 1;
+		cargar();
+	}
+
+	function cargarconcambio() { // necesario para resetear el contador del botón
+		clicks = 1;
+		cargar();
+	}
+
+	$(document).ready(cargar());
+</script>

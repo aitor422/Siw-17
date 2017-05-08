@@ -257,6 +257,10 @@ html, body {
 
 /*********************vista de productos***************************/
 
+.tablaproductos {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .tablaproductos table {
   width: 100%;
   border-spacing: 5px;
