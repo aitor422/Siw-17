@@ -86,7 +86,6 @@ html, body {
 /**********************************/
 
 .fondo {
-  /* La cosita gris */
   position: fixed;
   height: 10000px;
   top: 0;
@@ -95,6 +94,9 @@ html, body {
   right: 0;
   overflow: hidden;
   z-index: -1;
+  background-image: url(/static/images/fondolibros.jpg);
+    opacity: .25;
+    background-size: 100%;
   /*Para que esté en el fondo*/
   margin-left: 10%;
   margin-right: 10%;
