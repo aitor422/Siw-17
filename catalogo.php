@@ -25,10 +25,10 @@
 	$lista = array(array());
 	$i = 0;
 	while ($datos = $resultado->fetch_assoc()) {
-    $lista[$i][0] = $datos["idproducto"];
-    $lista[$i][1] = $datos["nombre"];
-    $lista[$i][2] = $datos["categoria"];
-		$lista[$i][3] = 0;//aquí irá la ruta de la imagen:  $lista[$i][3] = "/static/images/catalogo/" . $datos["imagen"];
+	    $lista[$i][0] = $datos["idproducto"];
+	    $lista[$i][1] = $datos["nombre"];
+	    $lista[$i][2] = $datos["categoria"];
+		$lista[$i][3] = $datos["imagen"];
 		$i++;
 	}
 	$resultado = $con->query($consulta2);

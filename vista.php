@@ -42,6 +42,10 @@
            while ($datos = $resultado->fetch_assoc()) {
              $page = str_replace("##$i##", $datos["idproducto"], $page);
              $page = str_replace("##p$i##", $datos["precio"] . ".-", $page);
+             if ($datos["imagen"] == "0")
+                    $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
+             else
+                  $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] , $page);
              $i++;
            }
            $consulta = "select * from productos where destacado=1 limit 20 offset 5";
