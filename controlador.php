@@ -130,4 +130,20 @@ if (session_status() == PHP_SESSION_NONE)
 		}
 	}
 
+	if ($accion == "nuevo") {
+		switch ($id) {
+			case 1:
+				vMostrarNuevo();
+				break;
+		}
+	}
+
+	if ($accion == "modificar") {
+		switch ($id) {
+			case 1:
+				vMostrarModificar();
+				break;
+		}
+	}
+
 ?>

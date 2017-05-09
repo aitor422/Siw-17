@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Nuevo Producto</title>
+   </head>
+   <body>
+      <form class="" action="index.html" method="post">
+         <label for="categoria">Categoria:</label> <br/>
+         <select id="categoria" name="categoria">
+           <option value="" selected="selected">Elige una categoria</option>
+           <?php
+           con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+           $consulta = "select nombre from categoria";
+           $resultado = $con->query($consulta);
+           while ($opcion = $resultado->fetch_assoc()) {
+             echo <option value="$opcion["nombre"]">$opcion["nombre"]</option>;
+           }
+
+           ?>
+         </select>
+         Nombre:<br>
+         <input type="text" name="Nombre" placeholder="Nombre"/><br>
+         Dirección:<br>
+         <input type="text" name="direccion" placeholder="Dirección"/><br>
+         Población:<br>
+         <input type="reset" value="Borrar" />
+         <input type="submit" onclick="alert('Enviado!')"value="Enviar" />
+      </form>
+      <link href="../static/css/dropzone.css" rel="stylesheet" type="text/css">
+      <script src="../static/js/dropzone.js"></script>
+      <div class="container" >
+         <div class="content">
+            <form action="../static/images/catalogo" class="dropzone" id="dropzonewidget">
+            </form>
+         </div>
+      </div>
+   </body>
+</html>

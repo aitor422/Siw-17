@@ -206,4 +206,18 @@
           echo $page;
      }
 
+     function vMostrarNuevo(){
+         $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
+         $page = str_replace("##nuevo##", "nuevo", $page);
+         $page = checksession($page);
+         echo $page;
+     }
+
+     function vMostrarModificar(){
+         $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
+         $page = str_replace("##modificar##", "modificar", $page);
+         $page = checksession($page);
+         echo $page;
+     }
+
 ?>
