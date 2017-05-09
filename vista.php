@@ -45,7 +45,7 @@
              if ($datos["imagen"] == "0")
                     $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
              else
-                  $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] , $page);
+                  $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
              $i++;
            }
            $consulta = "select * from productos where destacado=1 limit 20 offset 5";
@@ -187,7 +187,10 @@
 
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##titulo##", $producto, $page);
-       //$page = str_replace("##imagen##", "", $page);
+       if ($resultado["imagen"] == "0")
+              $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
+       else
+            $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] . " height='150px'" , $page);
        $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
        $page = str_replace("##descripcion##", $resultado["nombre"], $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
