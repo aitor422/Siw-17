@@ -11,7 +11,7 @@
        fallologin();
     }
 
-    $sql = $conn->prepare("SELECT password, idusuario FROM usuario WHERE email like ? OR idusuario like ?");
+    $sql = $conn->prepare("SELECT password, idusuario FROM usuario WHERE email = ? OR idusuario = ?");
     $sql->bind_param("ss", $email, $email);
 
    if (isset($_POST["password"])) {
