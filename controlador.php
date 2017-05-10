@@ -83,9 +83,6 @@ if (session_status() == PHP_SESSION_NONE)
 			case 1:
 				vMostrarServicios();
 				break;
-			case 2:
-				//logout
-				break;
 		}
 	}
 
