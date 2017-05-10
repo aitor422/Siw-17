@@ -169,7 +169,7 @@ html, body {
  ***************************************************/
 
 
- /******************navbaradmin*****************/
+ /******************navbaradmin*****************
 .admin-navigation-bar ul {
      list-style-type: none;
     margin: 0;
@@ -190,7 +190,7 @@ html, body {
 .admin-navigation-bar li a:hover {
   background-color: #333;
   color: #fff
-}
+}*/
 
 /* Formulario centrado */
 
