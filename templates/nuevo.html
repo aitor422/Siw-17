@@ -1,4 +1,4 @@
-<form class="" action="/dropzone.php" method="post">
+<form class="" action="../dropzone.php" method="post">
    <label for="categoria">Categoria:</label> <br/>
    <select id="categoria" name="categoria">
            <option value="" selected="selected">Elige una categoria</option>
@@ -6,11 +6,9 @@
          </select>
    <br>
    <label for="nombre">Nombre:</label> <br/>
-   <input type="text" id="Nombre" name="Nombre" placeholder="Nombre" /><br> Dirección:
-   <br>
-   <input type="text" name="direccion" placeholder="Dirección" /><br> Población:
-   <br>
-   <input type="text" name="poblacion" placeholder="Población" /><br>
+   <input type="text" id="Nombre" name="Nombre" placeholder="Nombre" /><br>
+   <label for="precio">Precio:</label> <br>
+   <input type="text" name="precio" placeholder="Precio" /><br>
    <link href="../static/css/dropzone.css" rel="stylesheet" type="text/css">
    <script src="../static/js/dropzone.js"></script>
    <div class="container">
@@ -20,34 +18,37 @@
    </div>
    <input type="reset" value="Borrar" />
    <input type="submit" id="submit-all" value="Enviar" />
-   <script type="text/javascript">
-      Dropzone.options.dropzonewidget = {
-         url: '/dropzone.php',
-         autoProcessQueue: false,
-         uploadMultiple: true,
-         parallelUploads: 5,
-         maxFiles: 5,
-         maxFilesize: 1,
-         acceptedFiles: 'image/*',
-         addRemoveLinks: true,
-         init: function() {
-            dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
-
-            // for Dropzone to process the queue (instead of default form behavior):
-            document.getElementById("submit-all").addEventListener("click", function(e) {
-               // Make sure that the form isn't actually being sent.
-               e.preventDefault();
-               e.stopPropagation();
-               dzClosure.processQueue();
-            });
-
-            //send all the form data along with the files:
-            this.on("sendingmultiple", function(data, xhr, formData) {
-               formData.append("firstname", jQuery("#firstname").val());
-               formData.append("lastname", jQuery("#lastname").val());
-               formData.append("lastname", jQuery("#lastname").val());
-            });
-         }
-      }
-   </script>
 </form>
+<div id="respuesta"></div>
+<script type="text/javascript">
+   Dropzone.options.dropzonewidget = {
+      url: '../dropzone.php',
+      enctype: 'multipart/form-data',
+      autoProcessQueue: false,
+      uploadMultiple: false,
+      parallelUploads: 5,
+      maxFiles: 5,
+      maxFilesize: 1,
+      acceptedFiles: 'image/*',
+      addRemoveLinks: true,
+      success: function(response) {
+         dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+
+         // for Dropzone to process the queue (instead of default form behavior):
+         document.getElementById("submit-all").addEventListener("click", function(e) {
+            // Make sure that the form isn't actually being sent.
+            e.preventDefault();
+            e.stopPropagation();
+            dzClosure.processQueue();
+         });
+
+         //send all the form data along with the files:
+         this.on("sendingmultiple", function(data, xhr, formData) {
+            formData.append("categoria", jQuery("#categoria").val());
+            formData.append("Nombre", jQuery("#Nombre").val());
+            formData.append("precio", jQuery("#precio").val());
+         });
+         $("#respuesta").html(response);
+      }
+   }
+</script>
