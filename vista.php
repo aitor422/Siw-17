@@ -118,15 +118,17 @@
            $cadena = $cadena . "</ul>";
            if ($cadena == "<ul></ul>") {
              $page = str_replace("##productos##", "nada por aquí...", $page);
+             $page = str_replace("##botonpdf##", "", $page);
            }
            else {
              $page = str_replace("##productos##", $cadena, $page);
+             $page = str_replace("##botonpdf##", "<a target='_blank' href='pdf.php'><button id='botongenerarpdf' class='botonesbonitos' type='button' name='button'  >Generar PDF con favoritos</button></a>", $page);
            }
           $page = str_replace("##titulo##", "tu cuenta", $page);
           $page = str_replace("##cuentausuario##", "active", $page);
           $page = checksession($page);
           if(strcmp ( $usuario , "admin" ) === 0) {
-            $page = str_replace("##admin##", "<a href='controlador.php?accion=admin&id=1'>user</a>", $page);
+            $page = str_replace("##admin##", "<a class='last' href='controlador.php?accion=admin&id=1'><button class='botonesbonitos' type='button' >Zona de administración</button></a>", $page);
           }
           else {
             $page = str_replace("##admin##", "", $page);
@@ -207,8 +209,19 @@
      }
 
      function vMostrarNuevo(){
+          $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+         $consulta = "select nombre from categorias";
+         $resultado = $con->query($consulta);
+         $selectores = "";
+         while ($datos = $resultado->fetch_assoc()) {
+           if ($datos["nombre"] != "") {
+             $selectores = $selectores . "<option value='" . $datos["nombre"] . "'>". $datos["nombre"] ."</option>";
+           }
+         }
+
          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
-         $page = str_replace("##nuevo##", "nuevo", $page);
+         $page = str_replace("##titulo##", "nuevo", $page);
+         $page = str_replace("##selectorescategoria##", $selectores, $page);
          $page = checksession($page);
          echo $page;
      }
