@@ -1,23 +1,53 @@
-      <form class="" action="index.html" method="post">
-         <label for="categoria">Categoria:</label> <br/>
-         <select id="categoria" name="categoria">
+<form class="" action="/dropzone.php" method="post">
+   <label for="categoria">Categoria:</label> <br/>
+   <select id="categoria" name="categoria">
            <option value="" selected="selected">Elige una categoria</option>
                 ##selectorescategoria##
          </select>
-         <br>
-         <label for="nombre">Nombre:</label> <br/>
-         <input type="text" id = "Nombre" name="Nombre" placeholder="Nombre"/><br>
-         Dirección:<br>
-         <input type="text" name="direccion" placeholder="Dirección"/><br>
-         Población:<br>
-         <input type="reset" value="Borrar" />
-         <input type="submit" onclick="alert('Enviado!')"value="Enviar" />
-      </form>
-      <link href="../static/css/dropzone.css" rel="stylesheet" type="text/css">
-      <script src="../static/js/dropzone.js"></script>
-      <div class="container" >
-         <div class="content">
-            <form action="../static/images/catalogo" class="dropzone" id="dropzonewidget">
-            </form>
-         </div>
+   <br>
+   <label for="nombre">Nombre:</label> <br/>
+   <input type="text" id="Nombre" name="Nombre" placeholder="Nombre" /><br> Dirección:
+   <br>
+   <input type="text" name="direccion" placeholder="Dirección" /><br> Población:
+   <br>
+   <input type="text" name="poblacion" placeholder="Población" /><br>
+   <link href="../static/css/dropzone.css" rel="stylesheet" type="text/css">
+   <script src="../static/js/dropzone.js"></script>
+   <div class="container">
+      <div class="content">
+         <div class="dropzone" id="dropzonewidget"></div>
       </div>
+   </div>
+   <input type="reset" value="Borrar" />
+   <input type="submit" id="submit-all" value="Enviar" />
+   <script type="text/javascript">
+      Dropzone.options.dropzonewidget = {
+         url: '/dropzone.php',
+         autoProcessQueue: false,
+         uploadMultiple: true,
+         parallelUploads: 5,
+         maxFiles: 5,
+         maxFilesize: 1,
+         acceptedFiles: 'image/*',
+         addRemoveLinks: true,
+         init: function() {
+            dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+
+            // for Dropzone to process the queue (instead of default form behavior):
+            document.getElementById("submit-all").addEventListener("click", function(e) {
+               // Make sure that the form isn't actually being sent.
+               e.preventDefault();
+               e.stopPropagation();
+               dzClosure.processQueue();
+            });
+
+            //send all the form data along with the files:
+            this.on("sendingmultiple", function(data, xhr, formData) {
+               formData.append("firstname", jQuery("#firstname").val());
+               formData.append("lastname", jQuery("#lastname").val());
+               formData.append("lastname", jQuery("#lastname").val());
+            });
+         }
+      }
+   </script>
+</form>

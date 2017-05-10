@@ -513,8 +513,7 @@ html, body {
 /**********Dropzone***********/
 /*****************************/
 .container{
- margin: 0 auto;
- width: 50%;
+ width: 40%;
 }
 
 .content{
