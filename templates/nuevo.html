@@ -31,7 +31,7 @@
       maxFilesize: 1,
       acceptedFiles: 'image/*',
       addRemoveLinks: true,
-      success: function(response) {
+      init: function() {
          dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
 
          // for Dropzone to process the queue (instead of default form behavior):
@@ -48,7 +48,9 @@
             formData.append("Nombre", jQuery("#Nombre").val());
             formData.append("precio", jQuery("#precio").val());
          });
-         $("#respuesta").html(response);
+         this.on("success", function(file, responseText) {
+            console.log(responseText);
+        });
       }
    }
 </script>
