@@ -169,6 +169,29 @@ html, body {
  ***************************************************/
 
 
+ /******************navbaradmin*****************/
+.admin-navigation-bar ul {
+     list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+     background-color: #666;
+}
+
+.admin-navigation-bar li a {
+     padding: 8px 16px;
+     display: block;
+     text-align: center;
+     text-decoration: none;
+     text-transform: uppercase;
+     color: #eee;
+}
+
+.admin-navigation-bar li a:hover {
+  background-color: #333;
+  color: #fff
+}
+
 /* Formulario centrado */
 
 .centered-form {

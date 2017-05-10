@@ -173,8 +173,11 @@
           echo $page;
      }
 
-     function vMostrarAdmin()
-     {
+     function vMostrarAdmin() {
+          if (session_status() == PHP_SESSION_NONE)
+               session_start();
+          if ($_SESSION["usuario"] != "admin")
+               vMostrarIndice();
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "admin", $page);
           $page = checksession($page);
@@ -209,6 +212,11 @@
      }
 
      function vMostrarNuevo(){
+          if (session_status() == PHP_SESSION_NONE)
+               session_start();
+          if ($_SESSION["usuario"] != "admin")
+               vMostrarIndice();
+
           $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
          $consulta = "select nombre from categorias";
          $resultado = $con->query($consulta);
@@ -221,12 +229,18 @@
 
          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
          $page = str_replace("##titulo##", "nuevo", $page);
+         $page = str_replace("##nuevo##", "active", $page);
          $page = str_replace("##selectorescategoria##", $selectores, $page);
          $page = checksession($page);
          echo $page;
      }
 
      function vMostrarModificar(){
+          if (session_status() == PHP_SESSION_NONE)
+               session_start();
+          if ($_SESSION["usuario"] != "admin")
+               vMostrarIndice();
+
          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
          $page = str_replace("##modificar##", "modificar", $page);
          $page = checksession($page);
