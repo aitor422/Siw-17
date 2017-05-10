@@ -217,13 +217,13 @@
           if ($_SESSION["usuario"] != "admin")
                vMostrarIndice();
 
-          $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-         $consulta = "select nombre from categorias";
+         $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+         $consulta = "select distinct categoria from productos";
          $resultado = $con->query($consulta);
          $selectores = "";
          while ($datos = $resultado->fetch_assoc()) {
-           if ($datos["nombre"] != "") {
-             $selectores = $selectores . "<option value='" . $datos["nombre"] . "'>". $datos["nombre"] ."</option>";
+           if ($datos["categoria"] != "") {
+             $selectores = $selectores . "<option value='" . utf8_decode($datos["categoria"]) . "'>". utf8_decode($datos["categoria"]) ."</option>";
            }
          }
 
