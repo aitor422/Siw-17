@@ -1,35 +1,35 @@
 <?php
-
+if (session_status() == PHP_SESSION_NONE)
+		 session_start();
+	if(isset($_SESSION["usuario"]))
+		$usuario = $_SESSION["usuario"];
+	else
+		$usuario = "";
 	$con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
 
   mysqli_set_charset($con,"utf8");
 
-  if (isset($_GET["cat"])) {
-		$cat = $_GET["cat"];
-	} else {
-		$cat = 0;
-	}
-
+	$cat = $_GET["cat"];
 	$limit = 25 * $_GET["clicks"];
-
-  if ($cat == 0) {
-	   $consulta = "select * from productos limit $limit";
+  if ($cat == "0") {
+		$consulta="SELECT productos.idproducto,nombre, categoria,imagen, count(idusuario) as cuenta from productos LEFT JOIN (select * from favoritos where idusuario = '$usuario') a on productos.idproducto=a.idproducto group by idproducto limit $limit";
 		 $consulta2 = "select count(*) as cuenta from productos";
    }
    else {
-     $consulta = "select * from productos where categoria = $cat limit $limit";
-		 $consulta2 = "select count(*) as cuenta from productos where categoria = $cat";
+		 $consulta="SELECT productos.idproducto,nombre, categoria,imagen, count(idusuario) as cuenta from productos LEFT JOIN (select * from favoritos where idusuario = '$usuario') a on productos.idproducto=a.idproducto where categoria = '$cat' group by idproducto limit $limit";
+		 $consulta2 = "select count(*) as cuenta from productos where categoria = '$cat'";
   }
 	$resultado = $con->query($consulta);
 
 	$lista = array(array());
 	$i = 0;
 	while ($datos = $resultado->fetch_assoc()) {
-	    $lista[$i][0] = $datos["idproducto"];
+			$lista[$i][0] = $datos["idproducto"];
 	    $lista[$i][1] = $datos["nombre"];
 	    $lista[$i][2] = $datos["categoria"];
-		$lista[$i][3] = $datos["imagen"];
-		$i++;
+			$lista[$i][3] = $datos["imagen"];
+			$lista[$i][4] = $datos["cuenta"];
+			$i++;
 	}
 	$resultado = $con->query($consulta2);
 	$datos = $resultado->fetch_assoc();
@@ -37,6 +37,6 @@
 	$total[0] = $datos["cuenta"];
 	$total[1] = $lista;
 
-	echo json_encode($total);
+	echo json_encode($total, JSON_UNESCAPED_UNICODE);
 
 ?>

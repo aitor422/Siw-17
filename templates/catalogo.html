@@ -1,4 +1,5 @@
 <div class="tablaproductos">
+	<div id="error" class="alert-box failure">Algo ha fallado</div>
 	<div id="cuentaresultados">
 	</div>
 
@@ -16,17 +17,14 @@
 
 <button id="botoncargamas" class="botonesbonitos botonesanchos" type="button" name="button" onclick="clicado()">Mostrar más</button>
 
-
-
 <script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
 <script type="text/javascript">
 	var clicks = 1;
 
 	function cargar() {
-		var numreg = $("#numeroregistros").val();
 		var cat = $("#categoria").val();
 		$.ajax({
-			url: "/catalogo.php?numreg=" + numreg + "&cat=" + cat + "&clicks=" + clicks,
+			url: "/catalogo.php?cat=" + cat + "&clicks=" + clicks,
 			success: function(response) {
 				var total = jQuery.parseJSON(response);
 				$("#cuentaresultados").html(total[0] + " artículos");
@@ -47,7 +45,12 @@
 						cadena = cadena + "<img src=/static/images/catalogo/" + datos[i][3] + " height='80px'></a></td>";
 						cadena = cadena + "<td>" + datos[i][1] + "</td>";
 						cadena = cadena + "<td>" + datos[i][2] + "</td>";
-						cadena = cadena + "##parausuarios##<td><button type='button' class='botonesbonitos' name='button' onclick='favoritos(" + datos[i][0] + ")'>Añadir a favoritos</button></td>##parausuarios##</tr>";
+						cadena = cadena + "##parausuarios##<td><button type='button' class='botonesbonitos' name='button' onclick='favoritos(" + datos[i][0] + ")'>"
+						if (datos[i][4] == "0")
+							cadena = cadena + "Añadir a favoritos";
+						else
+							cadena = cadena +"Eliminar de favoritos";
+						cadena = cadena + "</button></td>##parausuarios##</tr>";
 				}
 				cadena = cadena + "</table>";
 				$("#resultado").html(cadena);

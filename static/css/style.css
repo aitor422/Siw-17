@@ -198,7 +198,7 @@ html, body {
   margin: 10% 30%;
 }
 
-.centered-form input {
+.centered-form input, select {
   display: block;
   width: 100%;
   height: 40px;
@@ -230,6 +230,7 @@ html, body {
   width: 95%;
   height: 0;
   padding-bottom: 100%;
+  overflow: hidden;
 }
 
 .iframecontainer iframe {
@@ -535,14 +536,6 @@ html, body {
 /*****************************/
 /**********Dropzone***********/
 /*****************************/
-.container{
- width: 40%;
-}
-
-.content{
- padding: 5px;
- margin: 0 auto;
-}
 .content span{
  width: 250px;
 }

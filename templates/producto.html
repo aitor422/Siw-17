@@ -6,8 +6,18 @@
 
 ##parausuarios##
 
-<button type="button" class="botonesbonitos" name="button" onclick="favoritos()">Añadir a favoritos</button>
-<div id="correcto" class="alert-box success">Guardado como favorito</div>
+<button id="botonfavoritos" type="button" class="botonesbonitos" name="button" onclick="favoritosv()">##favorito##</button>
 <div id="error" class="alert-box failure">Algo ha fallado</div>
+
+<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+  function cargar(){
+    if ($('#botonfavoritos').text()==="Añadir a favoritos") {
+      $('#botonfavoritos').text("Eliminar de favoritos");
+    } else {
+      $('#botonfavoritos').text("Añadir a favoritos");
+    }
+  }
+</script>
 
 ##parausuarios##

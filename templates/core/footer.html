@@ -1,41 +1,40 @@
-    </div>
-    <div class="footer">
-      ©2014 COPISTERIA COLOR DIGITAL
-      <br>
-      <a href="controlador.php?accion=legal&id=1">legal</a>
-    </div>
-    ##scriptparausuarios##
-    <script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript">
-      idprod = $('#idprod').text();
-      function favoritos() {
-        favoritos(idprod);
-      }
-      function favoritos(idprod) {
-        $.ajax({
-          url: "favoritos.php?idprod=" + idprod,
-          success: function(response) {
-            if (response == "1") {
-              $( "#correcto" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-            }
-            else {
-              $( "#error" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-            }
+</div>
+<div class="footer">
+  ©2014 COPISTERIA COLOR DIGITAL
+  <br>
+  <a href="controlador.php?accion=legal&id=1">legal</a>
+</div>
+##scriptparausuarios##
+<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
 
-          }
-        });
-      }
-    </script>
-    ##scriptparausuarios##
-    <script type="text/javascript">
-      function botonmenu() {
-        var navbar = document.getElementById("navigation-bar");
-        if (navbar.style.display != "inline") {
-          navbar.style.display = "inline";
-        } else {
-          navbar.style.display = "";
+  function favoritosv() {
+    favoritos($('#idprod').text());
+  }
+
+  function favoritos(idprod) {
+    $.ajax({
+      url: "favoritos.php?idprod=" + idprod,
+      success: function(response) {
+        if (response == "-1") {
+          $("#error").fadeIn(300).delay(1500).fadeOut(400);
         }
+        cargar();
       }
-    </script>
-  </body>
+    });
+  }
+</script>
+##scriptparausuarios##
+<script type="text/javascript">
+  function botonmenu() {
+    var navbar = document.getElementById("navigation-bar");
+    if (navbar.style.display != "inline") {
+      navbar.style.display = "inline";
+    } else {
+      navbar.style.display = "";
+    }
+  }
+</script>
+</body>
+
 </html>
