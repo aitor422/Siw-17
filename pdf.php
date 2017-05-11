@@ -30,12 +30,13 @@
    }
    //Obtenemos las caracteristicas de los productos del usuario
    foreach ($ids as $idproductofor ) {
-      $consulta = "select nombre,precio from productos where idproducto = '$idproductofor'";
+      $consulta = "select nombre,precio,categoria from productos where idproducto = '$idproductofor'";
       $resultado = $con->query($consulta);
       $datos = $resultado->fetch_assoc();//Solo hay una linea.Iteramos sobre idproducto
       $pdf->Cell(20,20,'Id Producto: '.$idproductofor,0,1);//El 1 equivale al salto de linea y debajo a la izquierda
       $pdf->MultiCell(0,20,'Nombre del producto: '.$datos["nombre"],0);
       $pdf->Cell(20,20,'Precio del producto: '.$datos["precio"].chr(128),0,1);//chr(128)->€
+      $pdf->Cell(20,20,utf8_decode('Categoría del producto: ').$datos["categoria"],0,1);//chr(128)->€
    }
    $pdf->Output();
 ?>
