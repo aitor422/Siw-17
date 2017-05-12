@@ -56,10 +56,11 @@
            while ($datos = $resultado->fetch_assoc()) {
              $page = str_replace("##$i##", $datos["idproducto"], $page);
              $page = str_replace("##p$i##", $datos["precio"] . ".-", $page);
-             if ($datos["imagen"] == "0")
+            //TODO: Mostrar imagenes de los que la tengan
+            //  if ($datos["imagen"] == "0")
                     $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
-             else
-                  $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
+            //  else
+            //       $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
              $i++;
            }
            $consulta = "select * from productos where destacado=1 limit 20 offset 5";
@@ -206,10 +207,11 @@
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##titulo##", $producto, $page);
-       if ($resultado["imagen"] == "0")
+       //TODO imagenes
+      //  if ($resultado["imagen"] == "0")
               $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
-       else
-            $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] . " height='150px'" , $page);
+      //  else
+      //       $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] . " height='150px'" , $page);
        $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
        $page = str_replace("##descripcion##", $resultado["nombre"], $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);

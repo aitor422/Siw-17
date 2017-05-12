@@ -1,14 +1,14 @@
-<form class="centered-form" action="../dropzone.php" method="post">
+<form class="centered-form" action="../dropzone.php" enctype="multipart/form-data" method="post">
    <label for="categoria">Categoria:</label> <br/>
    <select id="categoria" name="categoria">
            <option value="" selected="selected">Elige una categoria</option>
                 ##selectorescategoria##
          </select>
    <br>
-   <label for="nombre">Nombre:</label> <br/>
-   <input type="text" id="Nombre" name="Nombre" placeholder="Nombre" /><br>
-   <label for="precio">Precio:</label> <br>
-   <input type="text" name="precio" placeholder="Precio" /><br>
+   <label for="Nombre">Nombre:</label> <br/>
+   <input type="text" id="nombre" name="nombre" placeholder="Nombre" /><br>
+   <label for="Precio">Precio:</label> <br>
+   <input type="text" id="precio" name="precio" placeholder="Precio" /><br>
    <link href="../static/css/dropzone.css" rel="stylesheet" type="text/css">
    <script src="../static/js/dropzone.js"></script>
    <div class="container">
@@ -23,9 +23,7 @@
 <script type="text/javascript">
    Dropzone.options.dropzonewidget = {
       url: '../dropzone.php',
-      enctype: 'multipart/form-data',
       autoProcessQueue: false,
-      uploadMultiple: false,
       parallelUploads: 5,
       maxFiles: 5,
       maxFilesize: 1,
@@ -43,9 +41,9 @@
          });
 
          //send all the form data along with the files:
-         this.on("sendingmultiple", function(data, xhr, formData) {
+         this.on("sending", function(data, xhr, formData) {
             formData.append("categoria", jQuery("#categoria").val());
-            formData.append("Nombre", jQuery("#Nombre").val());
+            formData.append("nombre", jQuery("#nombre").val());
             formData.append("precio", jQuery("#precio").val());
          });
          this.on("success", function(file, responseText) {
