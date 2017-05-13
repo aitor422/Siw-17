@@ -9,6 +9,8 @@
    <input type="text" id="nombre" name="nombre" placeholder="Nombre" /><br>
    <label for="Precio">Precio:</label> <br>
    <input type="text" id="precio" name="precio" placeholder="Precio" /><br>
+   ##id##
+   <textarea name="descripcion" id="descripcion" placeholder="Descripción" ></textarea><br>
    <link href="../static/css/dropzone.css" rel="stylesheet" type="text/css">
    <script src="../static/js/dropzone.js"></script>
    <div class="container">
@@ -45,6 +47,8 @@
             formData.append("categoria", jQuery("#categoria").val());
             formData.append("nombre", jQuery("#nombre").val());
             formData.append("precio", jQuery("#precio").val());
+            formData.append("nuevoid", jQuery("#nuevoid").val());
+            formData.append("descripcion", jQuery("#descripcion").val());
          });
          this.on("success", function(file, responseText) {
             console.log(responseText);

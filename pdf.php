@@ -30,11 +30,16 @@
    }
    //Obtenemos las caracteristicas de los productos del usuario
    foreach ($ids as $idproductofor ) {
-      $consulta = "select nombre,precio,categoria from productos where idproducto = '$idproductofor'";
+      // mySQL no tiene FULL OUTER JOIN y hay que hacerlo de esta manera tan bonita
+      $consulta = "select nombre,precio,categoria,descripcion,imagen from productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_pequena%') imag on productos.idproducto = imag.idproducto where productos.idproducto = '$idproductofor' UNION ALL select nombre,precio,categoria,descripcion,imagen from productos RIGHT JOIN (SELECT * FROM imagenes WHERE imagen like '%_pequena%') imag on productos.idproducto = imag.idproducto where productos.idproducto is null";
       $resultado = $con->query($consulta);
       $datos = $resultado->fetch_assoc();//Solo hay una linea.Iteramos sobre idproducto
+      if ($datos["imagen"]!=NULL) {
+         $pdf->Image('static/images/catalogo/'.$datos["imagen"],null,null,40,40);
+      }
       $pdf->Cell(20,20,'Id Producto: '.$idproductofor,0,1);//El 1 equivale al salto de linea y debajo a la izquierda
       $pdf->MultiCell(0,20,'Nombre del producto: '.$datos["nombre"],0);
+      $pdf->MultiCell(0,20,utf8_decode('Descripción del producto: ').utf8_decode($datos["descripcion"]),0);
       $pdf->Cell(20,20,'Precio del producto: '.$datos["precio"].chr(128),0,1);//chr(128)->€
       $pdf->Cell(20,20,utf8_decode('Categoría del producto: ').$datos["categoria"],0,1);//chr(128)->€
    }

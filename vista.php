@@ -209,7 +209,7 @@
       if ($resultado["imagen"] == null)
             $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
       else
-             $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] . " height='150px'" , $page);
+             $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $resultado["imagen"] . " height='150px'" , $page);
        $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
        $page = str_replace("##descripcion##", $resultado["nombre"], $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
@@ -241,11 +241,15 @@
              $selectores = $selectores . "<option value='" . $datos["categoria"] . "'>". $datos["categoria"] ."</option>";
            }
          }
-
+         $consulta = "select max(idproducto) as maximo from productos";
+         $resultado = $con->query($consulta);
+         $datos = $resultado->fetch_assoc();
+         $nuevoid=$datos["maximo"]+1;
          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
          $page = str_replace("##titulo##", "nuevo", $page);
          $page = str_replace("##nuevo##", "active", $page);
          $page = str_replace("##selectorescategoria##", $selectores, $page);
+         $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$nuevoid.'">', $page);
          $page = checksession($page, 0);
          echo $page;
      }
