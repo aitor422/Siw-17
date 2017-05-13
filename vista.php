@@ -50,17 +50,16 @@
             $cadena = "<table><tr>";
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
            $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-           $consulta = "select * from productos where destacado=1 limit 5";
+           $consulta = "SELECT productos.idproducto, precio, min(imagen) AS imagen FROM productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_grande%') a on productos.idproducto = a.idproducto WHERE destacado=1 GROUP BY productos.idproducto limit 5";
            $resultado = $con->query($consulta);
            $i = 1;
            while ($datos = $resultado->fetch_assoc()) {
              $page = str_replace("##$i##", $datos["idproducto"], $page);
              $page = str_replace("##p$i##", $datos["precio"] . ".-", $page);
-            //TODO: Mostrar imagenes de los que la tengan
-            //  if ($datos["imagen"] == "0")
-                    $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
-            //  else
-            //       $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
+            if ($datos["imagen"] == null)
+                  $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
+            else
+                  $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
              $i++;
            }
            $consulta = "select * from productos where destacado=1 limit 20 offset 5";
@@ -202,16 +201,15 @@
 
      function vMostrarProducto($producto) {
        $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-       $consulta = "select * from productos where idproducto = $producto";
+       $consulta = "SELECT productos.idproducto, nombre, precio, min(imagen) AS imagen FROM productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_mediana%') a ON productos.idproducto = a.idproducto WHERE productos.idproducto = $producto GROUP BY productos.idproducto";
        $resultado = $con->query($consulta);
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##titulo##", $producto, $page);
-       //TODO imagenes
-      //  if ($resultado["imagen"] == "0")
-              $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
-      //  else
-      //       $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] . " height='150px'" , $page);
+      if ($resultado["imagen"] == null)
+            $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
+      else
+             $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"] . " height='150px'" , $page);
        $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
        $page = str_replace("##descripcion##", $resultado["nombre"], $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
