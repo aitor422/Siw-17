@@ -14,7 +14,7 @@
     <li>Localización: Calle Fuente del Hierro, 31, 31008 Pamplona, Navarra, España</li>
   </ul>
   <form class="" action="controlador.php?accion=localizacion&id=1" method="post">
-    <textarea name="contacto" placeholder="Envianos tus comentarios!" rows="10" cols="30"></textarea><br>
-    <input type="submit" class="botonesbonitos" onclick="alert('Enviado!')" value="Enviar" />
+    <textarea name="contacto" id="contacto" placeholder="Envianos tus comentarios!" rows="10" cols="30"></textarea><br>
+    <input type="button" class="botonesbonitos" onclick="location.href=&quot;mailto:colordigital@colordigital.es?body=&quot;+document.getElementById(&quot;contacto&quot;).value;" value="Enviar">
   </form>
 </div>
