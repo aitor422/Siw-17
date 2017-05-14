@@ -209,7 +209,7 @@
       if ($resultado["imagen"] == null)
             $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
       else
-             $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $resultado["imagen"] . " height='150px'" , $page);
+             $page = str_replace("##imagen##", "/static/images/catalogo/" . $resultado["imagen"], $page);
        $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
        $page = str_replace("##descripcion##", $resultado["nombre"], $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
