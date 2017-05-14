@@ -89,11 +89,13 @@ if(isset($_FILES["file"])){
       $sql->bind_param("issis", $nuevoid, $categoria, $nombre, $precio, $descripcion);
       if ($sql->execute() != TRUE) {
          echo "NO FUNCIONA->Error al añadir producto";
+			die();
       }
    }
    $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid,'$nombre_archivo')";
    if ($con->query($consulta) != TRUE){
       echo "NO FUNCIONA->Error al añadir Imagenes";
+		die();
    }
 }else{
    echo "NO FUNCIONA->No hay archivos que subir";

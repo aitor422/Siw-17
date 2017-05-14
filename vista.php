@@ -201,7 +201,7 @@
 
      function vMostrarProducto($producto) {
        $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-       $consulta = "SELECT productos.idproducto, nombre, precio, min(imagen) AS imagen FROM productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_mediana%') a ON productos.idproducto = a.idproducto WHERE productos.idproducto = $producto GROUP BY productos.idproducto";
+       $consulta = "SELECT productos.idproducto, nombre, precio,descripcion, min(imagen) AS imagen FROM productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_mediana%') a ON productos.idproducto = a.idproducto WHERE productos.idproducto = $producto GROUP BY productos.idproducto";
        $resultado = $con->query($consulta);
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
@@ -211,8 +211,25 @@
       else
              $page = str_replace("##imagen##", "/static/images/catalogo/" . $resultado["imagen"], $page);
        $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
-       $page = str_replace("##descripcion##", $resultado["nombre"], $page);
+       $page = str_replace("##nombre##", $resultado["nombre"], $page);
+       if ($resultado["descripcion"]==null){
+         $page = str_replace("##descripcion##",'', $page);
+         $page = str_replace("Descripción",'', $page);
+      }else
+         $page = str_replace("##descripcion##", $resultado["descripcion"], $page);
+       $page = str_replace("##id##", '<input type="hidden" id="id" name="id" value="'.$producto.'">', $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
+       $consulta="select comentario from final_comentarios where final_comentarios.idproducto = $producto";
+       $resultado = $con->query($consulta);
+       $comentarios="";
+       if ($resultado->num_rows === 0) {
+         $page = str_replace("Comentarios",'', $page);
+      }
+       while ($datos = $resultado->fetch_assoc()) {
+          $comentarios=$comentarios.$datos["comentario"]."<br>";
+       }
+      $page = str_replace("##comentarios##", $comentarios, $page);
+      // $page = str_replace("Comentarios:",'', $page);
        $page = checksession($page, $producto);
        echo $page;
      }
