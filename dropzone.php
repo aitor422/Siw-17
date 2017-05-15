@@ -92,7 +92,12 @@ if(isset($_FILES["file"])){
 			die();
       }
    }
-   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid,'$nombre_archivo')";
+   $g = $nombre_archivo . '_grande.' . $extension;
+   $m = $nombre_archivo . '_mediana.' . $extension;
+   $p = $nombre_archivo . '_pequena.' . $extension;
+   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$g')";
+   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$m')";
+   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$p')";
    if ($con->query($consulta) != TRUE){
       echo "NO FUNCIONA->Error al añadir Imagenes";
 		die();
