@@ -96,7 +96,15 @@ if(isset($_FILES["file"])){
    $m = $nombre_archivo . '_mediana.' . $extension;
    $p = $nombre_archivo . '_pequena.' . $extension;
    $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$g')";
+   if ($con->query($consulta) != TRUE){
+      echo "NO FUNCIONA->Error al añadir Imagenes";
+		die();
+   }
    $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$m')";
+   if ($con->query($consulta) != TRUE){
+      echo "NO FUNCIONA->Error al añadir Imagenes";
+		die();
+   }
    $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$p')";
    if ($con->query($consulta) != TRUE){
       echo "NO FUNCIONA->Error al añadir Imagenes";
