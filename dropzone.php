@@ -9,7 +9,7 @@ function generate_uuid() {//para generar nombres de archivo únicos.
 	);
 }
 
-function redimensionarimagenes($grande, $mediana, $pequena) {
+function redimensionarimagenes($grande, $mediana, $pequena, $extension) {
   $height_g = 300;
   $height_m = 150;
   $height_p = 80;
@@ -21,13 +21,14 @@ function redimensionarimagenes($grande, $mediana, $pequena) {
   $image_g = imagecreatetruecolor($width_g, $height_g);
   $image_m = imagecreatetruecolor($width_m, $height_m);
   $image_p = imagecreatetruecolor($width_p, $height_p);
-  $image = imagecreatefromjpeg($grande);
+  //TODO comprobar la extension y actuar en consecuencia
+  $image = imagecreatefromjpeg($grande);//depende de la extensión
   imagecopyresampled($image_g, $image, 0, 0, 0, 0, $width_g, $height_g, $width_orig, $height_orig);
   imagecopyresampled($image_m, $image, 0, 0, 0, 0, $width_m, $height_m, $width_orig, $height_orig);
   imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width_p, $height_p, $width_orig, $height_orig);
-  imagejpeg($image_g, $grande);
-  imagejpeg($image_m, $mediana);
-  imagejpeg($image_p, $pequena);
+  imagejpeg($image_g, $grande);//depende de la extensión
+  imagejpeg($image_m, $mediana);//depende de la extensión
+  imagejpeg($image_p, $pequena);//depende de la extensión
 }
 
 
@@ -74,8 +75,7 @@ if(isset($_FILES["file"])){
    $target_file_grande = $target_dir . $nombre_archivo . "_grande." . $extension;
 
    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file_grande)) {
-      //TODO hay que enterarse de si gd está habilitado en el servidor
-      //redimensionarimagenes($target_file_grande, $target_file_mediana, $target_file_pequena);
+      redimensionarimagenes($target_file_grande, $target_file_mediana, $target_file_pequena, $extension);
       echo "El fichero ".basename($target_file)." ha sido subido.";
    } else {
       echo "Error en la subida";
