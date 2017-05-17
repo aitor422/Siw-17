@@ -1,0 +1,39 @@
+<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+	var clicks = 1;
+
+	function cargar() {
+		var busqueda = $("#busq").val();
+
+		$.ajax({
+			url: "/catalogo.php?clicks=" + clicks + "&comienzo="+busqueda,
+			success: function(response) {
+				var total = jQuery.parseJSON(response);
+				$("#cuentaresultados").html(total[0] + " artículos");
+				if ((clicks * 25) >= total[0]) {
+					$("#botoncargamas").hide();
+				} else {
+					$("#botoncargamas").show();
+				}
+				if (total[0] != "0") {
+					var datos = total[1];
+					var cadena ="<table><th>Nombre</th>";
+					for (var i = 0; i < datos.length; i++) {
+						cadena = cadena + "<tr><td><a href='controlador.php?accion=modificarproducto&id=1&producto=" + datos[i][1]+">"+datos[i][1]+"</a></td></tr>";
+					}
+					cadena = cadena + "</table>";
+					$("#resultado").html(cadena);
+				}
+				else
+					$("#resultado").html("No hay resultados");
+			}
+		});
+	}
+
+	function clicado() {
+		clicks = clicks + 1;
+		cargar();
+	}
+
+	$(document).ready(cargar());
+</script>
