@@ -9,6 +9,7 @@ function generate_uuid() {//para generar nombres de archivo únicos.
 	);
 }
 
+
 function redimensionarimagenes($grande, $mediana, $pequena) {
 	$info = getimagesize($grande);
 	$mime = $info['mime'];

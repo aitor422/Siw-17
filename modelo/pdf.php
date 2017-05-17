@@ -2,6 +2,7 @@
    require('fpdf181/fpdf.php');
    //require('fpdf181/makefont/makefont.php');//Necesario para Roboto(1ª vez)
    //MakeFont('static/fonts/Roboto-Light.ttf','cp1252');
+   
    $pdf = new FPDF('P','mm','A4');//210*297mm
    $pdf->AddPage();
    $pdf->Image('static/images/logo_completo.png',10,10,40,40,'PNG');

@@ -45,7 +45,7 @@
    }
 
    if ($sql->execute() === TRUE) {
-     header("Location: controlador.php?accion=login&id=1");
+     header("Location: ../controlador.php?accion=login&id=1");
      die();
    } else {
      falloreg();

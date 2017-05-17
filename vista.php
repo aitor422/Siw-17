@@ -59,7 +59,7 @@
             if ($datos["imagen"] == null)
                   $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
             else
-                  $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
+                  $page = str_replace("##imagen$i##", "static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
              $i++;
            }
            $consulta = "select * from final_productos where destacado=1 limit 20 offset 5";
@@ -136,7 +136,7 @@
            }
            else {
              $page = str_replace("##productos##", $cadena, $page);
-             $page = str_replace("##botonpdf##", "<a target='_blank' href='pdf.php'><button id='botongenerarpdf' class='botonesbonitos' type='button' name='button'  >Generar PDF con favoritos</button></a>", $page);
+             $page = str_replace("##botonpdf##", "<a target='_blank' href='modelo/pdf.php'><button id='botongenerarpdf' class='botonesbonitos' type='button' name='button'  >Generar PDF con favoritos</button></a>", $page);
            }
           $page = str_replace("##titulo##", "tu cuenta", $page);
           $page = str_replace("##cuentausuario##", "active", $page);

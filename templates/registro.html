@@ -1,4 +1,4 @@
-<form class="centered-form" action="/registro.php" method="post" onsubmit="return validateForm()">
+<form class="centered-form" action="modelo/registro.php" method="post" onsubmit="return validateForm()">
 
        <div class="letraroja">
               ##regfailed##
@@ -68,14 +68,14 @@
 </script>
 
 
-<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-3.2.0.min.js"></script>
 
 <script type="text/javascript">
        jQuery(function($) {
               $('#user').on('keyup', function() {
                      var usr = $('#user').val();
                      $.ajax({
-                            url: "checkusrbbdd.php",
+                            url: "ajax/checkusrbbdd.php",
                             type: "GET",
                             data: {
                                    usr: usr

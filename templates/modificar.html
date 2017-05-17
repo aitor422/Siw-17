@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-3.2.0.min.js"></script>
 <script type="text/javascript">
 	var clicks = 1;
 
@@ -6,7 +6,7 @@
 		var busqueda = $("#busq").val();
 
 		$.ajax({
-			url: "/catalogo.php?clicks=" + clicks + "&comienzo="+busqueda,
+			url: "ajax/catalogo.php?clicks=" + clicks + "&comienzo="+busqueda,
 			success: function(response) {
 				var total = jQuery.parseJSON(response);
 				$("#cuentaresultados").html(total[0] + " artículos");

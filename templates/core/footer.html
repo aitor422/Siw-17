@@ -6,7 +6,7 @@
   <a href="controlador.php?accion=legal&id=1">legal</a>
 </div>
 ##scriptparausuarios##
-<script type="text/javascript" src="/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-3.2.0.min.js"></script>
 <script type="text/javascript">
 
   function favoritosv() {
@@ -15,7 +15,7 @@
 
   function favoritos(idprod) {
     $.ajax({
-      url: "favoritos.php?idprod=" + idprod,
+      url: "ajax/favoritos.php?idprod=" + idprod,
       success: function(response) {
         if (response == "-1") {
           $("#error").fadeIn(300).delay(1500).fadeOut(400);

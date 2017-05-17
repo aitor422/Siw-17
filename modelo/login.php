@@ -36,7 +36,7 @@
           session_start();
       }
       $_SESSION["usuario"] = $idusuario;
-      header("Location: controlador.php?accion=index&id=1");
+      header("Location: ../controlador.php?accion=index&id=1");
       die();
     }
     else {

@@ -1,4 +1,4 @@
-<form class="centered-form" action="../dropzone.php" enctype="multipart/form-data" method="post">
+<form class="centered-form" action="dropzone.php" enctype="multipart/form-data" method="post">
    <label for="categoria">Categoria:</label> <br/>
    <select id="categoria" name="categoria">
            <option value="" selected="selected">Elige una categoria</option>
@@ -11,8 +11,8 @@
    <input type="text" id="precio" name="precio" placeholder="Precio" /><br>
    ##id##
    <textarea name="descripcion" id="descripcion" placeholder="Descripción" ></textarea><br>
-   <link href="../static/css/dropzone.css" rel="stylesheet" type="text/css">
-   <script src="../static/js/dropzone.js"></script>
+   <link href="static/css/dropzone.css" rel="stylesheet" type="text/css">
+   <script src="static/js/dropzone.js"></script>
    <div class="container">
       <div class="content">
          <div class="dropzone" id="dropzonewidget"></div>
@@ -24,7 +24,7 @@
 <div id="respuesta"></div>
 <script type="text/javascript">
    Dropzone.options.dropzonewidget = {
-      url: '../dropzone.php',
+      url: 'ajax/dropzone.php',
       autoProcessQueue: false,
       parallelUploads: 5,
       maxFiles: 5,
