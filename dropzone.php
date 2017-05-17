@@ -100,12 +100,12 @@ if(isset($_FILES["file"])){
    } else {
       echo "Error en la subida";
    }
-   $consulta = "select max(idproducto) as maximo from productos";
+   $consulta = "select max(idproducto) as maximo from final_productos";
    $resultado = $con->query($consulta);
    $datos = $resultado->fetch_assoc();
    $maximo=$datos["maximo"];
    if($maximo!=$nuevoid){
-      $sql = $con->prepare("INSERT INTO productos (idproducto, categoria, nombre, precio,descripcion) VALUES (?, ?, ?, ?, ?)");
+      $sql = $con->prepare("INSERT INTO final_productos (idproducto, categoria, nombre, precio,descripcion) VALUES (?, ?, ?, ?, ?)");
       $sql->bind_param("issis", $nuevoid, $categoria, $nombre, $precio, $descripcion);
       if ($sql->execute() != TRUE) {
          echo "NO FUNCIONA->Error al añadir producto";
@@ -115,17 +115,17 @@ if(isset($_FILES["file"])){
    $g = $nombre_archivo . '_grande.' . $extension;
    $m = $nombre_archivo . '_mediana.' . $extension;
    $p = $nombre_archivo . '_pequena.' . $extension;
-   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$g')";
+   $consulta="INSERT INTO final_imagenes (idproducto, imagen) VALUES ($nuevoid, '$g')";
    if ($con->query($consulta) != TRUE){
       echo "NO FUNCIONA->Error al añadir Imagenes";
 		die();
    }
-   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$m')";
+   $consulta="INSERT INTO final_imagenes (idproducto, imagen) VALUES ($nuevoid, '$m')";
    if ($con->query($consulta) != TRUE){
       echo "NO FUNCIONA->Error al añadir Imagenes";
 		die();
    }
-   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid, '$p')";
+   $consulta="INSERT INTO final_imagenes (idproducto, imagen) VALUES ($nuevoid, '$p')";
    if ($con->query($consulta) != TRUE){
       echo "NO FUNCIONA->Error al añadir Imagenes";
 		die();

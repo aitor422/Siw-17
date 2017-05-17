@@ -20,7 +20,7 @@
         session_start();
    $usuario = $_SESSION["usuario"];
    $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-   $consulta = "select idproducto from favoritos where idusuario = '$usuario'";
+   $consulta = "select idproducto from final_favoritos where idusuario = '$usuario'";
    $resultado = $con->query($consulta);
    $ids=array();
    $i=0;
@@ -31,7 +31,7 @@
    //Obtenemos las caracteristicas de los productos del usuario
    foreach ($ids as $idproductofor ) {
       // mySQL no tiene FULL OUTER JOIN y hay que hacerlo de esta manera tan bonita
-      $consulta = "select nombre,precio,categoria,descripcion,imagen from productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_pequena%') imag on productos.idproducto = imag.idproducto where productos.idproducto = '$idproductofor' UNION ALL select nombre,precio,categoria,descripcion,imagen from productos RIGHT JOIN (SELECT * FROM imagenes WHERE imagen like '%_pequena%') imag on productos.idproducto = imag.idproducto where productos.idproducto is null";
+      $consulta = "select nombre,precio,categoria,descripcion,imagen from final_productos LEFT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_pequena%') imag on final_productos.idproducto = imag.idproducto where final_productos.idproducto = '$idproductofor' UNION ALL select nombre,precio,categoria,descripcion,imagen from final_productos RIGHT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_pequena%') imag on final_productos.idproducto = imag.idproducto where final_productos.idproducto is null";
       $resultado = $con->query($consulta);
       $datos = $resultado->fetch_assoc();//Solo hay una linea.Iteramos sobre idproducto
       if ($datos["imagen"]!=NULL) {
