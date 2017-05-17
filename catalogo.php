@@ -9,16 +9,33 @@ if (session_status() == PHP_SESSION_NONE)
 
   mysqli_set_charset($con,"utf8");
 
-	$cat = $_GET["cat"];
-	$orden = $_GET["orden"];
-	$limit = 25 * $_GET["clicks"];
+  if (isset($_GET["comienzo"])) {
+	  $comienzo = $_GET["comienzo"];
+  } else {
+	  $comienzo = "";
+  }
+  if (isset($_GET["cat"])) {
+	  $cat = $_GET["cat"];
+  } else {
+	  $cat = "0";
+  }
+  if (isset($_GET["orden"])) {
+	  $orden = $_GET["orden"];
+  } else {
+	  $orden = "nombre";
+  }
+  if (isset($_GET["clicks"])) {
+	  $limit =25 *  $_GET["clicks"];
+  } else {
+	  $limit= 25;
+  }
   if ($cat == "0") {
-		$consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto group by idproducto";
-		 $consulta2 = "select count(*) as cuenta from final_productos";
+		$consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where nombre like '$comienzo%' group by idproducto";
+		 $consulta2 = "select count(*) as cuenta from final_productos where nombre like '$comienzo%'";
    }
    else {
-		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = '$cat' group by idproducto";
-		 $consulta2 = "select count(*) as cuenta from final_productos where categoria = '$cat'";
+		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = '$cat' and nombre like '$comienzo%' group by idproducto";
+		 $consulta2 = "select count(*) as cuenta from final_productos where categoria = '$cat' and nombre like '$comienzo%'";
   }
 switch ($orden) {
 	case 'nombre':
