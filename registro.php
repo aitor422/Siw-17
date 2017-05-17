@@ -10,7 +10,7 @@
      echo "Failed to connect to MySQL: " . mysqli_connect_error();
      falloreg();
   }
-  $sql = $conn->prepare("INSERT INTO usuario (idusuario, password, email, direccion, nombre) VALUES (?, ?, ?, ?, ?)");
+  $sql = $conn->prepare("INSERT INTO final_usuario (idusuario, password, email, direccion, nombre) VALUES (?, ?, ?, ?, ?)");
   $sql->bind_param("sssss", $usuario, $password, $email, $direccion, $nombre);
 
    if (isset($_POST["user"])) {

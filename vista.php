@@ -14,7 +14,7 @@
              $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
              mysqli_set_charset($con,"utf8");
              $usuario = $_SESSION['usuario'];
-             $consulta = "select count(*) as cuenta from favoritos where idusuario='$usuario' and idproducto=$producto";
+             $consulta = "select count(*) as cuenta from final_favoritos where idusuario='$usuario' and idproducto=$producto";
              $resultado = $con->query($consulta);
              $resultado = $resultado->fetch_assoc();
              if($resultado["cuenta"] == "1") {
@@ -50,7 +50,7 @@
             $cadena = "<table><tr>";
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
            $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-           $consulta = "SELECT productos.idproducto, precio, min(imagen) AS imagen FROM productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_grande%') a on productos.idproducto = a.idproducto WHERE destacado=1 GROUP BY productos.idproducto limit 5";
+           $consulta = "SELECT final_productos.idproducto, precio, min(imagen) AS imagen FROM final_productos LEFT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_grande%') a on final_productos.idproducto = a.idproducto WHERE destacado=1 GROUP BY final_productos.idproducto limit 5";
            $resultado = $con->query($consulta);
            $i = 1;
            while ($datos = $resultado->fetch_assoc()) {
@@ -62,7 +62,7 @@
                   $page = str_replace("##imagen$i##", "/static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
              $i++;
            }
-           $consulta = "select * from productos where destacado=1 limit 20 offset 5";
+           $consulta = "select * from final_productos where destacado=1 limit 20 offset 5";
            $resultado = $con->query($consulta);
            while ($datos = $resultado->fetch_assoc()) {
              $cadena = $cadena . "<td><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["idproducto"] ."</a></td>";
@@ -124,7 +124,7 @@
           $cadena = "<ul>";
           $usuario = $_SESSION["usuario"];
            $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-           $consulta = "select idproducto from favoritos where idusuario = '$usuario'";
+           $consulta = "select idproducto from final_favoritos where idusuario = '$usuario'";
            $resultado = $con->query($consulta);
            while ($datos = $resultado->fetch_assoc()) {
              $cadena = $cadena . "<li><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["idproducto"] ."</a></li>";
@@ -154,7 +154,7 @@
      {
          $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
          mysqli_set_charset($con,"utf8");
-         $consulta = "select distinct(categoria) as cat from productos";
+         $consulta = "select distinct(categoria) as cat from final_productos";
          $resultado = $con->query($consulta);
          $selectores = "";
          while ($datos = $resultado->fetch_assoc()) {
@@ -201,7 +201,7 @@
 
      function vMostrarProducto($producto) {
        $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-       $consulta = "SELECT productos.idproducto, nombre, precio,descripcion, min(imagen) AS imagen FROM productos LEFT JOIN (SELECT * FROM imagenes WHERE imagen like '%_mediana%') a ON productos.idproducto = a.idproducto WHERE productos.idproducto = $producto GROUP BY productos.idproducto";
+       $consulta = "SELECT final_productos.idproducto, nombre, precio,descripcion, min(imagen) AS imagen FROM final_productos LEFT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_mediana%') a ON final_productos.idproducto = a.idproducto WHERE final_productos.idproducto = $producto GROUP BY final_productos.idproducto";
        $resultado = $con->query($consulta);
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
@@ -250,7 +250,7 @@
 
          $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
          mysqli_set_charset($con,"utf8");
-         $consulta = "select distinct(categoria) as categoria from productos";
+         $consulta = "select distinct(categoria) as categoria from final_productos";
          $resultado = $con->query($consulta);
          $selectores = "";
          while ($datos = $resultado->fetch_assoc()) {
@@ -258,7 +258,7 @@
              $selectores = $selectores . "<option value='" . $datos["categoria"] . "'>". $datos["categoria"] ."</option>";
            }
          }
-         $consulta = "select max(idproducto) as maximo from productos";
+         $consulta = "select max(idproducto) as maximo from final_productos";
          $resultado = $con->query($consulta);
          $datos = $resultado->fetch_assoc();
          $nuevoid=$datos["maximo"]+1;

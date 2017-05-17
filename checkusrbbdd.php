@@ -5,7 +5,7 @@
        echo -1;
     }
     else {
-      $sql = $conn->prepare("SELECT count(idusuario) FROM usuario WHERE idusuario = ?");
+      $sql = $conn->prepare("SELECT count(idusuario) FROM final_usuario WHERE idusuario = ?");
       $sql->bind_param("s", $usr);
       $usr = $_GET["usr"];
       if($sql->execute()) {

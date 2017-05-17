@@ -12,12 +12,12 @@ if (session_status() == PHP_SESSION_NONE)
 	$cat = $_GET["cat"];
 	$limit = 25 * $_GET["clicks"];
   if ($cat == "0") {
-		$consulta="SELECT productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (productos LEFT JOIN (select * from favoritos where idusuario = '$usuario') a on productos.idproducto=a.idproducto) left join (select * from imagenes where imagen like '%_pequena%') b on productos.idproducto=b.idproducto group by idproducto limit $limit";
-		 $consulta2 = "select count(*) as cuenta from productos";
+		$consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto group by idproducto limit $limit";
+		 $consulta2 = "select count(*) as cuenta from final_productos";
    }
    else {
-		 $consulta="SELECT productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (productos LEFT JOIN (select * from favoritos where idusuario = '$usuario') a on productos.idproducto=a.idproducto) left join (select * from imagenes where imagen like '%_pequena%') b on productos.idproducto=b.idproducto where categoria = '$cat' group by idproducto limit $limit";
-		 $consulta2 = "select count(*) as cuenta from productos where categoria = '$cat'";
+		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = '$cat' group by idproducto limit $limit";
+		 $consulta2 = "select count(*) as cuenta from final_productos where categoria = '$cat'";
   }
 	$resultado = $con->query($consulta);
 
