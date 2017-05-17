@@ -4,6 +4,14 @@
 	</div>
 
 	<div id="selectordecategorias">
+		<label for="orden">Ordenar por: </label>
+		<select id="orden" onchange="cargar();">
+				     <option value="nombre">Alfabético</option>
+					<option value="precioup">Precio &uarr;</option>
+					<option value="preciodown">Precio &darr;</option>
+					<option id="opcioncat" value="categoria">Categoría</option>
+					<option value="destacado">Destacados</option>
+					</select>
 		<label for="categoria">Categoría: </label>
 		<select id="categoria" onchange="cargarconcambio();">
 				    <option value="0">todas</option>
@@ -22,8 +30,9 @@
 
 	function cargar() {
 		var cat = $("#categoria").val();
+		var orden = $("#orden").val();
 		$.ajax({
-			url: "/catalogo.php?cat=" + cat + "&clicks=" + clicks,
+			url: "/catalogo.php?cat=" + cat + "&clicks=" + clicks + "&orden=" + orden,
 			success: function(response) {
 				var total = jQuery.parseJSON(response);
 				$("#cuentaresultados").html(total[0] + " artículos");
@@ -64,6 +73,11 @@
 
 	function cargarconcambio() { // necesario para resetear el contador del botón
 		clicks = 1;
+		if($("#categoria").val() == "0")
+			$("#opcioncat").show();
+		else
+			$("#opcioncat").hide();
+		$("#orden").val("nombre");
 		cargar();
 	}
 
