@@ -191,12 +191,15 @@
      function vMostrarAdmin() {
           if (session_status() == PHP_SESSION_NONE)
                session_start();
-          if ($_SESSION["usuario"] != "admin")
-               vMostrarIndice();
-          $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/core/footer.html");
-          $page = str_replace("##titulo##", "admin", $page);
-          $page = checksession($page, 0);
-          echo $page;
+          if (isset($_SESSION["usuario"])) {
+               if ($_SESSION["usuario"] == "admin") {
+                    $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/core/footer.html");
+                    $page = str_replace("##titulo##", "admin", $page);
+                    $page = checksession($page, 0);
+                    echo $page;
+               }
+          }
+          vMostrarIndice();
      }
 
      function vMostrarProducto($producto) {
@@ -244,42 +247,46 @@
      function vMostrarNuevo(){
           if (session_status() == PHP_SESSION_NONE)
                session_start();
-          if ($_SESSION["usuario"] != "admin")
-               vMostrarIndice();
-
-         $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-         mysqli_set_charset($con,"utf8");
-         $consulta = "select distinct(categoria) as categoria from final_productos";
-         $resultado = $con->query($consulta);
-         $selectores = "";
-         while ($datos = $resultado->fetch_assoc()) {
-           if ($datos["categoria"] != "") {
-             $selectores = $selectores . "<option value='" . $datos["categoria"] . "'>". $datos["categoria"] ."</option>";
-           }
+          if (isset($_SESSION["usuario"])) {
+               if ($_SESSION["usuario"] == "admin") {
+                   $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+                   mysqli_set_charset($con,"utf8");
+                   $consulta = "select distinct(categoria) as categoria from final_productos";
+                   $resultado = $con->query($consulta);
+                   $selectores = "";
+                   while ($datos = $resultado->fetch_assoc()) {
+                     if ($datos["categoria"] != "") {
+                       $selectores = $selectores . "<option value='" . $datos["categoria"] . "'>". $datos["categoria"] ."</option>";
+                     }
+                   }
+                   $consulta = "select max(idproducto) as maximo from final_productos";
+                   $resultado = $con->query($consulta);
+                   $datos = $resultado->fetch_assoc();
+                   $nuevoid=$datos["maximo"]+1;
+                   $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
+                   $page = str_replace("##titulo##", "nuevo", $page);
+                   $page = str_replace("##nuevo##", "active", $page);
+                   $page = str_replace("##selectorescategoria##", $selectores, $page);
+                   $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$nuevoid.'">', $page);
+                   $page = checksession($page, 0);
+                   echo $page;
+              }
          }
-         $consulta = "select max(idproducto) as maximo from final_productos";
-         $resultado = $con->query($consulta);
-         $datos = $resultado->fetch_assoc();
-         $nuevoid=$datos["maximo"]+1;
-         $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
-         $page = str_replace("##titulo##", "nuevo", $page);
-         $page = str_replace("##nuevo##", "active", $page);
-         $page = str_replace("##selectorescategoria##", $selectores, $page);
-         $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$nuevoid.'">', $page);
-         $page = checksession($page, 0);
-         echo $page;
+         vMostrarIndice();
      }
 
      function vMostrarModificar(){
           if (session_status() == PHP_SESSION_NONE)
                session_start();
-          if ($_SESSION["usuario"] != "admin")
-               vMostrarIndice();
-
-         $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
-         $page = str_replace("##modificar##", "modificar", $page);
-         $page = checksession($page, 0);
-         echo $page;
+          if (isset($_SESSION["usuario"])) {
+               if ($_SESSION["usuario"] == "admin") {
+                    $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
+                    $page = str_replace("##modificar##", "modificar", $page);
+                    $page = checksession($page, 0);
+                    echo $page;
+               }
+          }
+          vMostrarIndice();
      }
 
 ?>
