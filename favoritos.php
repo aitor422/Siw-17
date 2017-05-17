@@ -7,11 +7,11 @@
   $usuario = $_SESSION["usuario"];
 
   $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-  $consulta = "SELECT COUNT(*) AS cuenta FROM favoritos WHERE idusuario='$usuario' AND idproducto=$producto";
+  $consulta = "SELECT COUNT(*) AS cuenta FROM final_favoritos WHERE idusuario='$usuario' AND idproducto=$producto";
   $resultado = $con->query($consulta);
   $resultado = $resultado->fetch_assoc();
   if($resultado["cuenta"] == "1") {
-    $consulta = "DELETE FROM favoritos WHERE idusuario='$usuario' AND idproducto=$producto";
+    $consulta = "DELETE FROM final_favoritos WHERE idusuario='$usuario' AND idproducto=$producto";
     if ($con->query($consulta) === TRUE) {
       echo "2";
     } else {
@@ -19,7 +19,7 @@
     }
   }
   else {
-    $consulta = "insert into favoritos (idusuario, idproducto) values ('$usuario', $producto)";
+    $consulta = "insert into final_favoritos (idusuario, idproducto) values ('$usuario', $producto)";
     if ($con->query($consulta) === TRUE) {
       echo "1";
     } else {

@@ -80,19 +80,19 @@ if(isset($_FILES["file"])){
    } else {
       echo "Error en la subida";
    }
-   $consulta = "select max(idproducto) as maximo from productos";
+   $consulta = "select max(idproducto) as maximo from final_productos";
    $resultado = $con->query($consulta);
    $datos = $resultado->fetch_assoc();
    $maximo=$datos["maximo"];
    if($maximo!=$nuevoid){
-      $sql = $con->prepare("INSERT INTO productos (idproducto, categoria, nombre, precio,descripcion) VALUES (?, ?, ?, ?, ?)");
+      $sql = $con->prepare("INSERT INTO final_productos (idproducto, categoria, nombre, precio,descripcion) VALUES (?, ?, ?, ?, ?)");
       $sql->bind_param("issis", $nuevoid, $categoria, $nombre, $precio, $descripcion);
       if ($sql->execute() != TRUE) {
          echo "NO FUNCIONA->Error al añadir producto";
 			die();
       }
    }
-   $consulta="INSERT INTO imagenes (idproducto, imagen) VALUES ($nuevoid,'$nombre_archivo')";
+   $consulta="INSERT INTO final_imagenes (idproducto, imagen) VALUES ($nuevoid,'$nombre_archivo')";
    if ($con->query($consulta) != TRUE){
       echo "NO FUNCIONA->Error al añadir Imagenes";
 		die();
