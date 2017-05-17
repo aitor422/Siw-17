@@ -4,6 +4,7 @@
 	</div>
 
 	<div id="selectordecategorias">
+		<input type="text" name="busq" id="busq" onkeyup="cargar();">
 		<label for="orden">Ordenar por: </label>
 		<select id="orden" onchange="cargar();">
 				     <option value="nombre">Alfabético</option>
@@ -31,8 +32,10 @@
 	function cargar() {
 		var cat = $("#categoria").val();
 		var orden = $("#orden").val();
+		var busqueda = $("#busq").val();
+
 		$.ajax({
-			url: "/catalogo.php?cat=" + cat + "&clicks=" + clicks + "&orden=" + orden,
+			url: "/catalogo.php?cat=" + cat + "&clicks=" + clicks + "&orden=" + orden + "&comienzo="+busqueda,
 			success: function(response) {
 				var total = jQuery.parseJSON(response);
 				$("#cuentaresultados").html(total[0] + " artículos");
@@ -41,27 +44,31 @@
 				} else {
 					$("#botoncargamas").show();
 				}
-				var datos = total[1];
-				cadena = "<div id='correcto' class='alert-box success'>Guardado como favorito</div>";
-				cadena = cadena + "<div id='error' class='alert-box failure'>Algo ha fallado</div>";
-				var cadena = cadena + "<table><tr><th></th><th>Nombre</th><th>categoria</th></tr>";
-				for (var i = 0; i < datos.length; i++) {
-					cadena = cadena + "<tr><td><a href='controlador.php?accion=producto&id=1&producto=" + datos[i][0] + "'>";
-					if (datos[i][3] == null)
-						cadena = cadena + "<img src=http://placehold.it/100x80></a></td>";
-					else
-						cadena = cadena + "<img src=/static/images/catalogo/" + datos[i][3] + "></a></td>";
-					cadena = cadena + "<td>" + datos[i][1] + "</td>";
-					cadena = cadena + "<td>" + datos[i][2] + "</td>";
-					cadena = cadena + "##parausuarios##<td><button type='button' class='botonesbonitos' name='button' onclick='favoritos(" + datos[i][0] + ")'>"
-					if (datos[i][4] == "0")
-						cadena = cadena + "Añadir a favoritos";
-					else
-						cadena = cadena + "Eliminar de favoritos";
-					cadena = cadena + "</button></td>##parausuarios##</tr>";
+				if (total[0] != "0") {
+					var datos = total[1];
+					cadena = "<div id='correcto' class='alert-box success'>Guardado como favorito</div>";
+					cadena = cadena + "<div id='error' class='alert-box failure'>Algo ha fallado</div>";
+					var cadena = cadena + "<table><tr><th></th><th>Nombre</th><th>categoria</th></tr>";
+					for (var i = 0; i < datos.length; i++) {
+						cadena = cadena + "<tr><td><a href='controlador.php?accion=producto&id=1&producto=" + datos[i][0] + "'>";
+						if (datos[i][3] == null)
+							cadena = cadena + "<img src=http://placehold.it/100x80></a></td>";
+						else
+							cadena = cadena + "<img src=/static/images/catalogo/" + datos[i][3] + "></a></td>";
+						cadena = cadena + "<td>" + datos[i][1] + "</td>";
+						cadena = cadena + "<td>" + datos[i][2] + "</td>";
+						cadena = cadena + "##parausuarios##<td><button type='button' class='botonesbonitos' name='button' onclick='favoritos(" + datos[i][0] + ")'>"
+						if (datos[i][4] == "0")
+							cadena = cadena + "Añadir a favoritos";
+						else
+							cadena = cadena + "Eliminar de favoritos";
+						cadena = cadena + "</button></td>##parausuarios##</tr>";
+					}
+					cadena = cadena + "</table>";
+					$("#resultado").html(cadena);
 				}
-				cadena = cadena + "</table>";
-				$("#resultado").html(cadena);
+				else
+					$("#resultado").html("No hay resultados");
 			}
 		});
 	}
