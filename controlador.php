@@ -140,4 +140,108 @@ if (session_status() == PHP_SESSION_NONE)
 		}
 	}
 
+	if ($accion == "nuevocomentario"){
+		switch ($id) {
+			case 1:
+				if (session_status() == PHP_SESSION_NONE)
+					session_start();
+				if(isset($_SESSION["usuario"]))
+					$usuario = $_SESSION["usuario"];
+				if (isset($_POST["comentario"])&&(!empty($_POST["comentario"]))) {
+				   $comentario=$_POST["comentario"];
+				}else{
+				   echo "NO FUNCIONA->NO hay Comentario";
+				   die();
+				}
+				if (isset($_POST["id"])&&(!empty($_POST["id"]))) {
+				   $id=$_POST["id"];
+				}else{
+				   echo "NO FUNCIONA->NO hay id";
+				   die();
+				}
+				mNuevoComentario($id, $comentario, $usuario);
+				vMostrarProducto($id);
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	if ($accion == "mlogin") {
+		switch ($id) {
+			case 1:
+				if (isset($_POST["password"])) {
+				   $password = $_POST["password"];
+				   /*$password=password_hash($password,CRYPT_BLOWFISH);*/
+				}else{
+				   vMostrarLoginFail();
+
+				}
+				if (isset($_POST["email"])) {
+					 $email = $_POST["email"];
+				}else{
+
+				}
+				if (mLogin($email, $password)==0)
+					vMostrarIndice();
+				else {
+					vMostrarLoginFail();
+				}
+
+				break;
+
+			default:
+				# code...
+				break;
+		}
+	}
+
+	if ($accion == "mregistro") {
+		switch ($id) {
+			case 1:
+				if (isset($_POST["user"])) {
+				   $usuario = $_POST["user"];
+				}else {
+				   vMostrarRegistroFail();
+				}
+				if (isset($_POST["password"])) {
+				   $password = $_POST["password"];
+				   $password=password_hash($password,CRYPT_BLOWFISH);
+				}else{
+				   vMostrarRegistroFail();
+				}
+				if (isset($_POST["email"])) {
+				   if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+					 $email = $_POST["email"];
+				   }else {
+					 vMostrarRegistroFail();
+				   }
+				}else{
+				   vMostrarRegistroFail();
+				}
+				if (isset($_POST["direccion"])) {
+				   $direccion = $_POST["direccion"];
+				}else{
+				   vMostrarRegistroFail();
+				}
+				if (isset($_POST["nombre"])) {
+				   $nombre = $_POST["nombre"];
+				}else{
+				   vMostrarRegistroFail();
+				}
+				if (mRegistro($usuario, $password, $email, $direccion, $nombre) == 0) {
+					mLogin($email, $password);
+					vMostrarIndice();
+				}
+				else
+					vMostrarRegistroFail();
+				break;
+
+			default:
+				# code...
+				break;
+		}
+	}
+
 ?>

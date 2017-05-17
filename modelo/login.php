@@ -1,31 +1,19 @@
 <?php
 
     function fallologin() {
-      header("Location: controlador.php?accion=login&id=2");
+      header("Location: ../controlador.php?accion=login&id=2");
       die();
     }
-
-    $conn = mysqli_connect("dbserver", "siw14", "eeshaekaip", "db_siw14");
+function mLogin($email, $password) {
+     $conn = mysqli_connect("dbserver", "siw14", "eeshaekaip", "db_siw14");
     if (mysqli_connect_errno()){
        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-       fallologin();
+       return -1;
     }
 
     $sql = $conn->prepare("SELECT password, idusuario FROM final_usuario WHERE email = ? OR idusuario = ?");
     $sql->bind_param("ss", $email, $email);
 
-   if (isset($_POST["password"])) {
-      $password = $_POST["password"];
-      /*$password=password_hash($password,CRYPT_BLOWFISH);*/
-   }else{
-      fallologin();
-
-   }
-   if (isset($_POST["email"])) {
-         $email = $_POST["email"];
-   }else{
-      fallologin();
-   }
 
     $sql->execute();
     $sql->bind_result($passhash, $idusuario);
@@ -36,10 +24,11 @@
           session_start();
       }
       $_SESSION["usuario"] = $idusuario;
-      header("Location: ../controlador.php?accion=index&id=1");
-      die();
     }
     else {
-      fallologin();
+      return -1;
     }
+    return 0;
+}
+
  ?>

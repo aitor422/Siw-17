@@ -1,8 +1,7 @@
 <?php
 
-     foreach (glob("modelo/*.php") as $filename)
-     {
-         include $filename;
-     }
+     include 'modelo/nuevocomentario.php';
+     include 'modelo/login.php';
+
 
  ?>
