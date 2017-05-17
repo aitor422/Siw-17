@@ -136,7 +136,7 @@
            }
            else {
              $page = str_replace("##productos##", $cadena, $page);
-             $page = str_replace("##botonpdf##", "<a target='_blank' href='modelo/pdf.php'><button id='botongenerarpdf' class='botonesbonitos' type='button' name='button'  >Generar PDF con favoritos</button></a>", $page);
+             $page = str_replace("##botonpdf##", "<a target='_blank' href='controlador.php?accion=pdf'><button id='botongenerarpdf' class='botonesbonitos' type='button' name='button'  >Generar PDF con favoritos</button></a>", $page);
            }
           $page = str_replace("##titulo##", "tu cuenta", $page);
           $page = str_replace("##cuentausuario##", "active", $page);

@@ -7,24 +7,28 @@
   $usuario = $_SESSION["usuario"];
 
   $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-  $consulta = "SELECT COUNT(*) AS cuenta FROM final_favoritos WHERE idusuario='$usuario' AND idproducto=$producto";
-  $resultado = $con->query($consulta);
-  $resultado = $resultado->fetch_assoc();
-  if($resultado["cuenta"] == "1") {
-    $consulta = "DELETE FROM final_favoritos WHERE idusuario='$usuario' AND idproducto=$producto";
-    if ($con->query($consulta) === TRUE) {
+
+  $sql = $con->prepare("SELECT COUNT(*) AS cuenta FROM final_favoritos WHERE idusuario=? AND idproducto=?");
+  $sql->bind_param("si", $usuario, $producto);
+  $sql->execute();
+  $sql->bind_result($cuenta)
+  if($cuenta == "1") {
+    $sql = $con->prepare("DELETE FROM final_favoritos WHERE idusuario=? AND idproducto=?");
+    $sql->bind_param("si", $usuario, $producto);
+    if ($sql->execute()) == TRUE) {
       echo "2";
     } else {
       echo "-1";
     }
   }
   else {
-    $consulta = "insert into final_favoritos (idusuario, idproducto) values ('$usuario', $producto)";
-    if ($con->query($consulta) === TRUE) {
-      echo "1";
-    } else {
-      echo "-1";
-    }
+       $sql = $con->prepare("INSERT INTO final_favoritos (idusuario, idproducto) VALUES (?, ?)");
+      $sql->bind_param("si", $usuario, $producto);
+      if ($sql->execute() == TRUE) {
+           echo "1";
+         } else {
+           echo "-1";
+         }
   }
 
  ?>

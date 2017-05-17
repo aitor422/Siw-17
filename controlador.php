@@ -206,8 +206,8 @@ if (session_status() == PHP_SESSION_NONE)
 				   vMostrarRegistroFail();
 				}
 				if (isset($_POST["password"])) {
-				   $password = $_POST["password"];
-				   $password=password_hash($password,CRYPT_BLOWFISH);
+				   $passwordnohash = $_POST["password"];
+				   $password=password_hash($passwordnohash,CRYPT_BLOWFISH);
 				}else{
 				   vMostrarRegistroFail();
 				}
@@ -231,11 +231,23 @@ if (session_status() == PHP_SESSION_NONE)
 				   vMostrarRegistroFail();
 				}
 				if (mRegistro($usuario, $password, $email, $direccion, $nombre) == 0) {
-					mLogin($email, $password);
+					mLogin($email, $passwordnohash);
 					vMostrarIndice();
 				}
 				else
 					vMostrarRegistroFail();
+				break;
+
+			default:
+				# code...
+				break;
+		}
+	}
+
+	if ($accion == 'pdf') {
+		switch ($id) {
+			case 1:
+				mPdf();
 				break;
 
 			default:
