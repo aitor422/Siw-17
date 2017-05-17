@@ -150,13 +150,11 @@ if (session_status() == PHP_SESSION_NONE)
 				if (isset($_POST["comentario"])&&(!empty($_POST["comentario"]))) {
 				   $comentario=$_POST["comentario"];
 				}else{
-				   echo "NO FUNCIONA->NO hay Comentario";
 				   die();
 				}
 				if (isset($_POST["id"])&&(!empty($_POST["id"]))) {
 				   $id=$_POST["id"];
 				}else{
-				   echo "NO FUNCIONA->NO hay id";
 				   die();
 				}
 				mNuevoComentario($id, $comentario, $usuario);
@@ -173,7 +171,6 @@ if (session_status() == PHP_SESSION_NONE)
 			case 1:
 				if (isset($_POST["password"])) {
 				   $password = $_POST["password"];
-				   /*$password=password_hash($password,CRYPT_BLOWFISH);*/
 				}else{
 				   vMostrarLoginFail();
 

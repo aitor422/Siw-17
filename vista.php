@@ -222,14 +222,14 @@
          $page = str_replace("##descripcion##", $resultado["descripcion"], $page);
        $page = str_replace("##id##", '<input type="hidden" id="id" name="id" value="'.$producto.'">', $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
-       $consulta="select comentario from final_comentarios where final_comentarios.idproducto = $producto";
+       $consulta="select comentario,idusuario from final_comentarios where final_comentarios.idproducto = $producto";
        $resultado = $con->query($consulta);
        $comentarios="";
        if ($resultado->num_rows === 0) {
          $page = str_replace("Comentarios",'', $page);
       }
        while ($datos = $resultado->fetch_assoc()) {
-          $comentarios=$comentarios.$datos["comentario"]."<br>";
+          $comentarios=$comentarios."<h3>".$datos["idusuario"].": </h3>".$datos["comentario"]."<br>";
        }
       $page = str_replace("##comentarios##", $comentarios, $page);
        $page = checksession($page, $producto);
