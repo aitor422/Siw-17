@@ -16,7 +16,7 @@ $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
 $sql = $con->prepare("INSERT INTO final_comentarios (idproducto, comentario) VALUES (?, ?)");
 $sql->bind_param("is", $id, $comentario);
 if ($sql->execute() != TRUE) {
-   echo "NO FUNCIONA->Error al añadir producto";
+   echo "NO FUNCIONA->Error al añadir comentario";
 }
 vMostrarProducto($id);
 ?>

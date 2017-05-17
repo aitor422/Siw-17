@@ -229,7 +229,6 @@
           $comentarios=$comentarios.$datos["comentario"]."<br>";
        }
       $page = str_replace("##comentarios##", $comentarios, $page);
-      // $page = str_replace("Comentarios:",'', $page);
        $page = checksession($page, $producto);
        echo $page;
      }

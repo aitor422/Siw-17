@@ -3,7 +3,7 @@
 if (session_status() == PHP_SESSION_NONE)
 		 session_start();
 
-	//include ("modelo.php");
+	include ("modelo.php");
 	include ("vista.php");
 
 	if (isset($_GET["accion"])) {
@@ -118,7 +118,13 @@ if (session_status() == PHP_SESSION_NONE)
 				break;
 		}
 	}
-
+	if ($accion=="comentario") {
+		switch ($id) {
+			case 1:
+				$insercion=mnuevocomentario();
+				break;
+		}
+	}
 	if ($accion == "legal") {
 		switch ($id) {
 			case 1:
