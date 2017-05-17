@@ -25,8 +25,6 @@ if (session_status() == PHP_SESSION_NONE)
 			$id = 1;
 		}
 	}
-
-
 	if ($accion == "index") {
 		switch ($id) {
 			case 1:
@@ -115,13 +113,6 @@ if (session_status() == PHP_SESSION_NONE)
 		switch ($id) {
 			case 1:
 				vMostrarProducto($producto);
-				break;
-		}
-	}
-	if ($accion=="comentario") {
-		switch ($id) {
-			case 1:
-				$insercion=mnuevocomentario();
 				break;
 		}
 	}
