@@ -45,12 +45,9 @@
        return $page;
      }
 
-     function vMostrarIndice() { //////////////////////////////////////////////////
-            $cadena = "<table><tr>";
+     function vMostrarIndice($resultado,$resultado2) {
+           $cadena = "<table><tr>";
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
-           $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-           $consulta = "SELECT final_productos.idproducto, precio, min(imagen) AS imagen FROM final_productos LEFT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_grande%') a on final_productos.idproducto = a.idproducto WHERE destacado=1 GROUP BY final_productos.idproducto limit 5";
-           $resultado = $con->query($consulta);
            $i = 1;
            while ($datos = $resultado->fetch_assoc()) {
              $page = str_replace("##$i##", $datos["idproducto"], $page);
@@ -61,9 +58,7 @@
                   $page = str_replace("##imagen$i##", "static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
              $i++;
            }
-           $consulta = "select * from final_productos where destacado=1 limit 20 offset 5";
-           $resultado = $con->query($consulta);
-           while ($datos = $resultado->fetch_assoc()) {
+           while ($datos = $resultado2->fetch_assoc()) {
              $cadena = $cadena . "<td><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["idproducto"] ."</a></td>";
              if (($i % 5) == 0) {
                $cadena = $cadena . "</tr><tr>";
@@ -110,16 +105,13 @@
           echo $page;
      }
 
-     function vMostrarUser() { //////////////////////////////////////////////////
+     function vMostrarUser($resultado) {
        if (session_status() == PHP_SESSION_NONE)
             session_start();
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/user.html") . file_get_contents("templates/core/footer.html");
           $cadena = "<ul>";
           $usuario = $_SESSION["usuario"];
-           $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-           $consulta = "select idproducto from final_favoritos where idusuario = '$usuario'";
-           $resultado = $con->query($consulta);
-           while ($datos = $resultado->fetch_assoc()) {
+          while ($datos = $resultado->fetch_assoc()) {
              $cadena = $cadena . "<li><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["idproducto"] ."</a></li>";
            }
            $cadena = $cadena . "</ul>";

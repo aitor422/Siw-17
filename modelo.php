@@ -8,5 +8,7 @@
      include 'modelo/obtenercomentarios.php';
      include 'modelo/obtenercategorias.php';
      include 'modelo/obtenermaxid.php';
-
+     include 'modelo/mostrarindice.php';
+     include 'modelo/mostraruser.php';
+     
  ?>

@@ -1,6 +1,9 @@
 <?php
 
      include 'vista.php';
-     vMostrarIndice();
+     include 'modelo.php';
+     $resultado=mMostrarIndice();
+     $resultado2=mMostrarIndiceTablaProds();
+     vMostrarIndice($resultado,$resultado2);
 
 ?>
