@@ -137,6 +137,8 @@ if ($accion == "producto") {
 		case 1:
 			if(isset($_SESSION["usuario"]))
 				$usuario=$_SESSION["usuario"];
+			else
+				$usuario = "";
 			vMostrarProducto($producto, mMostrarProducto($producto), mObtenerComentarios($producto), mObtenerSiFavorito($usuario, $producto));
 			break;
 	}
