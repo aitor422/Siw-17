@@ -112,7 +112,9 @@ if (session_status() == PHP_SESSION_NONE)
 		}
 		switch ($id) {
 			case 1:
-				vMostrarProducto($producto);
+				$resultado=mMostrarProducto($producto);
+				$datos=mObtenerComentarios($producto);
+				vMostrarProducto($id,$resultado,$datos);
 				break;
 		}
 	}
@@ -158,7 +160,9 @@ if (session_status() == PHP_SESSION_NONE)
 				   die();
 				}
 				mNuevoComentario($id, $comentario, $usuario);
-				vMostrarProducto($id);
+				$resultado=mMostrarProducto($producto);
+				$datos=mObtenerComentarios($producto);
+				vMostrarProducto($id,$resultado,$datos);
 				break;
 
 			default:

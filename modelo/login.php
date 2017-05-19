@@ -1,9 +1,4 @@
 <?php
-
-    function fallologin() {
-      header("Location: ../controlador.php?accion=login&id=2");
-      die();
-    }
 function mLogin($email, $password) {
      $conn = mysqli_connect("dbserver", "siw14", "eeshaekaip", "db_siw14");
     if (mysqli_connect_errno()){

@@ -202,10 +202,7 @@
           vMostrarIndice();
      }
 
-     function vMostrarProducto($producto) {
-       $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-       $consulta = "SELECT final_productos.idproducto, nombre, precio,descripcion, min(imagen) AS imagen FROM final_productos LEFT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_mediana%') a ON final_productos.idproducto = a.idproducto WHERE final_productos.idproducto = $producto GROUP BY final_productos.idproducto";
-       $resultado = $con->query($consulta);
+     function vMostrarProducto($producto,$resultado,$resultado2) {
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##titulo##", $producto, $page);
@@ -222,13 +219,11 @@
          $page = str_replace("##descripcion##", $resultado["descripcion"], $page);
        $page = str_replace("##id##", '<input type="hidden" id="id" name="id" value="'.$producto.'">', $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
-       $consulta="select comentario,idusuario from final_comentarios where final_comentarios.idproducto = $producto";
-       $resultado = $con->query($consulta);
        $comentarios="";
-       if ($resultado->num_rows === 0) {
+       if ($resultado2->num_rows === 0) {
          $page = str_replace("Comentarios",'', $page);
       }
-       while ($datos = $resultado->fetch_assoc()) {
+       while ($datos = $resultado2->fetch_assoc()) {
           $comentarios=$comentarios."<h3>".$datos["idusuario"].": </h3>".$datos["comentario"]."<br>";
        }
       $page = str_replace("##comentarios##", $comentarios, $page);
