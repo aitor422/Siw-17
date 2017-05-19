@@ -286,5 +286,18 @@ if ($accion == 'pdf') {
 			break;
 	}
 }
+if ($accion == 'eliminarcuenta') {
+	switch ($id) {
+		case 1:
+		if(isset($_SESSION["usuario"]))
+			$usuario = $_SESSION["usuario"];
+		mEliminarCuenta($usuario);
+		unset($_SESSION['usuario']);
+		$resultado=mMostrarIndice();
+		$resultado2=mMostrarIndiceTablaProds();
+		vMostrarIndice($resultado,$resultado2);
+		break;
+	}
+}
 
 ?>

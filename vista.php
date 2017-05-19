@@ -120,9 +120,11 @@
           $page = checksession($page, "-1");
           if(strcmp ( $usuario , "admin" ) === 0) {
             $page = str_replace("##admin##", "<a class='last' href='controlador.php?accion=admin&id=1'><button class='botonesbonitos' type='button' >Zona de administración</button></a>", $page);
+            $page = str_replace("##eliminarcuenta##", "", $page);
           }
           else {
             $page = str_replace("##admin##", "", $page);
+            $page = str_replace("##eliminarcuenta##", "<a class='first' href='controlador.php?accion=eliminarcuenta&id=1'> <button onclick=\"return confirm('¿Estás seguro de que deseas eliminar tu cuenta?')\" class='botonesbonitos'>Eliminar Cuenta</button></a>", $page);
           }
           echo $page;
      }
