@@ -42,7 +42,9 @@ if (session_status() == PHP_SESSION_NONE)
 		switch ($id) {
 			case 1:
 				//Mostramos el menu
-				vMostrarIndice();
+				$resultado=mMostrarIndice();
+				$resultado2=mMostrarIndiceTablaProds();
+				vMostrarIndice($resultado,$resultado2);
 				break;
 		}
 	}
@@ -69,7 +71,9 @@ if (session_status() == PHP_SESSION_NONE)
 				break;
 			case 3://logout
 				unset($_SESSION['usuario']);
-				vMostrarIndice();
+				$resultado=mMostrarIndice();
+				$resultado2=mMostrarIndiceTablaProds();
+				vMostrarIndice($resultado,$resultado2);
 		}
 	}
 
@@ -100,8 +104,11 @@ if (session_status() == PHP_SESSION_NONE)
 	if ($accion == "usuario") {
 		switch ($id) {
 			case 1:
-				vMostrarUser();
-				break;
+			if(isset($_SESSION["usuario"]))
+				$usuario=$_SESSION["usuario"];
+			$resultado=mMostrarUser($usuario);
+			vMostrarUser($resultado);
+			break;
 		}
 	}
 
@@ -197,9 +204,11 @@ if (session_status() == PHP_SESSION_NONE)
 				}else{
 
 				}
-				if (mLogin($email, $password)==0)
-					vMostrarIndice();
-				else {
+				if (mLogin($email, $password)==0){
+					$resultado=mMostrarIndice();
+					$resultado2=mMostrarIndiceTablaProds();
+					vMostrarIndice($resultado,$resultado2);
+				}else {
 					vMostrarLoginFail();
 				}
 
@@ -246,7 +255,9 @@ if (session_status() == PHP_SESSION_NONE)
 				}
 				if (mRegistro($usuario, $password, $email, $direccion, $nombre) == 0) {
 					mLogin($email, $passwordnohash);
-					vMostrarIndice();
+					$resultado=mMostrarIndice();
+					$resultado2=mMostrarIndiceTablaProds();
+					vMostrarIndice($resultado,$resultado2);
 				}
 				else
 					vMostrarRegistroFail();
