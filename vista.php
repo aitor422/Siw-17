@@ -45,7 +45,7 @@
        return $page;
      }
 
-     function vMostrarIndice() {
+     function vMostrarIndice() { //////////////////////////////////////////////////
             $cadena = "<table><tr>";
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
            $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
@@ -110,7 +110,7 @@
           echo $page;
      }
 
-     function vMostrarUser() {
+     function vMostrarUser() { //////////////////////////////////////////////////
        if (session_status() == PHP_SESSION_NONE)
             session_start();
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/user.html") . file_get_contents("templates/core/footer.html");
