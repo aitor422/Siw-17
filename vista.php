@@ -45,8 +45,7 @@
        return $page;
      }
 
-     function vMostrarIndice()
-     {
+     function vMostrarIndice() {
             $cadena = "<table><tr>";
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
            $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
@@ -79,9 +78,7 @@
           echo $page;
      }
 
-
-     function vMostrarRegistro()
-     {
+     function vMostrarRegistro() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/registro.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "registro", $page);
           $page = checksession($page, 0);
@@ -89,8 +86,7 @@
           echo $page;
      }
 
-     function vMostrarRegistroFail()
-     {
+     function vMostrarRegistroFail() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/registro.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "registro", $page);
           $page = checksession($page, 0);
@@ -98,8 +94,7 @@
           echo $page;
      }
 
-     function vMostrarLogin()
-     {
+     function vMostrarLogin() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/login.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "login", $page);
           $page = str_replace("##loginfailed##", "", $page);
@@ -107,8 +102,7 @@
           echo $page;
      }
 
-     function vMostrarLoginFail()
-     {
+     function vMostrarLoginFail() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/login.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "login", $page);
           $page = str_replace("##loginfailed##", "usuario o contraseña incorrectos", $page);
@@ -116,8 +110,7 @@
           echo $page;
      }
 
-     function vMostrarUser()
-     {
+     function vMostrarUser() {
        if (session_status() == PHP_SESSION_NONE)
             session_start();
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/user.html") . file_get_contents("templates/core/footer.html");
@@ -150,19 +143,7 @@
           echo $page;
      }
 
-     function vMostrarCatalogo()
-     {
-         $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-         mysqli_set_charset($con,"utf8");
-         $consulta = "select distinct(categoria) as cat from final_productos";
-         $resultado = $con->query($consulta);
-         $selectores = "";
-         while ($datos = $resultado->fetch_assoc()) {
-           if ($datos["cat"] != "") {
-             $selectores = $selectores . "<option value='" . $datos["cat"] . "'>". $datos["cat"] ."</option>";
-           }
-         }
-
+     function vMostrarCatalogo($selectores) {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/catalogo.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##selectorescategoria##", $selectores, $page);
           $page = str_replace("##titulo##", "catálogo", $page);
@@ -171,16 +152,15 @@
           echo $page;
      }
 
-     function vMostrarLocalizacion()
-     {
+     function vMostrarLocalizacion() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/localizacion.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "localizacion", $page);
           $page = str_replace("##localizacion##", "active", $page);
           $page = checksession($page, 0);
           echo $page;
      }
-     function vMostrarServicios()
-     {
+
+     function vMostrarServicios() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/servicios.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "servicios", $page);
           $page = str_replace("##servicios##", "active", $page);
@@ -191,15 +171,14 @@
      function vMostrarAdmin() {
           if (session_status() == PHP_SESSION_NONE)
                session_start();
-          if (isset($_SESSION["usuario"])) {
-               if ($_SESSION["usuario"] == "admin") {
-                    $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/core/footer.html");
-                    $page = str_replace("##titulo##", "admin", $page);
-                    $page = checksession($page, 0);
-                    echo $page;
-               }
+          if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
+                $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/core/footer.html");
+                $page = str_replace("##titulo##", "admin", $page);
+                $page = checksession($page, 0);
+                echo $page;
           }
-          vMostrarIndice();
+          else
+            vMostrarIndice();
      }
 
      function vMostrarProducto($producto,$resultado,$resultado2) {
@@ -209,7 +188,7 @@
       if ($resultado["imagen"] == null)
             $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
       else
-             $page = str_replace("##imagen##", "/static/images/catalogo/" . $resultado["imagen"], $page);
+             $page = str_replace("##imagen##", "static/images/catalogo/" . $resultado["imagen"], $page);
        $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
        $page = str_replace("##nombre##", $resultado["nombre"], $page);
        if ($resultado["descripcion"]==null){
@@ -217,7 +196,7 @@
          $page = str_replace("Descripción",'', $page);
       }else
          $page = str_replace("##descripcion##", $resultado["descripcion"], $page);
-       $page = str_replace("##id##", '<input type="hidden" id="id" name="id" value="'.$producto.'">', $page);
+       $page = str_replace("##id##", '<input type="hidden" id="producto" name="producto" value="'.$producto.'">', $page);
        $page = str_replace("##precio##", $resultado["precio"], $page);
        $comentarios="";
        if ($resultado2->num_rows === 0) {
@@ -231,57 +210,40 @@
        echo $page;
      }
 
-     function vMostrarLegal()
-     {
+     function vMostrarLegal() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/legal.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "legal", $page);
           $page = checksession($page, 0);
           echo $page;
      }
 
-     function vMostrarNuevo(){
+     function vMostrarNuevo($selectores, $nuevoid) {
           if (session_status() == PHP_SESSION_NONE)
                session_start();
-          if (isset($_SESSION["usuario"])) {
-               if ($_SESSION["usuario"] == "admin") {
-                   $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-                   mysqli_set_charset($con,"utf8");
-                   $consulta = "select distinct(categoria) as categoria from final_productos";
-                   $resultado = $con->query($consulta);
-                   $selectores = "";
-                   while ($datos = $resultado->fetch_assoc()) {
-                     if ($datos["categoria"] != "") {
-                       $selectores = $selectores . "<option value='" . $datos["categoria"] . "'>". $datos["categoria"] ."</option>";
-                     }
-                   }
-                   $consulta = "select max(idproducto) as maximo from final_productos";
-                   $resultado = $con->query($consulta);
-                   $datos = $resultado->fetch_assoc();
-                   $nuevoid=$datos["maximo"]+1;
-                   $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
-                   $page = str_replace("##titulo##", "nuevo", $page);
-                   $page = str_replace("##nuevo##", "active", $page);
-                   $page = str_replace("##selectorescategoria##", $selectores, $page);
-                   $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$nuevoid.'">', $page);
-                   $page = checksession($page, 0);
-                   echo $page;
-              }
+          if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
+               $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/nuevo.html"). file_get_contents("templates/core/footer.html");
+               $page = str_replace("##titulo##", "nuevo", $page);
+               $page = str_replace("##nuevo##", "active", $page);
+               $page = str_replace("##selectorescategoria##", $selectores, $page);
+               $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$nuevoid.'">', $page);
+               $page = checksession($page, 0);
+               echo $page;
          }
-         vMostrarIndice();
+         else
+           vMostrarIndice();
      }
 
-     function vMostrarModificar(){
+     function vMostrarModificar() {
           if (session_status() == PHP_SESSION_NONE)
                session_start();
-          if (isset($_SESSION["usuario"])) {
-               if ($_SESSION["usuario"] == "admin") {
-                    $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
-                    $page = str_replace("##modificar##", "modificar", $page);
-                    $page = checksession($page, 0);
-                    echo $page;
-               }
+          if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
+                $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
+                $page = str_replace("##modificar##", "modificar", $page);
+                $page = checksession($page, 0);
+                echo $page;
           }
-          vMostrarIndice();
+          else
+            vMostrarIndice();
      }
 
 ?>

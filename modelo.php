@@ -6,5 +6,7 @@
      include 'modelo/pdf.php';
      include 'modelo/mostrarproducto.php';
      include 'modelo/obtenercomentarios.php';
+     include 'modelo/obtenercategorias.php';
+     include 'modelo/obtenermaxid.php';
 
  ?>

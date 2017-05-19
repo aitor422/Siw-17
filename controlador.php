@@ -1,10 +1,23 @@
 <?php
 
+
 if (session_status() == PHP_SESSION_NONE)
 		 session_start();
 
 	include ("modelo.php");
 	include ("vista.php");
+
+
+	function selectorcategorias() { // obtener las categorias para los selectores
+		$resultado = mObtenerCategorias();
+		$selectores = "";
+		while ($datos = $resultado->fetch_assoc()) {
+			if ($datos["categoria"] != "") {
+				$selectores = $selectores . "<option value='" . $datos["categoria"] . "'>". $datos["categoria"] ."</option>";
+			}
+		}
+		return $selectores;
+	}
 
 	if (isset($_GET["accion"])) {
 		$accion = $_GET["accion"];
@@ -63,7 +76,7 @@ if (session_status() == PHP_SESSION_NONE)
 	if ($accion == "catalogo") {
 		switch ($id) {
 			case 1:
-				vMostrarCatalogo();
+				vMostrarCatalogo(selectorcategorias());
 				break;
 		}
 	}
@@ -114,7 +127,7 @@ if (session_status() == PHP_SESSION_NONE)
 			case 1:
 				$resultado=mMostrarProducto($producto);
 				$datos=mObtenerComentarios($producto);
-				vMostrarProducto($id,$resultado,$datos);
+				vMostrarProducto($producto,$resultado,$datos);
 				break;
 		}
 	}
@@ -129,7 +142,7 @@ if (session_status() == PHP_SESSION_NONE)
 	if ($accion == "nuevo") {
 		switch ($id) {
 			case 1:
-				vMostrarNuevo();
+				vMostrarNuevo(selectorcategorias(), mObtenerMaxId());
 				break;
 		}
 	}
@@ -154,15 +167,15 @@ if (session_status() == PHP_SESSION_NONE)
 				}else{
 				   die();
 				}
-				if (isset($_POST["id"])&&(!empty($_POST["id"]))) {
-				   $id=$_POST["id"];
+				if (isset($_POST["producto"])&&(!empty($_POST["producto"]))) {
+				   $producto=$_POST["producto"];
 				}else{
 				   die();
 				}
-				mNuevoComentario($id, $comentario, $usuario);
+				mNuevoComentario($producto, $comentario, $usuario);
 				$resultado=mMostrarProducto($producto);
 				$datos=mObtenerComentarios($producto);
-				vMostrarProducto($id,$resultado,$datos);
+				vMostrarProducto($producto,$resultado,$datos);
 				break;
 
 			default:
