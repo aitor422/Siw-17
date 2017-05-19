@@ -10,19 +10,11 @@
            $page = str_replace("##linklogin##", "controlador.php?accion=login&id=3", $page);
            $page = str_replace("##botonlogin##", "botonlogout", $page);
            $page = str_replace("##parausuarios##", "", $page);
-           if ($producto != 0) {
-             $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-             mysqli_set_charset($con,"utf8");
-             $usuario = $_SESSION['usuario'];
-             $consulta = "select count(*) as cuenta from final_favoritos where idusuario='$usuario' and idproducto=$producto";
-             $resultado = $con->query($consulta);
-             $resultado = $resultado->fetch_assoc();
-             if($resultado["cuenta"] == "1") {
-               $page = str_replace("##favorito##", "Eliminar de favoritos", $page);
-             }
-             else {
-               $page = str_replace("##favorito##", "Añadir a favoritos", $page);
-             }
+           if($producto == "1") {
+             $page = str_replace("##favorito##", "Eliminar de favoritos", $page);
+           }
+           else if ($producto == "0") {
+             $page = str_replace("##favorito##", "Añadir a favoritos", $page);
            }
            $page = str_replace("##scriptparausuarios##", "", $page);
        }
@@ -69,14 +61,14 @@
            $page = str_replace("##tablaproductos##", $cadena, $page);
           $page = str_replace("##titulo##", "index", $page);
           $page = str_replace("##index##", "active", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           echo $page;
      }
 
      function vMostrarRegistro() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/registro.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "registro", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           $page = str_replace("##regfailed##", "", $page);
           echo $page;
      }
@@ -84,7 +76,7 @@
      function vMostrarRegistroFail() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/registro.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "registro", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           $page = str_replace("##regfailed##", "Algo ha fallado, usuario no creado.", $page);
           echo $page;
      }
@@ -93,7 +85,7 @@
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/login.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "login", $page);
           $page = str_replace("##loginfailed##", "", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           echo $page;
      }
 
@@ -101,7 +93,7 @@
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/login.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "login", $page);
           $page = str_replace("##loginfailed##", "usuario o contraseña incorrectos", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           echo $page;
      }
 
@@ -125,7 +117,7 @@
            }
           $page = str_replace("##titulo##", "tu cuenta", $page);
           $page = str_replace("##cuentausuario##", "active", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           if(strcmp ( $usuario , "admin" ) === 0) {
             $page = str_replace("##admin##", "<a class='last' href='controlador.php?accion=admin&id=1'><button class='botonesbonitos' type='button' >Zona de administración</button></a>", $page);
           }
@@ -140,7 +132,7 @@
           $page = str_replace("##selectorescategoria##", $selectores, $page);
           $page = str_replace("##titulo##", "catálogo", $page);
           $page = str_replace("##catalogo##", "active", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           echo $page;
      }
 
@@ -148,7 +140,7 @@
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/localizacion.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "localizacion", $page);
           $page = str_replace("##localizacion##", "active", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           echo $page;
      }
 
@@ -156,7 +148,7 @@
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/servicios.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "servicios", $page);
           $page = str_replace("##servicios##", "active", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           echo $page;
      }
 
@@ -166,14 +158,14 @@
           if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
                 $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/core/footer.html");
                 $page = str_replace("##titulo##", "admin", $page);
-                $page = checksession($page, 0);
+                $page = checksession($page, "-1");
                 echo $page;
           }
           else
             vMostrarIndice();
      }
 
-     function vMostrarProducto($producto,$resultado,$resultado2) {
+     function vMostrarProducto($producto, $resultado, $resultado2, $cuentafavoitos) {
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##titulo##", $producto, $page);
@@ -198,14 +190,14 @@
           $comentarios=$comentarios."<h3>".$datos["idusuario"].": </h3>".$datos["comentario"]."<br>";
        }
       $page = str_replace("##comentarios##", $comentarios, $page);
-       $page = checksession($page, $producto);
+       $page = checksession($page, $cuentafavoritos);
        echo $page;
      }
 
      function vMostrarLegal() {
           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/legal.html") . file_get_contents("templates/core/footer.html");
           $page = str_replace("##titulo##", "legal", $page);
-          $page = checksession($page, 0);
+          $page = checksession($page, "-1");
           echo $page;
      }
 
@@ -218,7 +210,7 @@
                $page = str_replace("##nuevo##", "active", $page);
                $page = str_replace("##selectorescategoria##", $selectores, $page);
                $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$nuevoid.'">', $page);
-               $page = checksession($page, 0);
+               $page = checksession($page, "-1");
                echo $page;
          }
          else
@@ -231,7 +223,7 @@
           if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
                 $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
                 $page = str_replace("##modificar##", "modificar", $page);
-                $page = checksession($page, 0);
+                $page = checksession($page, "-1");
                 echo $page;
           }
           else

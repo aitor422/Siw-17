@@ -10,5 +10,6 @@
      include 'modelo/obtenermaxid.php';
      include 'modelo/mostrarindice.php';
      include 'modelo/mostraruser.php';
-     
+     include 'modelo/obtenersifavorito.php';
+
  ?>

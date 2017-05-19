@@ -11,13 +11,15 @@
     echo "-1";
     return;
   }
+  $con->autocommit(FALSE);
 
-  $sql = $con->prepare("SELECT COUNT(*) AS cuenta FROM final_favoritos WHERE idusuario=? AND idproducto=?");
+  $sql = $con->prepare("SELECT COUNT(*) FROM final_favoritos WHERE idusuario=? AND idproducto=?");
   $sql->bind_param("si", $usuario, $producto);
   if ($sql->execute() == TRUE) {
     $sql->bind_result($cuenta);
     $sql->fetch();
     if($cuenta == "1") {
+      $sql->close();
       $sql = $con->prepare("DELETE FROM final_favoritos WHERE idusuario=? AND idproducto=?");
       $sql->bind_param("si", $usuario, $producto);
       if ($sql->execute() == TRUE) {
@@ -25,9 +27,13 @@
       } else {
         echo "-1";
       }
+      $sql->close();
+      $con->commit();
+      $con->close();
     }
     else {
-         $sql = $con->prepare("INSERT INTO final_favoritos (idusuario, idproducto) VALUES (?, ?)");
+      $sql->close();
+         $sql = $con->prepare("INSERT INTO final_favoritos (idusuario,idproducto) VALUES (?,?)");
         $sql->bind_param("si", $usuario, $producto);
         if ($sql->execute() == TRUE) {
            echo "1";
@@ -35,9 +41,15 @@
          else {
            echo "-1";
          }
+         $sql->close();
+         $con->commit();
+         $con->close();
     }
+
   }
   else {
-    
+    $con->close();
+    echo "-1";
   }
+
  ?>
