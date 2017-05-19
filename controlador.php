@@ -299,5 +299,25 @@ if ($accion == 'eliminarcuenta') {
 		break;
 	}
 }
-
+if ($accion == "modificarproducto") {
+	if (isset($_GET["producto"])) {
+		$producto = $_GET["producto"];
+	} else {
+		if (isset($_POST["producto"])) {
+			$producto = $_POST["producto"];
+		} else {
+			$producto = 0;
+		}
+	}
+	switch ($id) {
+		case 1:
+			if(isset($_SESSION["usuario"]))
+				$usuario=$_SESSION["usuario"];
+			else
+				$usuario = "";
+			$resultado=mModificarProducto($producto);
+			vMostrarProductoAModificar($producto,$resultado);
+			break;
+	}
+}
 ?>

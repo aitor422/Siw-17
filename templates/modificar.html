@@ -1,3 +1,6 @@
+<input type="text" name="busq" id="busq" onkeyup="cargar();">
+<div id="resultado">
+</div>
 <script type="text/javascript" src="static/js/jquery-3.2.0.min.js"></script>
 <script type="text/javascript">
 	var clicks = 1;
@@ -19,7 +22,7 @@
 					var datos = total[1];
 					var cadena ="<table><th>Nombre</th>";
 					for (var i = 0; i < datos.length; i++) {
-						cadena = cadena + "<tr><td><a href='controlador.php?accion=modificarproducto&id=1&producto=" + datos[i][1]+">"+datos[i][1]+"</a></td></tr>";
+						cadena = cadena + "<tr><td><a href='controlador.php?accion=modificarproducto&id=1&producto=" + datos[i][0]+"'>"+datos[i][1]+"</a></td></tr>";
 					}
 					cadena = cadena + "</table>";
 					$("#resultado").html(cadena);

@@ -162,12 +162,14 @@
                 $page = str_replace("##titulo##", "admin", $page);
                 $page = checksession($page, "-1");
                 echo $page;
-          }
-          else
-            vMostrarIndice();
+             }else{
+               $resultado=mMostrarIndice();
+               $resultado2=mMostrarIndiceTablaProds();
+               vMostrarIndice($resultado,$resultado2);
+            }
      }
 
-     function vMostrarProducto($producto, $resultado, $resultado2, $cuentafavoitos) {
+     function vMostrarProducto($producto, $resultado, $resultado2, $cuentafavoritos) {
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##titulo##", $producto, $page);
@@ -214,9 +216,11 @@
                $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$nuevoid.'">', $page);
                $page = checksession($page, "-1");
                echo $page;
-         }
-         else
-           vMostrarIndice();
+            }else{
+               $resultado=mMostrarIndice();
+               $resultado2=mMostrarIndiceTablaProds();
+               vMostrarIndice($resultado,$resultado2);
+            }
      }
 
      function vMostrarModificar() {
@@ -227,9 +231,32 @@
                 $page = str_replace("##modificar##", "modificar", $page);
                 $page = checksession($page, "-1");
                 echo $page;
+          }else{
+             $resultado=mMostrarIndice();
+             $resultado2=mMostrarIndiceTablaProds();
+             vMostrarIndice($resultado,$resultado2);
           }
-          else
-            vMostrarIndice();
      }
-
+     function vMostrarProductoAModificar($producto,$resultado){
+        if (session_status() == PHP_SESSION_NONE)
+             session_start();
+        if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
+           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/productoamodificar.html") . file_get_contents("templates/core/footer.html");
+           $resultado = $resultado->fetch_assoc();
+           $page = str_replace("##Nombre##", $resultado["nombre"], $page);
+           if ($resultado["descripcion"]==null){
+             $page = str_replace("##Descripcion##",'', $page);
+          }else{
+             $page = str_replace("##Descripcion##", $resultado["descripcion"], $page);
+          }
+          $page = str_replace("##Precio##", $resultado["precio"], $page);
+          $page = str_replace("##Categoria##", $resultado["categoria"], $page);
+          $page = checksession($page, "-1");
+          echo $page;
+        }else {
+           $resultado=mMostrarIndice();
+           $resultado2=mMostrarIndiceTablaProds();
+           vMostrarIndice($resultado,$resultado2);
+        }
+     }
 ?>

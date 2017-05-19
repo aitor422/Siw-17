@@ -1,0 +1,57 @@
+<form class="centered-form" action="dropzone.php" enctype="multipart/form-data" method="post">
+   <label for="categoria">Categoria:</label> <br/>
+   <select id="categoria" name="categoria">
+           <option value="" selected="selected">##Categoria##</option>
+                ##selectorescategoria##
+         </select>
+   <br>
+   <label for="Nombre">Nombre:</label> <br/>
+   <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="##Nombre##" /><br>
+   <label for="Precio">Precio:</label> <br>
+   <input type="text" id="precio" name="precio" placeholder="Precio" value="##Precio##" /><br>
+   <textarea name="descripcion" id="descripcion" placeholder="Descripción" value="##Descripcion##"></textarea><br>
+   <link href="static/css/dropzone.css" rel="stylesheet" type="text/css">
+   <script src="static/js/dropzone.js"></script>
+   <div class="container">
+      <div class="content">
+         <div class="dropzone" id="dropzonewidget"></div>
+      </div>
+   </div>
+   <input type="reset" value="Borrar" />
+   <input type="submit" id="submit-all" value="Enviar" />
+</form>
+<div id="respuesta"></div>
+<script type="text/javascript">
+   Dropzone.options.dropzonewidget = {
+      url: 'ajax/dropzone.php',
+      autoProcessQueue: false,
+      parallelUploads: 5,
+      maxFiles: 5,
+      maxFilesize: 1,
+      acceptedFiles: '.jpg, .png, .gif',
+      addRemoveLinks: true,
+      init: function() {
+         dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+
+         // for Dropzone to process the queue (instead of default form behavior):
+         document.getElementById("submit-all").addEventListener("click", function(e) {
+            // Make sure that the form isn't actually being sent.
+            e.preventDefault();
+            e.stopPropagation();
+            dzClosure.processQueue();
+         });
+
+         //send all the form data along with the files:
+         this.on("sending", function(data, xhr, formData) {
+            formData.append("categoria", jQuery("#categoria").val());
+            formData.append("nombre", jQuery("#nombre").val());
+            formData.append("precio", jQuery("#precio").val());
+            formData.append("nuevoid", jQuery("#nuevoid").val());
+            formData.append("descripcion", jQuery("#descripcion").val());
+         });
+         this.on("success", function(file, responseText) {
+            console.log(responseText);
+        });
+      }
+   }
+</script>
