@@ -9,6 +9,7 @@
    <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="##Nombre##" /><br>
    <label for="Precio">Precio:</label> <br>
    <input type="text" id="precio" name="precio" placeholder="Precio" value="##Precio##" /><br>
+   ##id##
    <textarea name="descripcion" id="descripcion" placeholder="Descripción" value="##Descripcion##"></textarea><br>
    <link href="static/css/dropzone.css" rel="stylesheet" type="text/css">
    <script src="static/js/dropzone.js"></script>
@@ -20,15 +21,16 @@
    <input type="reset" value="Borrar" />
    <input type="submit" id="submit-all" value="Enviar" />
 </form>
+##botoneliminarproducto##
 <div id="respuesta"></div>
 <script type="text/javascript">
    Dropzone.options.dropzonewidget = {
-      url: 'ajax/dropzone.php',
+      url: 'ajax/dropzoneactualizar.php',
       autoProcessQueue: false,
       parallelUploads: 5,
       maxFiles: 5,
       maxFilesize: 1,
-      acceptedFiles: '.jpg, .png, .gif',
+      acceptedFiles: '.jpg, .png, .gif, .jpeg',
       addRemoveLinks: true,
       init: function() {
          dzClosure = this; // Makes sure that 'this' is understood inside the functions below.

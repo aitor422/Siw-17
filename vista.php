@@ -251,6 +251,9 @@
           }
           $page = str_replace("##Precio##", $resultado["precio"], $page);
           $page = str_replace("##Categoria##", $resultado["categoria"], $page);
+          $page = str_replace("##id##", '<input type="hidden" id="idproducto" value="'.$producto.'">', $page);
+          $page = str_replace("##botoneliminarproducto##","<a class='first' href='controlador.php?accion=eliminarproducto&id=1&producto=".$producto."'> <button onclick=\"return confirm('¿Estás seguro de que deseas eliminar este producto?')\" class='botonesbonitos'>Eliminar Producto</button></a>", $page);
+
           $page = checksession($page, "-1");
           echo $page;
         }else {

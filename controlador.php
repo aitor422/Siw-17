@@ -320,4 +320,23 @@ if ($accion == "modificarproducto") {
 			break;
 	}
 }
+if ($accion == "eliminarproducto") {
+	if (isset($_GET["producto"])) {
+		$producto = $_GET["producto"];
+	} else {
+		if (isset($_POST["producto"])) {
+			$producto = $_POST["producto"];
+		} else {
+			$producto = 0;
+		}
+	}
+	switch ($id) {
+		case 1:
+			mEliminarProducto($producto);
+			$resultado=mMostrarIndice();
+			$resultado2=mMostrarIndiceTablaProds();
+			vMostrarIndice($resultado,$resultado2);
+			break;
+	}
+}
 ?>

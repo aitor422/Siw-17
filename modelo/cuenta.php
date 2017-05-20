@@ -46,7 +46,7 @@ function mEliminarCuenta($usuario){
    if ($conn->query($consulta) === TRUE) {
       return 1;
    } else {
-      return -1;   }
-
+      return -1;
+   }
 }
  ?>
