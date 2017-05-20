@@ -85,7 +85,7 @@ if (isset($_POST["descripcion"])&&(!empty($_POST["descripcion"]))) {
 }
 if(isset($_FILES["file"])){
    $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
-   $target_dir = "static/images/catalogo/";
+   $target_dir = "../static/images/catalogo/";
    $extension = end(explode('.', $_FILES["file"]["name"]));
    $nombre_archivo = generate_uuid();
    while (file_exists ($nombre_archivo . "_pequena." . $extension)) {
