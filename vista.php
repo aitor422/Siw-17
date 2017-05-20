@@ -177,7 +177,6 @@
             $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
       else
              $page = str_replace("##imagen##", "static/images/catalogo/" . $resultado["imagen"], $page);
-       $page = str_replace("##idproducto##", $resultado["idproducto"], $page);
        $page = str_replace("##nombre##", $resultado["nombre"], $page);
        if ($resultado["descripcion"]==null){
          $page = str_replace("##descripcion##",'', $page);
