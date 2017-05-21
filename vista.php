@@ -172,13 +172,13 @@
      function vMostrarProducto($producto, $resultado, $resultado2, $cuentafavoritos) {
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
-       $page = str_replace("##titulo##", $producto, $page);
        $page = str_replace("##idproducto##", $producto, $page);
       if ($resultado["imagen"] == null)
             $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
       else
              $page = str_replace("##imagen##", "static/images/catalogo/" . $resultado["imagen"], $page);
        $page = str_replace("##nombre##", $resultado["nombre"], $page);
+       $page = str_replace("##titulo##", $resultado["nombre"] . " - Color Digital", $page);
        if ($resultado["descripcion"]==null){
          $page = str_replace("##descripcion##",'', $page);
          $page = str_replace("Descripción",'', $page);
