@@ -237,21 +237,23 @@
              vMostrarIndice($resultado,$resultado2);
           }
      }
-     function vMostrarProductoAModificar($producto,$resultado){
+     function vMostrarProductoAModificar($producto,$resultado, $selectores){
         if (session_status() == PHP_SESSION_NONE)
              session_start();
         if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/productoamodificar.html") . file_get_contents("templates/core/footer.html");
            $resultado = $resultado->fetch_assoc();
            $page = str_replace("##Nombre##", $resultado["nombre"], $page);
-           if ($resultado["descripcion"]==null){
+           /*if ($resultado["descripcion"]==null){
              $page = str_replace("##Descripcion##",'', $page);
           }else{
              $page = str_replace("##Descripcion##", $resultado["descripcion"], $page);
-          }
+          }*/
+          $page = str_replace("##Descripcion##", $resultado["descripcion"], $page);
           $page = str_replace("##Precio##", $resultado["precio"], $page);
           $page = str_replace("##Categoria##", $resultado["categoria"], $page);
-          $page = str_replace("##id##", '<input type="hidden" id="idproducto" value="'.$producto.'">', $page);
+          $page = str_replace("##selectorescategoria##", $selectores, $page);
+          $page = str_replace("##id##", '<input type="hidden" id="nuevoid" value="'.$producto.'">', $page);
           $page = str_replace("##botoneliminarproducto##","<a class='first' href='controlador.php?accion=eliminarproducto&id=1&producto=".$producto."'> <button onclick=\"return confirm('¿Estás seguro de que deseas eliminar este producto?')\" class='botonesbonitos'>Eliminar Producto</button></a>", $page);
 
           $page = checksession($page, "-1");

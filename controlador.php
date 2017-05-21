@@ -286,6 +286,7 @@ if ($accion == 'pdf') {
 			break;
 	}
 }
+
 if ($accion == 'eliminarcuenta') {
 	switch ($id) {
 		case 1:
@@ -299,6 +300,7 @@ if ($accion == 'eliminarcuenta') {
 		break;
 	}
 }
+
 if ($accion == "modificarproducto") {
 	if (isset($_GET["producto"])) {
 		$producto = $_GET["producto"];
@@ -316,10 +318,11 @@ if ($accion == "modificarproducto") {
 			else
 				$usuario = "";
 			$resultado=mModificarProducto($producto);
-			vMostrarProductoAModificar($producto,$resultado);
+			vMostrarProductoAModificar($producto, $resultado, selectorcategorias());
 			break;
 	}
 }
+
 if ($accion == "eliminarproducto") {
 	if (isset($_GET["producto"])) {
 		$producto = $_GET["producto"];

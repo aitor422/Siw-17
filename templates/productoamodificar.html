@@ -1,7 +1,8 @@
+<p id="idproducto">##Categoria##</p>
 <form class="centered-form" action="dropzone.php" enctype="multipart/form-data" method="post">
    <label for="categoria">Categoria:</label> <br/>
    <select id="categoria" name="categoria">
-           <option value="" selected="selected">##Categoria##</option>
+           <!-- <option value="" selected="selected">##Categoria##</option> -->
                 ##selectorescategoria##
          </select>
    <br>
@@ -10,7 +11,7 @@
    <label for="Precio">Precio:</label> <br>
    <input type="text" id="precio" name="precio" placeholder="Precio" value="##Precio##" /><br>
    ##id##
-   <textarea name="descripcion" id="descripcion" placeholder="Descripción" value="##Descripcion##"></textarea><br>
+   <textarea name="descripcion" id="descripcion" placeholder="Descripción">##Descripcion##</textarea><br>
    <link href="static/css/dropzone.css" rel="stylesheet" type="text/css">
    <script src="static/js/dropzone.js"></script>
    <div class="container">
@@ -56,4 +57,8 @@
         });
       }
    }
+</script>
+<script type="text/javascript" src="static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+$( document ).ready( function() {$('#categoria').val($('#idproducto').text());});//para cambiar el seleccionado a la categoria
 </script>

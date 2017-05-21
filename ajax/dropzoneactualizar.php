@@ -71,8 +71,8 @@ if (isset($_POST["precio"])&&(!empty($_POST["precio"]))) {
    echo "NO FUNCIONA->NO hay Precio";
    die();
 }
-if (isset($_POST["idproducto"])&&(!empty($_POST["idproducto"]))) {
-   $idproducto=$_POST["idproducto"];
+if (isset($_POST["nuevoid"])&&(!empty($_POST["nuevoid"]))) {
+   $idproducto=$_POST["nuevoid"];
 }else{
    echo "NO FUNCIONA->NO hay idproducto";
    die();
@@ -85,6 +85,7 @@ if (isset($_POST["descripcion"])&&(!empty($_POST["descripcion"]))) {
 }
 if(isset($_FILES["file"])){
    $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+	 mysqli_set_charset($con,"utf8");
    $target_dir = "../static/images/catalogo/";
    $extension = end(explode('.', $_FILES["file"]["name"]));
    $nombre_archivo = generate_uuid();
@@ -102,7 +103,7 @@ if(isset($_FILES["file"])){
       echo "Error en la subida";
    }
    $sql = $con->prepare("UPDATE final_productos SET categoria=?, nombre=?, precio=?,descripcion=? WHERE idproducto=?");
-   $sql->bind_param("ssisi", $categoria, $nombre, $precio, $descripcion, $idproducto);
+   $sql->bind_param("ssssi", $categoria, $nombre, $precio, $descripcion, $idproducto);
    if ($sql->execute() != TRUE) {
       echo "NO FUNCIONA->Error al añadir producto";
       die();
