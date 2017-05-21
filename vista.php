@@ -173,6 +173,7 @@
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##titulo##", $producto, $page);
+       $page = str_replace("##idproducto##", $producto, $page);
       if ($resultado["imagen"] == null)
             $page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
       else

@@ -12,6 +12,9 @@ html, body {
   height: 100%;
 }
 
+#idproducto {
+  display: none;
+}
 .logo {
   z-index: 2;
   position: fixed;

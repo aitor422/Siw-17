@@ -10,7 +10,7 @@
 <script type="text/javascript">
 
   function favoritosv() {
-    favoritos($('#idprod').text());
+    favoritos($('#idproducto').text());
   }
 
   function favoritos(idprod) {
@@ -20,7 +20,9 @@
         if (response == "-1") {
           $("#error").fadeIn(300).delay(1500).fadeOut(400);
         }
-        cargar();
+        else {
+          cargar();
+        }
       }
     });
   }
