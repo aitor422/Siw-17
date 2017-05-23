@@ -42,7 +42,7 @@
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/index.html") . file_get_contents("templates/core/footer.html");
            $i = 1;
            while ($datos = $resultado->fetch_assoc()) {
-             $page = str_replace("##$i##", $datos["idproducto"], $page);
+             $page = str_replace("##$i##", $datos["nombre"], $page);
              $page = str_replace("##p$i##", $datos["precio"] . ".-", $page);
             if ($datos["imagen"] == null)
                   $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
@@ -50,11 +50,17 @@
                   $page = str_replace("##imagen$i##", "static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
              $i++;
            }
+           $i = 1;
            while ($datos = $resultado2->fetch_assoc()) {
-             $cadena = $cadena . "<td><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["idproducto"] ."</a></td>";
+             $cadena = $cadena . "<td><a href='controlador.php?accion=producto&id=1&producto=" . $datos["idproducto"] . "'>" . $datos["nombre"] ."</a></td>";
              if (($i % 5) == 0) {
                $cadena = $cadena . "</tr><tr>";
              }
+             $i++;
+           }
+           $i--;
+           while (($i % 5) != 0) {
+             $cadena = $cadena . "<td></td>";
              $i++;
            }
            $cadena = $cadena . "</tr></table>";

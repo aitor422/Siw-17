@@ -8,6 +8,10 @@
   outline: none;
 }
 
+*::after, *::before {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
 }
@@ -31,27 +35,29 @@ html, body {
   box-sizing: border-box;
   padding-top: 100px;
   min-height: 100%;
-  /* equal to footer height */
   margin-bottom: -40px;
-  /* Depende del tamaño de la cabecera*/
   margin-left: 15%;
   margin-right: 15%;
+  padding-bottom: 60px;
 }
 
 .contenido:after {
   content: "";
   display: block;
+  height: 0;
 }
 
 .footer, .contenido:after {
   /* .push must be the same height as footer */
-  height: 40px;
+  box-sizing: border-box;
+
 }
 
 
 /******************footer************************/
 
 .footer {
+  height: 40px;
   width: 100%;
   background-color: #666;
   text-align: center;
@@ -117,11 +123,8 @@ html, body {
  ***************************************************/
 
 .prenavbar {
-  position: fixed;
-  top: 0;
   display: none;
-  width: 100%;
-  background-color: #666;
+  z-index: 1;
 }
 
 .navigation-bar {
@@ -172,29 +175,6 @@ html, body {
  ***************************************************/
 
 
- /******************navbaradmin*****************
-.admin-navigation-bar ul {
-     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-     background-color: #666;
-}
-
-.admin-navigation-bar li a {
-     padding: 8px 16px;
-     display: block;
-     text-align: center;
-     text-decoration: none;
-     text-transform: uppercase;
-     color: #eee;
-}
-
-.admin-navigation-bar li a:hover {
-  background-color: #333;
-  color: #fff
-}*/
-
 /* Formulario centrado */
 
 .centered-form {
@@ -221,6 +201,10 @@ html, body {
   /* Change this to whatever the width of your left column is*/
 }
 
+.clear {
+  clear: both;
+}
+
 
 /**********************************/
 
@@ -232,7 +216,7 @@ html, body {
   margin-left: 5%;
   width: 95%;
   height: 0;
-  padding-bottom: 100%;
+  padding-bottom: 80%;
   overflow: hidden;
 }
 
@@ -466,10 +450,34 @@ html, body {
     font-size: 17px;
     border: 1px solid #bbb;
   }
+
+  .contenido {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .onehalf {
+    float: none;
+    width: auto;
+  }
+
   .fondo {
     margin-left: 0;
     margin-right: 0;
   }
+
+  .tablamovil td{
+    display: block;
+  }
+
+  .tablamovil tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .tablamovil td:nth-child(even) {
+    background-color: rgba(200, 200, 200, 0.5);
+  }
+
   .onlymobile {
     display: unset;
   }
@@ -489,11 +497,26 @@ html, body {
     cursor: default;
   }
   .prenavbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #666;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 5px 5px;
     display: unset;
+  }
+
+  .prenavbar button {
+    background-size: contain;
+    border: none;
+    background-position: center;
+    width: 50px;
+    height: 50px;
   }
   .navigation-bar {
     display: none;
-    top: 50px;
+    margin-top: 60px;
   }
   .navigation-bar ul {
     padding-left: 0;
@@ -515,14 +538,15 @@ html, body {
     height: 50px;
     padding: 0;
   }
+
+  .logo a {
+    display: block;
+    height: 50px;
+    width: 50px;
+  }
   /* Botón de menú */
   .botonmenu {
     background: url(/static/images/iconomenu.png) no-repeat;
-    background-size: contain;
-    border: none;
-    background-position: center;
-    width: 50px;
-    height: 50px;
   }
   .botonlogin {
     background: url(/static/images/login.png) no-repeat;
@@ -539,6 +563,7 @@ html, body {
     height: 50px;
     float: right;
   }
+
 }
 /*****************************/
 /**********Dropzone***********/
