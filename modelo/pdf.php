@@ -7,6 +7,7 @@ function mPdf()
      //MakeFont('static/fonts/Roboto-Light.ttf','cp1252');
 
      $pdf = new FPDF('P','mm','A4');//210*297mm
+     $pdf->SetTitle('Productos Favoritos - Color digital');
      $pdf->AddPage();
      $pdf->Image('static/images/logo_completo.png',10,10,40,40,'PNG');
      $pdf->AddFont('Roboto-Light','','Roboto-Light.php');
@@ -19,6 +20,7 @@ function mPdf()
      $pdf->Ln(10);
      $pdf->Cell(40,40,utf8_decode('Productos añadidos a favoritos: '),0,1);
      $pdf->SetFont('Courier','',14);
+
      //Obtenemos los productos del usuario
      if (session_status() == PHP_SESSION_NONE)
           session_start();

@@ -108,7 +108,7 @@ if(isset($_FILES["file"])){
    $maximo=$datos["maximo"];
    if($maximo!=$nuevoid){
       $sql = $con->prepare("INSERT INTO final_productos (idproducto, categoria, nombre, precio,descripcion) VALUES (?, ?, ?, ?, ?)");
-      $sql->bind_param("issis", $nuevoid, $categoria, $nombre, $precio, $descripcion);
+      $sql->bind_param("issss", $nuevoid, $categoria, $nombre, $precio, $descripcion);
       if ($sql->execute() != TRUE) {
          echo "NO FUNCIONA->Error al añadir producto";
 			die();
