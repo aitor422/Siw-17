@@ -12,6 +12,14 @@
   box-sizing: border-box;
 }
 
+a {
+     text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
 html, body {
   height: 100%;
 }
@@ -181,10 +189,14 @@ html, body {
   margin: 10% 30%;
 }
 
-.centered-form input, select {
+.centered-form input, select, textarea {
   display: block;
   width: 100%;
   height: 40px;
+}
+
+.centered-form textarea {
+     height: 100px;
 }
 
 
@@ -310,11 +322,11 @@ html, body {
   padding: 0.785rem 2rem;
   font-size: 1.143rem;
   line-height: 1.33333;
-  border-radius: 0.2143rem;
+  border-radius: 0.2143rem !important;
   color: #444;
   background-color: #e2e2e2;
-  border-color: #d2d2d2;
-  border: 1px solid transparent;
+  border-color: #d2d2d2 !important;
+  border: 1px solid transparent !important;
   cursor: pointer;
 }
 
@@ -478,6 +490,12 @@ html, body {
   .tablamovil td{
     display: block;
   }
+
+  .botonesbonitos {
+       display: block !important;
+       width: 80%;
+       margin: 3% auto !important;
+ }
 
   .tablamovil tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.5);
