@@ -9,6 +9,7 @@
            $page = str_replace("##linkregistro##", "controlador.php?accion=usuario&id=1", $page);
            $page = str_replace("##linklogin##", "controlador.php?accion=login&id=3", $page);
            $page = str_replace("##botonlogin##", "botonlogout", $page);
+           $page = str_replace("##linkbotonlogin##", "controlador.php?accion=usuario&id=1", $page);
            $page = str_replace("##parausuarios##", "", $page);
            if($producto == "1") {
              $page = str_replace("##favorito##", "Eliminar de favoritos", $page);
@@ -22,6 +23,7 @@
          $page = str_replace("##loginuser##", "login", $page);
          $page = str_replace("##reguser##", "register", $page);
          $page = str_replace("##linklogin##", "controlador.php?accion=login&id=1", $page);
+         $page = str_replace("##linkbotonlogin##", "controlador.php?accion=login&id=1", $page);
          $page = str_replace("##linkregistro##", "controlador.php?accion=registro&id=1", $page);
          $page = str_replace("##botonlogin##", "botonlogin", $page);
          $cachos = explode("##parausuarios##", $page);
@@ -234,7 +236,7 @@
                session_start();
           if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
                 $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/modificar.html"). file_get_contents("templates/core/footer.html");
-                $page = str_replace("##modificar##", "modificar", $page);
+                $page = str_replace("##titulo##", "modificar", $page);
                 $page = checksession($page, "-1");
                 echo $page;
           }else{
@@ -250,11 +252,7 @@
            $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/productoamodificar.html") . file_get_contents("templates/core/footer.html");
            $resultado = $resultado->fetch_assoc();
            $page = str_replace("##Nombre##", $resultado["nombre"], $page);
-           /*if ($resultado["descripcion"]==null){
-             $page = str_replace("##Descripcion##",'', $page);
-          }else{
-             $page = str_replace("##Descripcion##", $resultado["descripcion"], $page);
-          }*/
+           $page = str_replace("##titulo##", $resultado["idproducto"], $page);
           $page = str_replace("##Descripcion##", $resultado["descripcion"], $page);
           $page = str_replace("##Precio##", $resultado["precio"], $page);
           $page = str_replace("##Categoria##", $resultado["categoria"], $page);
