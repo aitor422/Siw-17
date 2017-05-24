@@ -9,6 +9,7 @@
            $page = str_replace("##linkregistro##", "controlador.php?accion=usuario&id=1", $page);
            $page = str_replace("##linklogin##", "controlador.php?accion=login&id=3", $page);
            $page = str_replace("##botonlogin##", "botonlogout", $page);
+           $page = str_replace("##linkbotonlogin##", "controlador.php?accion=usuario&id=1", $page);
            $page = str_replace("##parausuarios##", "", $page);
            if($producto == "1") {
              $page = str_replace("##favorito##", "Eliminar de favoritos", $page);
@@ -22,6 +23,7 @@
          $page = str_replace("##loginuser##", "login", $page);
          $page = str_replace("##reguser##", "register", $page);
          $page = str_replace("##linklogin##", "controlador.php?accion=login&id=1", $page);
+         $page = str_replace("##linkbotonlogin##", "controlador.php?accion=login&id=1", $page);
          $page = str_replace("##linkregistro##", "controlador.php?accion=registro&id=1", $page);
          $page = str_replace("##botonlogin##", "botonlogin", $page);
          $cachos = explode("##parausuarios##", $page);
