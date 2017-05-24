@@ -500,9 +500,6 @@ html, body {
 
 @media screen and (min-width: 240px) and (max-width: 720px) {
      /* iPhone, Android rules here */
-     .ocultarmovil {
-          display: none;
-     }
      .centered-form {
           margin: 10% 0;
      }
@@ -533,6 +530,10 @@ html, body {
      }
      .onlymobile {
           display: unset;
+     }
+
+     .ocultarmovil {
+          display: none;
      }
 
      #botoncerrarsesion {
