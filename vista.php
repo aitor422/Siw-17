@@ -50,7 +50,7 @@
             if ($datos["imagen"] == null)
                   $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
             else
-                  $page = str_replace("##imagen$i##", "static/images/catalogo/" . $datos["imagen"]  . " height='300px'" , $page);
+                  $page = str_replace("##imagen$i##", "static/images/catalogo/" . $datos["imagen"]  . "\" height='300px'" , $page);
              $i++;
            }
            $i = 1;
@@ -278,5 +278,20 @@
            $resultado2=mMostrarIndiceTablaProds();
            vMostrarIndice($resultado,$resultado2);
         }
+     }
+
+     function vMostrarDestacar(){
+          if (session_status() == PHP_SESSION_NONE)
+               session_start();
+          if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
+                $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/destacar.html"). file_get_contents("templates/core/footer.html");
+                $page = str_replace("##titulo##", "Gestión de destacados", $page);
+                $page = checksession($page, "-1");
+                echo $page;
+          }else{
+             $resultado=mMostrarIndice();
+             $resultado2=mMostrarIndiceTablaProds();
+             vMostrarIndice($resultado,$resultado2);
+          }
      }
 ?>

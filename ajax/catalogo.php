@@ -31,24 +31,23 @@ if (session_status() == PHP_SESSION_NONE)
 	  $limit= 25;
   }
   if ($cat == "0") {
-		$consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = ?) a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where nombre like ? group by idproducto";
+		$consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta, destacado from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = ?) a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where nombre like ? group by idproducto";
 		$consulta2="SELECT count(final_productos.idproducto) from final_productos where nombre like ?";
    }
    else {
-		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = ? and nombre like '$comienzo%' group by idproducto";
+		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta, destacado from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = ? and nombre like '$comienzo%' group by idproducto";
 		 $consulta2="SELECT count(final_productos.idproducto) from final_productos where nombre like ? AND categoria like ?";
   }
 switch ($orden) {
-	case 'nombre':
-		$consulta = $consulta . " ORDER BY $orden";
-		break;
 	case 'precioup':
 		$consulta = $consulta . " ORDER BY precio";
 		break;
 	case 'preciodown':
 		$consulta = $consulta . " ORDER BY precio DESC";
 		break;
-
+	case 'destacado':
+		$consulta = $consulta . " ORDER BY destacado DESC";
+		break;
 	default:
 		$consulta = $consulta . " ORDER BY $orden";
 		break;
@@ -61,16 +60,17 @@ switch ($orden) {
 		$stmt->bind_param("sss", $cat,$usuario,$comienzo);
 	}
   	$stmt->execute();
-  	$stmt->bind_result($idproducto, $nombre, $categoria, $imagen, $cuenta);
+  	$stmt->bind_result($idproducto, $nombre, $categoria, $imagen, $cuenta, $destacado);
 	$filas = $stmt->num_rows;
 	$lista = array(array());
 	$i = 0;
 	while ($stmt->fetch()) {
 			$lista[$i][0] = $idproducto;
-	    	$lista[$i][1] = $nombre;
-	    	$lista[$i][2] = $categoria;
+		    	$lista[$i][1] = $nombre;
+		    	$lista[$i][2] = $categoria;
 			$lista[$i][3] = $imagen;
 			$lista[$i][4] = $cuenta;
+			$lista[$i][5] = $destacado;
 			$i++;
 	}
 	$stmt = $con->prepare($consulta2);

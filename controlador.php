@@ -168,6 +168,14 @@ if ($accion == "modificar") {
 	}
 }
 
+if ($accion == "destacados") {
+	switch ($id) {
+		case 1:
+			vMostrarDestacar();
+			break;
+	}
+}
+
 if ($accion == "nuevocomentario"){
 	switch ($id) {
 		case 1:

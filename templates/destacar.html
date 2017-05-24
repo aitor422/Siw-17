@@ -1,0 +1,64 @@
+<div class="tablaproductos">
+	<input type="text" name="busq" id="busq" onkeyup="cargar();">
+     <div id="error" class="alert-box failure">No puede haber menos de 5 productos destacados</div>
+	<div id="resultado">
+	</div>
+</div>
+<script type="text/javascript" src="static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+	var clicks = 1;
+
+	function cargar() {
+		var busqueda = $("#busq").val();
+		$.ajax({
+			url: "ajax/catalogo.php?clicks=" + clicks + "&comienzo="+busqueda + "&orden=destacado",
+			success: function(response) {
+				var total = jQuery.parseJSON(response);
+				$("#cuentaresultados").html(total[0] + " artículos");
+				if ((clicks * 25) >= total[0]) {
+					$("#botoncargamas").hide();
+				} else {
+					$("#botoncargamas").show();
+				}
+				if (total[0] != "0") {
+					var datos = total[1];
+					var cadena ="<table><th>Nombre</th>";
+					for (var i = 0; i < datos.length; i++) {
+						cadena = cadena + "<tr><td>"+datos[i][1]+"</td>";
+                              if (datos[i][5] == 0) {
+                                   cadena = cadena + "<td><button type='button' class='botonesbonitos' name='button' onclick='destacar(" + datos[i][0] +", "  + datos[i][5] + ")'>destacar</button></td></tr>";
+                              }
+                              else {
+                                   cadena = cadena + "<td><button type='button' class='botonesbonitos' name='button' onclick='destacar(" + datos[i][0] +", " + datos[i][5] +  ")'>quitar de destacados</button></td></tr>";
+                              }
+					}
+					cadena = cadena + "</table>";
+					$("#resultado").html(cadena);
+				}
+				else
+					$("#resultado").html("No hay resultados");
+			}
+		});
+	}
+
+	function clicado() {
+		clicks = clicks + 1;
+		cargar();
+	}
+
+     function destacar(idprod, destacado) {
+       $.ajax({
+         url: "ajax/destacar.php?idprod=" + idprod + "&destacado=" + destacado ,
+         success: function(response) {
+           if (response == "-1") {
+             $("#error").fadeIn(300).delay(1500).fadeOut(400);
+           }
+           else {
+             cargar();
+           }
+         }
+       });
+ }
+
+	$(document).ready(cargar());
+</script>
