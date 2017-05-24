@@ -46,6 +46,7 @@
            while ($datos = $resultado->fetch_assoc()) {
              $page = str_replace("##$i##", $datos["nombre"], $page);
              $page = str_replace("##p$i##", $datos["precio"] . ".-", $page);
+             $page = str_replace("##link$i##", $datos["idproducto"], $page);
             if ($datos["imagen"] == null)
                   $page = str_replace("##imagen$i##", "http://placehold.it/1000x300" , $page);
             else
@@ -203,7 +204,7 @@
        $containerimagenes = '';
        $j = 1;
        while ($imagen = $imagenes -> fetch_assoc()) {
-            $containerimagenes = $containerimagenes . '<a href="controlador.php?accion=producto&id=1&producto=' . $producto . '"><div class="mySlides fade"><div class="numbertext">'.$j.'</div><img src="static/images/catalogo/'. $imagen["imagen"] .'"></div></a>';
+            $containerimagenes = $containerimagenes . '<a href="controlador.php?accion=producto&id=1&producto=' . $producto . '"><div class="mySlides fade"><div class="numbertext">'.$j.'</div><img class="imgcarcentrada" src="static/images/catalogo/'. $imagen["imagen"] .'"></div></a>';
             $j++;
        }
 

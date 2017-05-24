@@ -367,7 +367,17 @@ html, body {
      position: relative;
      margin: auto;
 }
+.carrouselprod{
+   width: 350px;
+   height: 150px;
+   background-color: #444;
+}
 
+.imgcarcentrada{
+   display:block;
+   margin-left: auto;
+   margin-right: auto;
+}
 .mySlides {
      display: none;
 }
