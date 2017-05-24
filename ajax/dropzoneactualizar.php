@@ -53,7 +53,7 @@ function redimensionarimagenes($grande, $mediana, $pequena) {
 }
 
 
-if (isset($_POST["categoria"]))) {
+if (isset($_POST["categoria"])) {
    $categoria=$_POST["categoria"];
 }else{
    echo "NO FUNCIONA->NO hay Categoria";
@@ -77,7 +77,7 @@ if (isset($_POST["nuevoid"])&&(!empty($_POST["nuevoid"]))) {
    echo "NO FUNCIONA->NO hay idproducto";
    die();
 }
-if (isset($_POST["descripcion"])&&(!empty($_POST["descripcion"]))) {
+if (isset($_POST["descripcion"])) {
    $descripcion=$_POST["descripcion"];
 }else{
    echo "NO FUNCIONA->NO hay descripcion";

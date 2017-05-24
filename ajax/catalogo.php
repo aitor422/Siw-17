@@ -32,9 +32,11 @@ if (session_status() == PHP_SESSION_NONE)
   }
   if ($cat == "0") {
 		$consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = ?) a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where nombre like ? group by idproducto";
+		$consulta2="SELECT count(final_productos.idproducto) from final_productos where nombre like ?";
    }
    else {
-		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = '$cat' and nombre like '$comienzo%' group by idproducto";
+		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = ? and nombre like '$comienzo%' group by idproducto";
+		 $consulta2="SELECT count(final_productos.idproducto) from final_productos where nombre like ? AND categoria like ?";
   }
 switch ($orden) {
 	case 'nombre':
@@ -51,24 +53,38 @@ switch ($orden) {
 		$consulta = $consulta . " ORDER BY $orden";
 		break;
 }
-  $consulta = $consulta . " LIMIT $limit";
-  $sql = $conn->prepare($consulta);
-  $sql->bind_param("ss", $usuario,$comienzo);
-  $sql->execute();
+  	$consulta = $consulta . " LIMIT $limit";
+  	$stmt = $con->prepare($consulta);
+	if ($cat == "0") {
+  		$stmt->bind_param("ss", $usuario,$comienzo);
+	}else{
+		$stmt->bind_param("sss", $cat,$usuario,$comienzo);
+	}
+  	$stmt->execute();
+  	$stmt->bind_result($idproducto, $nombre, $categoria, $imagen, $cuenta);
+	$filas = $stmt->num_rows;
 	$lista = array(array());
 	$i = 0;
-	while ($datos = $sql->fetch()) {
-			$lista[$i][0] = $datos["idproducto"];
-	    		$lista[$i][1] = $datos["nombre"];
-	    		$lista[$i][2] = $datos["categoria"];
-			$lista[$i][3] = $datos["imagen"];
-			$lista[$i][4] = $datos["cuenta"];
+	while ($stmt->fetch()) {
+			$lista[$i][0] = $idproducto;
+	    	$lista[$i][1] = $nombre;
+	    	$lista[$i][2] = $categoria;
+			$lista[$i][3] = $imagen;
+			$lista[$i][4] = $cuenta;
 			$i++;
 	}
+	$stmt = $con->prepare($consulta2);
+	if ($cat == "0") {
+  		$stmt->bind_param("s",$comienzo);
+	}else{
+		$stmt->bind_param("ss",$comienzo,$cat);
+	}
+	$stmt->execute();
+	$stmt->bind_result($cuenta);
+	$stmt->fetch();
 	$total = array();
-	$total[0] = $filas;
+	$total[0] = $cuenta;
 	$total[1] = $lista;
-
 	echo json_encode($total, JSON_UNESCAPED_UNICODE);
 
 ?>
