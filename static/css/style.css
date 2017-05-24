@@ -1,15 +1,15 @@
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
+     margin: 0;
+     padding: 0;
+     font-family: "Roboto", sans-serif;
 }
 
 *:focus {
-  outline: none;
+     outline: none;
 }
 
 *::after, *::before {
-  box-sizing: border-box;
+     box-sizing: border-box;
 }
 
 a {
@@ -17,112 +17,117 @@ a {
 }
 
 textarea {
-    resize: none;
+     resize: none;
 }
 
 html, body {
-  height: 100%;
+     height: 100%;
 }
 
 #idproducto {
-  display: none;
+     display: none;
 }
+
 .logo {
-  z-index: 2;
-  position: fixed;
-  display: block;
-  width: 8%;
-  padding-top: 8%;
-  margin-left: 4%;
-  margin-top: 3px;
-  background: url(/static/images/logoesquina.png) no-repeat;
-  background-size: cover;
+     z-index: 2;
+     position: fixed;
+     display: block;
+     width: 8%;
+     padding-top: 8%;
+     margin-left: 4%;
+     margin-top: 3px;
+     background: url(/static/images/logoesquina.png) no-repeat;
+     background-size: cover;
 }
 
 .contenido {
-  box-sizing: border-box;
-  padding-top: 100px;
-  min-height: 100%;
-  margin-bottom: -40px;
-  margin-left: 15%;
-  margin-right: 15%;
-  padding-bottom: 60px;
+     box-sizing: border-box;
+     padding-top: 100px;
+     min-height: 100%;
+     margin-bottom: -40px;
+     margin-left: 15%;
+     margin-right: 15%;
+     padding-bottom: 60px;
 }
 
 .contenido:after {
-  content: "";
-  display: block;
-  height: 0;
+     content: "";
+     display: block;
+     height: 0;
 }
 
 .footer, .contenido:after {
-  /* .push must be the same height as footer */
-  box-sizing: border-box;
-
+     /* .push must be the same height as footer */
+     box-sizing: border-box;
 }
 
 
 /******************footer************************/
 
 .footer {
-  height: 40px;
-  width: 100%;
-  background-color: #666;
-  text-align: center;
-  color: #eee;
-  text-transform: uppercase;
+     height: 40px;
+     width: 100%;
+     background-color: #666;
+     text-align: center;
+     color: #eee;
+     text-transform: uppercase;
 }
 
 .footer a {
-  text-decoration: none;
+     text-decoration: none;
 }
+
 
 /************************************************/
 
+
 /*********alertas*************/
+
 .alert-box {
-	padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
+     padding: 15px;
+     margin-bottom: 20px;
+     border: 1px solid transparent;
+     border-radius: 4px;
 }
 
 .success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    display: none;
+     color: #3c763d;
+     background-color: #dff0d8;
+     border-color: #d6e9c6;
+     display: none;
 }
 
 .failure {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    display: none;
+     color: #a94442;
+     background-color: #f2dede;
+     border-color: #ebccd1;
+     display: none;
 }
+
+
 /**********************************/
 
 .fondo {
-  position: fixed;
-  height: 10000px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  z-index: -1;
-  background-image: url(/static/images/fondolibros.jpg);
-    opacity: .25;
-    background-size: 100%;
-  /*Para que esté en el fondo*/
+     position: fixed;
+     height: 10000px;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     overflow: hidden;
+     z-index: -1;
+     background-image: url(/static/images/fondolibros.jpg);
+     opacity: .25;
+     background-size: 100%;
+     /*Para que esté en el fondo*/
 }
 
 .letraroja {
-  color: red;
+     color: red;
 }
 
 .onlymobile {
-  display: none;
+     display: none;
 }
 
 
@@ -131,50 +136,50 @@ html, body {
  ***************************************************/
 
 .prenavbar {
-  display: none;
-  z-index: 1;
+     display: none;
+     z-index: 1;
 }
 
 .navigation-bar {
-  z-index: 1;
-  position: fixed;
-  width: 100%;
+     z-index: 1;
+     position: fixed;
+     width: 100%;
 }
 
 .navigation-bar ul {
-  overflow: hidden;
-  list-style-type: none;
-  margin: 0;
-  padding-left: 15%;
-  padding-top: 2%;
-  background-color: #666;
+     overflow: hidden;
+     list-style-type: none;
+     margin: 0;
+     padding-left: 15%;
+     padding-top: 2%;
+     background-color: #666;
 }
 
 .navigation-bar a {
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #eee;
+     display: block;
+     text-align: center;
+     padding: 14px 16px;
+     text-decoration: none;
+     text-transform: uppercase;
+     color: #eee;
 }
 
 .navigation-bar li a:hover {
-  background-color: #333;
-  color: #fff
+     background-color: #333;
+     color: #fff
 }
 
 .navbaritems-left {
-  float: left;
+     float: left;
 }
 
 .navbaritems-right {
-  float: right;
+     float: right;
 }
 
 .active {
-  background-color: #333;
-  color: #fff
+     background-color: #333;
+     color: #fff
 }
 
 
@@ -186,13 +191,13 @@ html, body {
 /* Formulario centrado */
 
 .centered-form {
-  margin: 10% 30%;
+     margin: 10% 30%;
 }
 
-.centered-form input, select, textarea {
-  display: block;
-  width: 100%;
-  height: 40px;
+.centered-form input, select, .centered-form textarea {
+     display: block;
+     width: 100%;
+     height: 40px;
 }
 
 .centered-form textarea {
@@ -203,18 +208,18 @@ html, body {
 /* Dos columnas para localización */
 
 .columnleft {
-  width: 50%;
-  float: left;
+     width: 50%;
+     float: left;
 }
 
 .columnright {
-  display: inline;
-  margin-left: 50%;
-  /* Change this to whatever the width of your left column is*/
+     display: inline;
+     margin-left: 50%;
+     /* Change this to whatever the width of your left column is*/
 }
 
 .clear {
-  clear: both;
+     clear: both;
 }
 
 
@@ -224,21 +229,21 @@ html, body {
 /* Para que el iframe de google mantenga relación de aspecto 1:1 */
 
 .iframecontainer {
-  position: relative;
-  margin-left: 5%;
-  width: 95%;
-  height: 0;
-  padding-bottom: 80%;
-  overflow: hidden;
+     position: relative;
+     margin-left: 5%;
+     width: 95%;
+     height: 0;
+     padding-bottom: 80%;
+     overflow: hidden;
 }
 
 .iframecontainer iframe {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  left: 0;
-  top: 0;
-  border: 0
+     position: absolute;
+     width: 90%;
+     height: 90%;
+     left: 0;
+     top: 0;
+     border: 0
 }
 
 
@@ -248,27 +253,27 @@ html, body {
 /*****************servicios***********************/
 
 .onehalf {
-  float: left;
-  width: 46%;
+     float: left;
+     width: 46%;
 }
 
 .last {
-  float: right;
+     float: right;
 }
 
 .first {
-  clear: left;
+     clear: left;
 }
 
 .imagenservicios {
-  float: left;
-  margin-top: 10px;
-  margin-right: 10px;
+     float: left;
+     margin-top: 10px;
+     margin-right: 10px;
 }
 
 .parrafoservicios {
-  margin-left: 68px;
-  text-align: justify;
+     margin-left: 68px;
+     text-align: justify;
 }
 
 
@@ -278,7 +283,7 @@ html, body {
 /*********************vista de productos***************************/
 
 .tablaproductos {
-  background-color: rgba(255, 255, 255, 0.5);
+     background-color: rgba(255, 255, 255, 0.5);
 }
 
 .tablaproductos input {
@@ -286,29 +291,29 @@ html, body {
 }
 
 .tablaproductos table {
-  width: 100%;
-  border-spacing: 0;
+     width: 100%;
+     border-spacing: 0;
 }
 
 .tablaproductos th, td {
-  padding: 5px 15px;
-  text-align: center;
+     padding: 5px 15px;
+     text-align: center;
 }
 
 .tablaproductos tr:nth-child(even) {
-  background-color: rgba(200, 200, 200, 0.5);
+     background-color: rgba(200, 200, 200, 0.5);
 }
 
 .tablaproductos tr:nth-child(even) button {
-  background-color: #f0f0f0;
+     background-color: #f0f0f0;
 }
 
 #cuentaresultados {
-  display: inline;
+     display: inline;
 }
 
 #selectordecategorias {
-  float: right;
+     float: right;
 }
 
 
@@ -318,283 +323,309 @@ html, body {
 /************botonesbonitos*********************/
 
 .botonesbonitos {
-  height: inherit !important;
-  padding: 0.785rem 2rem;
-  font-size: 1.143rem;
-  line-height: 1.33333;
-  border-radius: 0.2143rem !important;
-  color: #444;
-  background-color: #e2e2e2;
-  border-color: #d2d2d2 !important;
-  border: 1px solid transparent !important;
-  cursor: pointer;
+     height: inherit !important;
+     padding: 0.785rem 2rem;
+     font-size: 1.143rem;
+     line-height: 1.33333;
+     border-radius: 0.2143rem !important;
+     color: #444;
+     background-color: #e2e2e2;
+     border-color: #d2d2d2 !important;
+     border: 1px solid transparent !important;
+     cursor: pointer;
 }
 
-.botonesbonitos a{
-   text-decoration: none;
-   color: #444;
+.botonesbonitos a {
+     text-decoration: none;
+     color: #444;
 }
 
 .botonesanchos {
-  display: block;
-  width: 80% !important;
-  margin: 3% auto !important;
+     display: block;
+     width: 80% !important;
+     margin: 3% auto !important;
 }
 
 .botonesbonitos:hover {
-  color: #444;
-  background-color: #c9c9c9 !important;
-  border-color: #b3b3b3;
+     color: #444;
+     background-color: #c9c9c9 !important;
+     border-color: #b3b3b3 !important;
 }
 
 
 /*****************************************************************/
 
+
 /*********************Carrousel************************************/
+
+
 /* Slideshow container */
+
 .slideshow-container {
-  max-width: 1000px;
-  height:300px;
-  position: relative;
-  margin: auto;
+     max-width: 1000px;
+     height: 300px;
+     position: relative;
+     margin: auto;
 }
 
 .mySlides {
-    display: none;
+     display: none;
 }
+
 
 /* Next & previous buttons */
+
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+     cursor: pointer;
+     position: absolute;
+     top: 50%;
+     width: auto;
+     margin-top: -22px;
+     padding: 16px;
+     color: white;
+     font-weight: bold;
+     font-size: 18px;
+     transition: 0.6s ease;
+     border-radius: 0 3px 3px 0;
 }
+
 
 /* Position the "next button" to the right */
+
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+     right: 0;
+     border-radius: 3px 0 0 3px;
 }
+
 
 /* On hover, add a black background color with a little bit see-through */
+
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+     background-color: rgba(0, 0, 0, 0.8);
 }
 
+
 /* Caption text */
+
 .text {
-  color: #666;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+     color: #666;
+     font-size: 15px;
+     padding: 8px 12px;
+     position: absolute;
+     bottom: 8px;
+     width: 100%;
+     text-align: center;
 }
 
 .textderecha {
-  color: #666;
-  font-size: 40px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 150px;
-  right: 15px;
-  width: 100%;
-  text-align: right;
+     color: #666;
+     font-size: 40px;
+     padding: 8px 12px;
+     position: absolute;
+     bottom: 150px;
+     right: 15px;
+     width: 100%;
+     text-align: right;
 }
+
 
 /* Number text (1/3 etc) */
+
 .numbertext {
-  color: #666;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+     color: #666;
+     font-size: 12px;
+     padding: 8px 12px;
+     position: absolute;
+     top: 0;
 }
 
+
 /* The dots/bullets/indicators */
+
 .dot {
-  cursor:pointer;
-  height: 13px;
-  width: 13px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+     cursor: pointer;
+     height: 13px;
+     width: 13px;
+     margin: 0 2px;
+     background-color: #bbb;
+     border-radius: 50%;
+     display: inline-block;
+     transition: background-color 0.6s ease;
 }
 
 .activo, .dot:hover {
-  background-color: #717171;
+     background-color: #717171;
 }
 
+
 /* Fading animation */
+
 .fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+     -webkit-animation-name: fade;
+     -webkit-animation-duration: 1.5s;
+     animation-name: fade;
+     animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+     from {
+          opacity: .4
+     }
+     to {
+          opacity: 1
+     }
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+     from {
+          opacity: .4
+     }
+     to {
+          opacity: 1
+     }
 }
+
+
 /*****************************************************************/
 
-
-
-
 @media screen and (min-width: 240px) and (max-width: 720px) {
-  /* iPhone, Android rules here */
-  .ocultarmovil {
-    display: none;
-  }
-  .centered-form {
-    margin: 10% 0;
-  }
-  .centered-form input {
-    margin: 0;
-    font-size: 17px;
-    border: 1px solid #bbb;
-  }
+     /* iPhone, Android rules here */
+     .ocultarmovil {
+          display: none;
+     }
+     .centered-form {
+          margin: 10% 0;
+     }
+     .centered-form input {
+          margin: 0;
+          font-size: 17px;
+          border: 1px solid #bbb;
+     }
+     .contenido {
+          margin-left: 5%;
+          margin-right: 5%;
+     }
+     .onehalf {
+          float: none;
+          width: auto;
+     }
+     .fondo {
+          margin-left: 0;
+          margin-right: 0;
+     }
+     .tablamovil td {
+          display: block;
+     }
+     .botonesbonitos {
+          display: block;
+          width: 80%;
+          margin: 3% auto !important;
+     }
+     .onlymobile {
+          display: unset;
+     }
 
-  .contenido {
-    margin-left: 5%;
-    margin-right: 5%;
-  }
+     #botoncerrarsesion {
+          display: block;
+     }
 
-  .onehalf {
-    float: none;
-    width: auto;
-  }
-
-  .fondo {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .tablamovil td{
-    display: block;
-  }
-
-  .botonesbonitos {
-       display: block !important;
-       width: 80%;
-       margin: 3% auto !important;
- }
-
-  .tablamovil tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .tablamovil td:nth-child(even) {
-    background-color: rgba(200, 200, 200, 0.5);
-  }
-
-  .onlymobile {
-    display: unset;
-  }
-  .columnleft {
-    width: 0;
-  }
-  .columnright {
-    margin-left: 0;
-  }
-  .contenido {
-    padding-top: 60px;
-  }
-  /***************************************************
+     .tablamovil tr:nth-child(even) {
+          background-color: rgba(255, 255, 255, 0.5);
+     }
+     .tablamovil td:nth-child(even) {
+          background-color: rgba(200, 200, 200, 0.5);
+     }
+     .columnleft {
+          width: 0;
+     }
+     .columnright {
+          margin-left: 0;
+     }
+     .contenido {
+          padding-top: 60px;
+     }
+     /***************************************************
    * Todo lo relacionado con la barra de navegación *
    ***************************************************/
-  .navigation-bar a {
-    cursor: default;
-  }
-  .prenavbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #666;
-    height: 60px;
-    box-sizing: border-box;
-    padding: 5px 5px;
-    display: unset;
-  }
-
-  .prenavbar button {
-    background-size: contain;
-    border: none;
-    background-position: center;
-    width: 50px;
-    height: 50px;
-  }
-  .navigation-bar {
-    display: none;
-    margin-top: 60px;
-  }
-  .navigation-bar ul {
-    padding-left: 0;
-  }
-  .navbaritems-left {
-    float: unset;
-  }
-  .navbaritems-right {
-    display: none;
-  }
-  /***************************************************
+     .navigation-bar a {
+          cursor: default;
+     }
+     .prenavbar {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          background-color: #666;
+          height: 60px;
+          box-sizing: border-box;
+          padding: 5px 5px;
+          display: unset;
+     }
+     .prenavbar button {
+          background-size: contain;
+          border: none;
+          background-position: center;
+          width: 50px;
+          height: 50px;
+     }
+     .navigation-bar {
+          display: none;
+          margin-top: 60px;
+     }
+     .navigation-bar ul {
+          padding-left: 0;
+     }
+     .navbaritems-left {
+          float: unset;
+     }
+     .navbaritems-right {
+          display: none;
+     }
+     /***************************************************
    * Fin barra navegación****************************
    ***************************************************/
-  .logo {
-    position: relative;
-    float: none;
-    margin: -50px auto;
-    width: 50px;
-    height: 50px;
-    padding: 0;
-  }
-
-  .logo a {
-    display: block;
-    height: 50px;
-    width: 50px;
-  }
-  /* Botón de menú */
-  .botonmenu {
-    background: url(/static/images/iconomenu.png) no-repeat;
-  }
-  .botonlogin {
-    background: url(/static/images/login.png) no-repeat;
-  }
-  .botonlogout {
-    background: url(/static/images/logout.png) no-repeat;
-  }
-  .botonlogin, .botonlogout {
-    background-size: contain;
-    cursor: default;
-    border: none;
-    background-position: center;
-    width: 50px;
-    height: 50px;
-    float: right;
-  }
-
+     .logo {
+          position: relative;
+          float: none;
+          margin: -50px auto;
+          width: 50px;
+          height: 50px;
+          padding: 0;
+     }
+     .logo a {
+          display: block;
+          height: 50px;
+          width: 50px;
+     }
+     /* Botón de menú */
+     .botonmenu {
+          background: url(/static/images/iconomenu.png) no-repeat;
+     }
+     .botonlogin {
+          background: url(/static/images/login.png) no-repeat;
+     }
+     .botonlogout {
+          background: url(/static/images/logout.png) no-repeat;
+     }
+     .botonlogin, .botonlogout {
+          background-size: contain;
+          cursor: default;
+          border: none;
+          background-position: center;
+          width: 50px;
+          height: 50px;
+          float: right;
+     }
 }
+
+
 /*****************************/
+
+
 /**********Dropzone***********/
+
+
 /*****************************/
-.content span{
- width: 250px;
+
+.content span {
+     width: 250px;
 }
