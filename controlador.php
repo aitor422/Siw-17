@@ -139,7 +139,7 @@ if ($accion == "producto") {
 				$usuario=$_SESSION["usuario"];
 			else
 				$usuario = "";
-			vMostrarProducto($producto, mMostrarProducto($producto), mObtenerComentarios($producto), mObtenerSiFavorito($usuario, $producto));
+			vMostrarProducto($producto, mMostrarProducto($producto), mObtenerComentarios($producto), mObtenerSiFavorito($usuario, $producto), mMostrarImagenes($producto));
 			break;
 	}
 }

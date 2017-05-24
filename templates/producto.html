@@ -1,6 +1,8 @@
 <h1>##nombre##</h1>
 <h1 id="idproducto">##idproducto##</h1>
-<img src="##imagen##" alt="imagen">
+<div class="slideshow-container ocultarmovil">
+  ##imagenes##
+</div>
 <h2>Descripción</h2>
 <p>##descripcion##</p>
 <h2>##precio##€</h2>
@@ -30,4 +32,37 @@
 </script>
 
 ##parausuarios##
+
+<script type="text/javascript">
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {
+      slideIndex = 1
+    }
+    if (n < 1) {
+      slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" activo", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " activo";
+  }
+</script>
 <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=591f1bc84d2b0c001100a83b&product=sticky-share-buttons" async="async"></script>
