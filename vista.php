@@ -127,7 +127,7 @@
           $page = str_replace("##cuentausuario##", "active", $page);
           $page = checksession($page, "-1");
           if(strcmp ( $usuario , "admin" ) === 0) {
-            $page = str_replace("##admin##", "<a class='last' href='controlador.php?accion=admin&id=1'><button class='botonesbonitos' type='button' >Zona de administración</button></a>", $page);
+            $page = str_replace("##admin##", "<button class='botonesbonitos botonesanchos' type='button' ><a href='controlador.php?accion=admin&id=1'>Zona de administración</a></button>", $page);
             $page = str_replace("##eliminarcuenta##", "", $page);
           }
           else {

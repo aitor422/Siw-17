@@ -318,6 +318,11 @@ html, body {
   cursor: pointer;
 }
 
+.botonesbonitos a{
+   text-decoration: none;
+   color: #444;
+}
+
 .botonesanchos {
   display: block;
   width: 80% !important;
