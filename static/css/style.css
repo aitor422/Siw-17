@@ -269,6 +269,10 @@ html, body {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+.tablaproductos input {
+     width: 100%;
+}
+
 .tablaproductos table {
   width: 100%;
   border-spacing: 0;
