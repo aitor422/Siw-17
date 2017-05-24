@@ -1,5 +1,25 @@
 <h1>##nombre##</h1>
 <h1 id="idproducto">##idproducto##</h1>
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+    <div class="mySlides">
+        <img src="##imggrande##" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <img src="##imggrande##" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <img src="##imggrande##" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <img src="##imggrande##" style="width:100%">
+    </div>
+  </div>
+</div>
 <div class="slideshow-container ocultarmovil carrouselprod">
   ##imagenes##
 </div>
@@ -34,6 +54,14 @@
 ##parausuarios##
 
 <script type="text/javascript">
+   function openModal() {
+     document.getElementById('myModal').style.display = "block";
+   }
+
+   function closeModal() {
+     document.getElementById('myModal').style.display = "none";
+   }
+
   var slideIndex = 1;
   showSlides(slideIndex);
 
