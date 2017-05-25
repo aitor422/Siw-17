@@ -15,7 +15,7 @@ function mEliminarProducto($producto){
    if ($resultado=$conn->query($consulta) === TRUE) {
       if ($resultado->num_rows!=0) {
          while ($datos = $resultado->fetch_assoc()) {
-            unlink("static/images/catalogo/".$datos['imagen']);
+            unlink("../static/images/catalogo/".$datos['imagen']);
          }
       }
    }

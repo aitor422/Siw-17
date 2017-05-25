@@ -9,6 +9,7 @@ function mMostrarProducto($producto){
 function mMostrarImagenes($producto) {
    $carouselimagenes='';
    $con = new mysqli("dbserver", "siw14", "eeshaekaip", "db_siw14");
+   mysqli_set_charset($con,"utf8");
    $consulta = "SELECT *  FROM final_imagenes WHERE idproducto = '$producto'";
    $resultado = $con->query($consulta);
    $fotosgrandes = array();
