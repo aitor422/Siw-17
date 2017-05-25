@@ -35,7 +35,7 @@ if (session_status() == PHP_SESSION_NONE)
 		$consulta2="SELECT count(final_productos.idproducto) from final_productos where nombre like ?";
    }
    else {
-		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta, destacado from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = '$usuario') a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria = ? and nombre like '$comienzo%' group by idproducto";
+		 $consulta="SELECT final_productos.idproducto, nombre, categoria, min(imagen) as imagen, count(idusuario) as cuenta, destacado from (final_productos LEFT JOIN (select * from final_favoritos where idusuario = ?) a on final_productos.idproducto=a.idproducto) left join (select * from final_imagenes where imagen like '%_pequena%') b on final_productos.idproducto=b.idproducto where categoria like ? and nombre like ? group by idproducto";
 		 $consulta2="SELECT count(final_productos.idproducto) from final_productos where nombre like ? AND categoria like ?";
   }
 switch ($orden) {
@@ -57,7 +57,7 @@ switch ($orden) {
 	if ($cat == "0") {
   		$stmt->bind_param("ss", $usuario,$comienzo);
 	}else{
-		$stmt->bind_param("sss", $cat,$usuario,$comienzo);
+		$stmt->bind_param("sss", $usuario,$cat,$comienzo);
 	}
   	$stmt->execute();
   	$stmt->bind_result($idproducto, $nombre, $categoria, $imagen, $cuenta, $destacado);

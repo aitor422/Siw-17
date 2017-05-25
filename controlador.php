@@ -183,6 +183,8 @@ if ($accion == "nuevocomentario"){
 				session_start();
 			if(isset($_SESSION["usuario"]))
 				$usuario = $_SESSION["usuario"];
+			else
+				die();
 			if (isset($_POST["comentario"])&&(!empty($_POST["comentario"]))) {
 			   $comentario=$_POST["comentario"];
 			}else{
@@ -194,9 +196,7 @@ if ($accion == "nuevocomentario"){
 			   die();
 			}
 			mNuevoComentario($producto, $comentario, $usuario);
-			$resultado=mMostrarProducto($producto);
-			$datos=mObtenerComentarios($producto);
-			vMostrarProducto($producto,$resultado,$datos);
+			vMostrarProducto($producto, mMostrarProducto($producto), mObtenerComentarios($producto), mObtenerSiFavorito($usuario, $producto), mMostrarImagenes($producto));
 			break;
 
 		default:

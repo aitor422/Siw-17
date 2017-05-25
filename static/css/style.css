@@ -22,6 +22,7 @@ textarea {
 
 html, body {
      height: 100%;
+     width: 100%;
 }
 
 #idproducto {
@@ -59,6 +60,7 @@ html, body {
 .footer, .contenido:after {
      /* .push must be the same height as footer */
      box-sizing: border-box;
+     width: 100%;
 }
 
 
@@ -66,7 +68,6 @@ html, body {
 
 .footer {
      height: 60px;
-     width: 100%;
      background-color: #666;
      text-align: center;
      color: #eee;
@@ -77,6 +78,33 @@ html, body {
 }
 .footer a {
      text-decoration: none;
+}
+
+/*************************************************/
+/*************comentarios*************************/
+.comentarios {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 3%;
+  padding-right: 20%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-style: solid;
+  border-color: transparent;
+}
+
+.comentario {
+  margin:1% 0;
+  background-color: rgba(200, 200, 200, 0.7);
+}
+
+.comentador {
+  font-size: x-large;
+  font-weight: bold;
+  display: contents;
+}
+
+.textocomentario {
+  display: contents;
 }
 
 

@@ -196,7 +196,7 @@
          $page = str_replace("Comentarios",'', $page);
       }
        while ($datos = $resultado2->fetch_assoc()) {
-          $comentarios=$comentarios."<h3>".$datos["idusuario"].": </h3>".$datos["comentario"]."<br>";
+          $comentarios=$comentarios."<div class='comentario'><div class='comentador'>".$datos["idusuario"].": </div><div class='textocomentario'>".$datos["comentario"]."</div></div><br>";
        }
       $page = str_replace("##comentarios##", $comentarios, $page);
        $page = checksession($page, $cuentafavoritos);
@@ -247,7 +247,7 @@
         if (session_status() == PHP_SESSION_NONE)
              session_start();
         if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] == "admin") {
-           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/productoamodificar.html") . file_get_contents("templates/core/footer.html");
+           $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/admin.html") . file_get_contents("templates/productoamodificar.html") . file_get_contents("templates/core/footer.html");
            $resultado = $resultado->fetch_assoc();
            $page = str_replace("##Nombre##", $resultado["nombre"], $page);
            $page = str_replace("##titulo##", $resultado["idproducto"], $page);
