@@ -36,7 +36,7 @@ html, body {
      padding-top: 8%;
      margin-left: 4%;
      margin-top: 3px;
-     background: url(/static/images/logoesquina.png) no-repeat;
+     background: url(../images/logoesquina.png) no-repeat;
      background-size: cover;
 }
 
@@ -116,7 +116,7 @@ html, body {
      right: 0;
      overflow: hidden;
      z-index: -1;
-     background-image: url(/static/images/fondolibros.jpg);
+     background-image: url(../images/fondolibros.jpg);
      opacity: .25;
      background-size: 100%;
      /*Para que esté en el fondo*/
@@ -658,13 +658,13 @@ html, body {
      }
      /* Botón de menú */
      .botonmenu {
-          background: url(/static/images/iconomenu.png) no-repeat;
+          background: url(../images/iconomenu.png) no-repeat;
      }
      .botonlogin {
-          background: url(/static/images/login.png) no-repeat;
+          background: url(../images/login.png) no-repeat;
      }
      .botonlogout {
-          background: url(/static/images/logout.png) no-repeat;
+          background: url(../images/logout.png) no-repeat;
      }
      .botonlogin, .botonlogout {
           background-size: contain;
