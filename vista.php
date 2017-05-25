@@ -48,9 +48,9 @@
              $page = str_replace("##p$i##", $datos["precio"] . ".-", $page);
              $page = str_replace("##link$i##", $datos["idproducto"], $page);
             if ($datos["imagen"] == null)
-                  $page = str_replace("##imagen$i##", "http://dummyimage.com/900x300" , $page);
+                  $page = str_replace("##imagen$i##", "http://dummyimage.com/900x500" , $page);
             else
-                  $page = str_replace("##imagen$i##", "static/images/catalogo/" . $datos["imagen"]  . "\" height='300px'" , $page);
+                  $page = str_replace("##imagen$i##", "static/images/catalogo/" . $datos["imagen"]  . "\" height='500px'" , $page);
              $i++;
            }
            $i = 1;
