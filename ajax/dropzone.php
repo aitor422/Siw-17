@@ -32,24 +32,24 @@ function redimensionarimagenes($grande, $mediana, $pequena) {
 	       default:
 	               throw new Exception('Unknown image type.');
 	}
-  $height_g = 300;
-  $height_m = 150;
-  $height_p = 80;
-  list($width_orig, $height_orig) = getimagesize($grande);
-  $ratio_orig = $width_orig/$height_orig;
-  $width_g = $height_g * $ratio_orig;
-  $width_m = $height_m * $ratio_orig;
-  $width_p = $height_p * $ratio_orig;
-  $image_g = imagecreatetruecolor($width_g, $height_g);
-  $image_m = imagecreatetruecolor($width_m, $height_m);
-  $image_p = imagecreatetruecolor($width_p, $height_p);
-  $image = $image_create_func($grande);
-  imagecopyresampled($image_g, $image, 0, 0, 0, 0, $width_g, $height_g, $width_orig, $height_orig);
-  imagecopyresampled($image_m, $image, 0, 0, 0, 0, $width_m, $height_m, $width_orig, $height_orig);
-  imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width_p, $height_p, $width_orig, $height_orig);
-  $image_save_func($image_g, $grande);
-  $image_save_func($image_m, $mediana);
-  $image_save_func($image_p, $pequena);
+	$height_g = 500;
+	$height_m = 300;
+	$height_p = 120;
+	list($width_orig, $height_orig) = getimagesize($grande);
+	$ratio_orig = $width_orig/$height_orig;
+	$width_g = $height_g * $ratio_orig;
+	$width_m = $height_m * $ratio_orig;
+	$width_p = $height_p * $ratio_orig;
+	$image_g = imagecreatetruecolor($width_g, $height_g);
+	$image_m = imagecreatetruecolor($width_m, $height_m);
+	$image_p = imagecreatetruecolor($width_p, $height_p);
+	$image = $image_create_func($grande);
+	imagecopyresampled($image_g, $image, 0, 0, 0, 0, $width_g, $height_g, $width_orig, $height_orig);
+	imagecopyresampled($image_m, $image, 0, 0, 0, 0, $width_m, $height_m, $width_orig, $height_orig);
+	imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width_p, $height_p, $width_orig, $height_orig);
+	$image_save_func($image_g, $grande);
+	$image_save_func($image_m, $mediana);
+	$image_save_func($image_p, $pequena);
 }
 
 
