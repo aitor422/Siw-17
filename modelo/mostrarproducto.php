@@ -14,13 +14,13 @@ function mMostrarImagenes($producto) {
    $fotosgrandes = array();
    $extension=array();
    while ($datos = $resultado->fetch_assoc()) {
-      $img='static/images/catalogo/'.$datos["imagen"];
+      $img='images/catalogo/'.$datos["imagen"];
       $peques=strpos($img,"pequena");
       $medianas=strpos($img,"mediana");
       if ($peques === false && $medianas === false) {
          $output=preg_split("/[._]/",$img);
          echo "<script>console.log( '".$output[0]."');</script>";
-         array_push($fotosgrandes,$output[0]);
+         array_push($fotosgrandes,'../'.$output[0]);
          array_push($extension,$output[2]);
       }
    }
@@ -36,10 +36,10 @@ function mMostrarImagenes($producto) {
    var extension_foto = array_extensiones[0];
    var numero_foto = 0;
 
-   var cadena=\"<div id='fade' class='overlay'></div><div id='ventana' class='ventana'></div><div style='text-align:center;'><img id='mediana' onclick='cambiar_a_grande()' src='static/images/\" + nombre_foto +\"_mediana.\"+extension_foto+\" class='foto_mediana'></div><br/><br/><br/><br/><br/><div style='text-align:center'>\";
+   var cadena=\"<div id='fade' class='overlay'></div><div id='ventana' class='ventana'></div><div style='text-align:center;'><img id='mediana' onclick='cambiar_a_grande()' src='static/images/\" + nombre_foto +\"_mediana.\"+extension_foto+\"' class='foto_mediana'></div><br/><br/><br/><br/><br/><div style='text-align:center'>\";
 
    for (var i=0;i < array_fotos.length;i++){
-      cadena += \"<img onclick='cambiar_a_mediana(\"+ i +\")' src='static/images/\" + nombre_foto +\"_pequena.\"+array_extensiones[i]+\"' class='borde_foto' >\";
+      cadena += \"<img onclick='cambiar_a_mediana(\"+ i +\")' src='static/images/\" + array_fotos[i] +\"_pequena.\"+array_extensiones[i]+\"' class='borde_foto' >\";
    }
 
    cadena += \"</div>\";
@@ -60,7 +60,7 @@ function mMostrarImagenes($producto) {
    function cambiar_a_grande(){
       document.getElementById('fade').style.visibility = \"visible\";
       document.getElementById('ventana').style.visibility = \"visible\";
-      document.getElementById('ventana').innerHTML = \"<img id='grande' src='static/images/\" + nombre_foto +\"_grande.\"+extension_foto+\"' class='foto_grande'><img id='x' onclick='close_grande()' src='static/imagenes/x.png' style='position:absolute;top:17%;width:2%;right:18%;'><img onclick='pasar_foto_izq()' src='static/imagenes/x.png' style='position:absolute;top:49%;height:2%;left:0%;'><img onclick='pasar_foto_der()' src='static/imagenes/x.png' style='position:absolute;top:49%;height:2%;right:0%;'>\";
+      document.getElementById('ventana').innerHTML = \"<img id='grande' src='static/images/\" + nombre_foto +\"_grande.\"+extension_foto+\"' class='foto_grande'><img id='x' onclick='close_grande()' src='static/images/x.png' style='position:absolute;top:17%;width:2%;right:18%;'><img onclick='pasar_foto_izq()' src='static/images/izquierda.png' style='position:absolute;top:49%;height:2%;left:10%;'><img onclick='pasar_foto_der()' src='static/images/derecha.png'  style='position:absolute;top:49%;height:2%;right:10%;'>\";
    }
 
    function close_grande(){
@@ -74,7 +74,7 @@ function mMostrarImagenes($producto) {
       if(numero_foto >= array_fotos.length){
          numero_foto = 0;
       }
-      document.getElementById('grande').src = \"static/images/\" + array_fotos[numero_foto] +\"_grande.\"+extension_foto[numero_foto];
+      document.getElementById('grande').src = \"static/images/\" + array_fotos[numero_foto] +\"_grande.\"+array_extensiones[numero_foto];
    }
 
    function pasar_foto_izq(){
@@ -82,7 +82,7 @@ function mMostrarImagenes($producto) {
       if(numero_foto < 0){
          numero_foto = array_fotos.length-1;
       }
-      document.getElementById('grande').src = \"static/images/\" + array_fotos[numero_foto] +\"_grande.\"+extension_foto[numero_foto];
+      document.getElementById('grande').src = \"static/images/\" + array_fotos[numero_foto] +\"_grande.\"+array_extensiones[numero_foto];
    }
  </script>";
  return $carouselimagenes;
