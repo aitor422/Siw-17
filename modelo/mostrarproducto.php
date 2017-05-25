@@ -18,9 +18,10 @@ function mMostrarImagenes($producto) {
       $peques=strpos($img,"pequena");
       $medianas=strpos($img,"mediana");
       if ($peques === false && $medianas === false) {
-         $output=preg_split("/ (.|_)/",$img);
+         $output=preg_split("/[._]/",$img);
+         echo "<script>console.log( '".$output[0]."');</script>";
          array_push($fotosgrandes,$output[0]);
-         array_push($extension,$output[1]);
+         array_push($extension,$output[2]);
       }
    }
    $longitud = count($fotosgrandes);
@@ -35,10 +36,10 @@ function mMostrarImagenes($producto) {
    var extension_foto = array_extensiones[0];
    var numero_foto = 0;
 
-   var cadena=\"<div id='fade' class='overlay'></div><div id='ventana' class='ventana'></div><div style='text-align:center;'><img id='mediana' onclick='cambiar_a_grande()' src='static/images/\" + nombre_foto +\"_mediana.\"+extension_foto' class='foto_mediana'></div><br/><br/><br/><br/><br/><div style='text-align:center;'>\";
+   var cadena=\"<div id='fade' class='overlay'></div><div id='ventana' class='ventana'></div><div style='text-align:center;'><img id='mediana' onclick='cambiar_a_grande()' src='static/images/\" + nombre_foto +\"_mediana.\"+extension_foto+\" class='foto_mediana'></div><br/><br/><br/><br/><br/><div style='text-align:center'>\";
 
    for (var i=0;i < array_fotos.length;i++){
-      cadena += \"<img onclick='cambiar_a_mediana(\"+ i +\")' src='static/images/\" + nombre_foto +\"_pequena.\"+array_extensiones[i]' class='borde_foto' >\";
+      cadena += \"<img onclick='cambiar_a_mediana(\"+ i +\")' src='static/images/\" + nombre_foto +\"_pequena.\"+array_extensiones[i]+\"' class='borde_foto' >\";
    }
 
    cadena += \"</div>\";
@@ -59,7 +60,7 @@ function mMostrarImagenes($producto) {
    function cambiar_a_grande(){
       document.getElementById('fade').style.visibility = \"visible\";
       document.getElementById('ventana').style.visibility = \"visible\";
-      document.getElementById('ventana').innerHTML = \"<img id='grande' src='static/images/\" + nombre_foto +\"_grande.\"+extension_foto' class='foto_grande'><img id='x' onclick='close_grande()' src='static/imagenes/x.png' style='position:absolute;top:17%;width:2%;right:18%;'><img onclick='pasar_foto_izq()' src='static/imagenes/x.png' style='position:absolute;top:49%;height:2%;left:0%;'><img onclick='pasar_foto_der()' src='static/imagenes/x.png' style='position:absolute;top:49%;height:2%;right:0%;'>\";
+      document.getElementById('ventana').innerHTML = \"<img id='grande' src='static/images/\" + nombre_foto +\"_grande.\"+extension_foto+\"' class='foto_grande'><img id='x' onclick='close_grande()' src='static/imagenes/x.png' style='position:absolute;top:17%;width:2%;right:18%;'><img onclick='pasar_foto_izq()' src='static/imagenes/x.png' style='position:absolute;top:49%;height:2%;left:0%;'><img onclick='pasar_foto_der()' src='static/imagenes/x.png' style='position:absolute;top:49%;height:2%;right:0%;'>\";
    }
 
    function close_grande(){
