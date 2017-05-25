@@ -413,13 +413,13 @@ html, body {
 
 .slideshow-container {
      max-width: 900px;
-     height: 300px;
+     height: 500px;
      position: relative;
      margin: auto;
 }
 .carrouselprod{
    width: 900px;
-   height: 300px;
+   height: 500px;
    background-color: #444;
 }
 
