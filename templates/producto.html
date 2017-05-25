@@ -1,43 +1,10 @@
 <h1>##nombre##</h1>
 <h1 id="idproducto">##idproducto##</h1>
-<!-- TODO: MOdificar por Modal con medianas y pequeñas -->
-<!-- <div class="row">
-  <div class="column">
-    <img src="img1.jpg" onclick="openModal();currentSlide(1)" class="hover-shadow">
-  </div>
-  <div class="column">
-    <img src="img2.jpg" onclick="openModal();currentSlide(2)" class="hover-shadow">
-  </div>
-  <div class="column">
-    <img src="img3.jpg" onclick="openModal();currentSlide(3)" class="hover-shadow">
-  </div>
-  <div class="column">
-    <img src="img4.jpg" onclick="openModal();currentSlide(4)" class="hover-shadow">
-  </div>
-</div> -->
-
-<div id="myModal" class="modal">
-  <span class="close cursor" onclick="closeModal()">&times;</span>
-  <div class="modal-content">
-    <div class="mySlides">
-        <img src="##imggrande##" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <img src="##imggrande##" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <img src="##imggrande##" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <img src="##imggrande##" style="width:100%">
-    </div>
-  </div>
+<div class="container">
+   <div id="galeria">
+      ##imagenes##
+   </div>
 </div>
-<div class="slideshow-container ocultarmovil carrouselprod">
-  ##imagenes##
 </div>
 <h2>Descripción</h2>
 <p>##descripcion##</p>
@@ -69,44 +36,4 @@
 
 ##parausuarios##
 
-<script type="text/javascript">
-   function openModal() {
-     document.getElementById('myModal').style.display = "block";
-   }
-
-   function closeModal() {
-     document.getElementById('myModal').style.display = "none";
-   }
-
-  var slideIndex = 1;
-  showSlides(slideIndex);
-
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {
-      slideIndex = 1
-    }
-    if (n < 1) {
-      slideIndex = slides.length
-    }
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" activo", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " activo";
-  }
-</script>
 <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=591f1bc84d2b0c001100a83b&product=sticky-share-buttons" async="async"></script>
