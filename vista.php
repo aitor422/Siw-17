@@ -178,7 +178,7 @@
             }
      }
 
-     function vMostrarProducto($producto, $resultado, $resultado2, $cuentafavoritos, $imagenes) {
+     function vMostrarProducto($producto, $resultado, $resultado2, $cuentafavoritos,$carouselimagenes) {
        $resultado = $resultado->fetch_assoc();
        $page = file_get_contents("templates/core/header.html") . file_get_contents("templates/producto.html") . file_get_contents("templates/core/footer.html");
        $page = str_replace("##idproducto##", $producto, $page);
@@ -200,20 +200,7 @@
        }
       $page = str_replace("##comentarios##", $comentarios, $page);
        $page = checksession($page, $cuentafavoritos);
-       /////////////
-       $containerimagenes = '';
-       $j = 1;
-       while ($imagen = $imagenes -> fetch_assoc()) {
-            $containerimagenes = $containerimagenes . '<a href="controlador.php?accion=producto&id=1&producto=' . $producto . '"><div class="mySlides fade"><div class="numbertext">'.$j.'</div><img class="imgcarcentrada" src="static/images/catalogo/'. $imagen["imagen"] .'"></div></a>';
-            $j++;
-       }
-
-       if ($containerimagenes == '') {
-            //$page = str_replace("##imagen##", "http://placehold.it/350x150", $page);
-            $containerimagenes = $containerimagenes . '<a href="controlador.php?accion=producto&id=1&producto=' . $producto . '"><div class="mySlides fade"><div class="numbertext">1</div><img src="http://placehold.it/350x150"></div></a>';
-        }
-        $containerimagenes = $containerimagenes . '<a class="prev" onclick="plusSlides(-1)">&#10094;</a><a class="next" onclick="plusSlides(1)">&#10095;</a>';
-        $page = str_replace("##imagenes##", $containerimagenes, $page);
+        $page = str_replace("##imagenes##", $carouselimagenes, $page);
        echo $page;
      }
 
