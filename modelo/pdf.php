@@ -37,7 +37,7 @@ function mPdf()
      //Obtenemos las caracteristicas de los productos del usuario
      foreach ($ids as $idproductofor ) {
         // mySQL no tiene FULL OUTER JOIN y hay que hacerlo de esta manera tan bonita
-        $consulta = "select nombre,precio,categoria,descripcion,min(imagen) from final_productos LEFT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_pequena%') imag on final_productos.idproducto = imag.idproducto where final_productos.idproducto = '$idproductofor' UNION ALL select nombre,precio,categoria,descripcion,min(imagen) from final_productos RIGHT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_pequena%') imag on final_productos.idproducto = imag.idproducto where final_productos.idproducto is null";
+        $consulta = "select nombre,precio,categoria,descripcion,imagen from final_productos LEFT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_pequena%') imag on final_productos.idproducto = imag.idproducto where final_productos.idproducto = '$idproductofor' UNION ALL select nombre,precio,categoria,descripcion,imagen from final_productos RIGHT JOIN (SELECT * FROM final_imagenes WHERE imagen like '%_pequena%') imag on final_productos.idproducto = imag.idproducto where final_productos.idproducto is null limit 1";
         $resultado = $con->query($consulta);
         $datos = $resultado->fetch_assoc();//Solo hay una linea.Iteramos sobre idproducto
         if ($datos["imagen"]!=NULL) {
